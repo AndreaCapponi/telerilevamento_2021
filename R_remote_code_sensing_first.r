@@ -11,7 +11,7 @@
 #Syntaxis' function for Windows is: renowned object name <- brick('original object name')
 #Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need ' ' 
 #Loading required packages: sp is successful
-#p224r63_2011_masked.grd is imported in R with brick function according to Windows' syntaxis in which: example 1 = p224r63_2011 and example 2 = p224r63_2011_masked.grd
+#p224r63_2011_masked.grd is imported in R with brick function according to Windows' syntaxis in which: renowned object name = p224r63_2011 and original object name = p224r63_2011_masked.grd
 #Final syntaxis' function in Windows is: p224r63_2011 <- brick('p224r63_2011_masked.grd')
 #How to visualize informations of p224r63_2011 in R? 
 #In R, visualizing informations of an object, name of it followed by enter as physical command by keyboard
