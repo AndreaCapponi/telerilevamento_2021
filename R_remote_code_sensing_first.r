@@ -19,6 +19,18 @@
 #I exploit  a function (plot) to obtain visually spectral bands
 #Syntaxis' function for Windows is: plot(object)
 #In R function plot(p224r63_2011) lead me to a schedule with spectral bands explained graphically 
+#Dal seguente commento, da riorganizzare e tradurre in lingua inglese
+#Io voglio modificare il colore dei grafici assegnando tre colori pixels bianco, grigio e nero
+#Funzione ColorRampPalette valori riflettanza per lunghezza lunga
+#Qual è la sintassi di questa funzione? colorRampPalette('black','grey',light grey') colorRampPalette(c('black','grey',light grey')) 
+#livelli di colore colorRampPalette(c('black','grey',light grey')) (100)
+# colore palette <- colorRampPalette(c('black','grey',light grey')) (100) nome alla tabella dei colori
+#plot function nuova tabella dove col primo argomento oggetto rinominato, secondo banda plot(p224r63_2011, col=cl)
+#Per appartenenza alla stessa oggetto, array (vettore) c per stesso argomento (colore)
+#I colori sono etichettati/indicizzati 
+#Inventa nuova scala di colore
+#cl <- colorRampPalette(c("red","magenta","pink")) (100)
+#plot(p224r63_2011, col=cl)
 #Sequence of informatic commands for R_remote_code_sensing_first.r
 
 install.packages('raster')
