@@ -23,12 +23,12 @@
 #I exploit  a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
 ##Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
 #A further consideration for upper syntaxis' function: array is indicated by c letter and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
-#livelli di colore colorRampPalette(c('black','grey',light grey')) (100)
-# colore palette <- colorRampPalette(c('black','grey',light grey')) (100) nome alla tabella dei colori
-#plot function nuova tabella dove col primo argomento oggetto rinominato, secondo banda plot(p224r63_2011, col=cl)
-#Inventa nuova scala di colore
-#cl <- colorRampPalette(c("red","magenta","pink")) (100)
-#plot(p224r63_2011, col=cl)
+#If I want the aforementioned new palette of colors - which is given the name of bgwcp - represents a greyscale, first and last color will be black and white (B/W) respectively whereas second, third, etc. colors will be greys of which the number of depth levels vary from 4 to 256
+#Final syntaxis' function in Windows is: bgwcp <- colorRampPalette(c('black','grey','white'))(100)
+#The previous R's function plot(p224r63_2011) must be reformulated by incorporating new palette of colors bgwcp: plot(p224r63_2011, col=bgwcp) will display graphically reflectance's values for each spectral bands in a greyscale
+#with what has been described so far, I create a futher new palette of colors called rmpcp in which first, second and last color will be red, magenta and pink respectively with number's value of depth levels taken to the extreme being 1000!
+#Final syntaxis' function in Windows is: rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
+#Adapted R's function plot(p224r63_2011, col=rmpcp) will display graphically reflectance's values for each spectral bands in a colorscale invented starting from scratch by the user
 #Sequence of informatic commands for R_remote_code_sensing_first.r
 
 install.packages('raster')
@@ -40,3 +40,11 @@ setwd('C:/lab/')
 p224r63_2011 <- brick('p224r63_2011_masked.grd')
 
 plot(p224r63_2011)
+
+bgwcp <- colorRampPalette(c('black','grey','white'))(100)
+
+plot(p224r63_2011, col=bgwcp)
+
+rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
+
+plot(p224r63_2011, col=rmpcp)
