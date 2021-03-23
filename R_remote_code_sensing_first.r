@@ -15,6 +15,9 @@
 #Final syntaxis' function in Windows is: p224r63_2011 <- brick('p224r63_2011_masked.grd')
 #How to visualize informations of p224r63_2011 in R? 
 #In R, visualizing informations of an object, name of it followed by enter as physical command by keyboard
+#Important: any object name includes also informations about the number assigned to a sinusoid on space satellite's path (preceded by p letter) and of any parallel (preceded by letter r) that intersected it in a specific reference system: consequently the name of p224r63 object refers to the sinusoid numbered 224 on LANDSAT's path and to Earth's parallel numbered 63 that intersected the former in WGS84 reference system 
+#The reference system further analyzed has been extracted from the informations of a generic object as crs in which the user through R can find in order: projection, zone, datum and units
+#crs string in p224r63_2011's informations summary is for example: +proj=utm +zone=22 +datum=WGS84 +units=m +no_defs 
 #If I want to obtain visually frequence bands in p224r63_2011?
 #I exploit  a function (plot) to obtain visually spectral bands
 #Syntaxis' function for Windows is: plot(object)
@@ -33,7 +36,6 @@
 #Adapted R's function plot(p224r63_2011, col=rmpcp) will display graphically reflectance's values for each spectral bands in a colorscale invented starting from scratch by the user
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 19/03/2021
-#p224r63 path (p) 224 sinusoid ro (r) parallel
 #p224r63? path 224, sinusoide landsat righe ro, come paralleli quindi r 63 csr sistema di riferimento coordinate punti punto centrale immagine landsat stessa immagine nel tempo per monitoraggio area
 #crs: zone=fuso coordinates x min x max y min ymax datum wgs 84 proiezione utm unità di misura su carta in metri da gradi coordinate dell'immagine raster brick + uniti tra di loro 4447533 pixels per banda risoluzione 30x30 metri bande specifiche banda1 blu banda 2 verde banda 3 rosso banda 4 NIR banda 5 SW red banda 6 infrarosso termico banda 7 infrarosso medio
 
