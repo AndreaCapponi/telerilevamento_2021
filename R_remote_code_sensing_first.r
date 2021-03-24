@@ -39,6 +39,58 @@
 #p224r63? path 224, sinusoide landsat righe ro, come paralleli quindi r 63 csr sistema di riferimento coordinate punti punto centrale immagine landsat stessa immagine nel tempo per monitoraggio area
 #crs: zone=fuso coordinates x min x max y min ymax datum wgs 84 proiezione utm unità di misura su carta in metri da gradi coordinate dell'immagine raster brick + uniti tra di loro 4447533 pixels per banda risoluzione 30x30 metri bande specifiche banda1 blu banda 2 verde banda 3 rosso banda 4 NIR banda 5 SW red banda 6 infrarosso termico banda 7 infrarosso medio
 
+#Al di sotto di questo commento tradurre e organizzare la lezione del 24/03/2021
+#sp gestione dati all'interno del nostro software, classes and methods for spatial data 
+#centro foresta amazzonica p224r63
+#codice per spiegare cosa sono queste bande: B1 blu B2 verde B3 rosso B4 infrarosso vicino B5 infrarosso medio B6 infrarosso lontano o termico B7 infrarosso medio, altro LANDSAT
+#Io voglio plottare una sola banda: come? 
+#Plottare la banda del blu B1_srE
+#dev.off pulisce la finestra grafica will clean the current graph null device 1
+#Error in dev.off() : non posso chiudere il dispositivo 1 (dispositivo null) in questo caso vi da errore perchè  avete già chiuso il plot manualmente
+#p224r63_2011 B1_sre come si spiega che va a legare entrambe? $ è il simbolo da utilizzare per legare due blocks immagine -> banda
+#Come fare il plottaggio specifico?
+# plot(p224r63_2011$B1_sre)
+#L'unica banda visibile è quindi la B1 per il blu!
+# plot band 1 with a predefined colut ramp palette
+#> rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
+#plot(p224r63_2011$B1_sre, col=rmpcp)
+#plot singole bande tramite la funzione par
+#grafico con due plot per bande B1 e B2, questo è un multiframe MF
+#1 riga, 2 colonne: par(mfrow =c(1,2)) grafico interno, row prima numero righe, col prima numero colonne
+#Bande successive tramite plot si sovrappongono nel grafico quindi è funzionale creare un multiframe con le bande di mio interesse andando a descrivere come R organizzerà le immagini in un grafico R
+# par(mfrow=c(1,2))
+# plot(p224r63_2011$B1_sre)
+# plot(p224r63_2011$B2_sre)
+# par(mfcol=c(1,2))
+# plot(p224r63_2011$B1_sre)
+# plot(p224r63_2011$B2_sre)
+#plot the first four bands of landsat
+#par(mfrow=c(4,1))
+#plot(p224r63_2011$B1_sre)
+#plot(p224r63_2011$B2_sre)
+#plot(p224r63_2011$B3_sre)
+#plot(p224r63_2011$B4_sre)
+#Come cambiare la configurazione per la visualizzazione?
+#Quadrato 2 x 2 
+#par(mfrow=c(2,2))
+#plot(p224r63_2011$B1_sre)
+#plot(p224r63_2011$B2_sre)
+#plot(p224r63_2011$B3_sre)
+#plot(p224r63_2011$B4_sre)
+#Quadrato 2 x 2 con color palette per ciascuna banda
+#par(mfrow=c(2,2)) 
+#clb <- colorRampPalette(c("dark blue","blue","light blue")) (100)
+#plot(p224r63_2011$B1_sre, col=clb)
+#clg <- colorRampPalette(c("dark green","green","light green")) (100)
+#plot(p224r63_2011$B2_sre, col=clg)
+#clg <- colorRampPalette(c("dark green","green","light green")) (100)
+#plot(p224r63_2011$B2_sre, col=clg)
+#clnir <- colorRampPalette(c("red","orange","yellow")) (100)
+#plot(p224r63_2011$B4_sre, col=clnir)
+#sempre prima multiframe per la collocazione delle bande corrette nel colore per i valori della riflettanza
+#é importatntissimo che sia l'utente a scegliere il plottaggio delle immagini in telerilevamento! 
+
+
 #Sequence of informatic commands for R_remote_code_sensing_first.r
 
 install.packages('raster')
