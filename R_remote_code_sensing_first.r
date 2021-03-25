@@ -34,6 +34,13 @@
 #If in the final syntaxis' function for Windows systems is included a color (first, second, ..., last) freely selected by the user but unobtainable through an additive color model which is RGB (color gamut is created from red, green and blue as primary colors) therefore will be displayed the underlying string ↓
 ##Error in col2rgb(colors, alpha = alpha) : invalid color name 'fuchsia' rmpcp <- colorRampPalette(c('red','magenta','fuchsia','pink'))(1000) where fuchsia in RGB's color gamut doesn't exist being unobtainable through the addition of primary colors!
 #Adapted R's function plot(p224r63_2011, col=rmpcp) will display graphically reflectance's values for each spectral bands in a colorscale invented starting from scratch by the user
+#If the user requires adapted R's function plot(p224r63_2011, col=rmpcp) will display graphically reflectance's values for one of the previous spectral bands (B1: blue, B2: green, B3: red, B4:near-infrared, B5:mid-infrared, B6: far-infrared or B7: other mid-infrared)? 
+#I exploit a function dev.off() to end a graphical display depending on the R's (plot) function and if it is syntactically correct, the user will see this message appears: null device 1
+#Error in dev.off() : cannot shut down the device 1 (dispositivo null) message appears exclusively when the user has closed manually graphical display's window clicking on the x at the top right
+#I exploit a function ($) to extract, from the (plot) of an object represented by a matrix of data, some of the latter which instead will represent graphically the ''level'' of interest
+#Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre)
+
+
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 19/03/2021
 #p224r63? path 224, sinusoide landsat righe ro, come paralleli quindi r 63 csr sistema di riferimento coordinate punti punto centrale immagine landsat stessa immagine nel tempo per monitoraggio area
@@ -41,13 +48,9 @@
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 24/03/2021
 #sp gestione dati all'interno del nostro software, classes and methods for spatial data 
-#centro foresta amazzonica p224r63
-#codice per spiegare cosa sono queste bande: B1 blu B2 verde B3 rosso B4 infrarosso vicino B5 infrarosso medio B6 infrarosso lontano o termico B7 infrarosso medio, altro LANDSAT
+#centro foresta amazzonica p224r63r
 #Io voglio plottare una sola banda: come? 
 #Plottare la banda del blu B1_srE
-#dev.off pulisce la finestra grafica will clean the current graph null device 1
-#Error in dev.off() : non posso chiudere il dispositivo 1 (dispositivo null) in questo caso vi da errore perchè  avete già chiuso il plot manualmente
-#p224r63_2011 B1_sre come si spiega che va a legare entrambe? $ è il simbolo da utilizzare per legare due blocks immagine -> banda
 #Come fare il plottaggio specifico?
 # plot(p224r63_2011$B1_sre)
 #L'unica banda visibile è quindi la B1 per il blu!
