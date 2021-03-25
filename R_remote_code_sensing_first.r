@@ -18,13 +18,13 @@
 #Important: any object name includes also informations about the number assigned to a sinusoid on space satellite's path (preceded by p letter) and of any parallel (preceded by letter r) that intersected it in a specific reference system: consequently the name of p224r63 object refers to the sinusoid numbered 224 on LANDSAT's path and to Earth's parallel numbered 63 that intersected the former in WGS84 reference system 
 #The reference system further analyzed has been extracted from the informations of a generic object as crs in which the user through R can find in order: projection, zone, datum and units
 #crs string in p224r63_2011's informations summary is for example: +proj=utm +zone=22 +datum=WGS84 +units=m +no_defs 
-#If I want to obtain visually frequence bands in p224r63_2011?
-#I exploit  a function (plot) to obtain visually spectral bands
+#If I want to obtain visually spectral bands in p224r63_2011?
+#I exploit  a function (plot) to obtain visually spectral bands ¹
 #Syntaxis' function for Windows is: plot(object)
 #In R function plot(p224r63_2011) lead me to a schedule with spectral bands explained graphically through the concept of reflectance
 #Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1_SRE to B7_SRE representing each spectral bands
 #I exploit  a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
-##Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
+#Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
 #A further consideration for upper syntaxis' function: array is indicated by c letter and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
 #If I want the aforementioned new palette of colors - which is given the name of bgwcp - represents a greyscale, first and last color will be black and white (B/W) respectively whereas second, third, etc. colors will be greys of which the number of depth levels vary from 4 to 256
 #Final syntaxis' function in Windows is: bgwcp <- colorRampPalette(c('black','grey','white'))(100)
@@ -37,10 +37,10 @@
 #If the user requires adapted R's function plot(p224r63_2011, col=rmpcp) will display graphically reflectance's values for one of the previous spectral bands (B1: blue, B2: green, B3: red, B4:near-infrared, B5:mid-infrared, B6: far-infrared or B7: other mid-infrared)? 
 #I exploit a function dev.off() to end a graphical display depending on the R's (plot) function and if it is syntactically correct, the user will see this message appears: null device 1
 #Error in dev.off() : cannot shut down the device 1 (dispositivo null) message appears exclusively when the user has closed manually graphical display's window clicking on the x at the top right
-#I exploit a function ($) to extract, from the (plot) of an object represented by a matrix of data, some of the latter which instead will represent graphically the ''level'' of interest
-#Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre)
-
-
+#I exploit a function ($) to extract, from the initial (plot)¹ of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of ''interest''
+#Syntaxis' function for Windows: plot(renowned object name$name of the object's level in which the user is interested for graphical visualization)
+#Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre) if for example the only spectral band in p224r63_2011 I would graphically visualize is B1: blue!
+#
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 19/03/2021
 #p224r63? path 224, sinusoide landsat righe ro, come paralleli quindi r 63 csr sistema di riferimento coordinate punti punto centrale immagine landsat stessa immagine nel tempo per monitoraggio area
@@ -49,11 +49,7 @@
 #Al di sotto di questo commento tradurre e organizzare la lezione del 24/03/2021
 #sp gestione dati all'interno del nostro software, classes and methods for spatial data 
 #centro foresta amazzonica p224r63r
-#Io voglio plottare una sola banda: come? 
-#Plottare la banda del blu B1_srE
-#Come fare il plottaggio specifico?
-# plot(p224r63_2011$B1_sre)
-#L'unica banda visibile è quindi la B1 per il blu!
+
 # plot band 1 with a predefined colut ramp palette
 #> rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
 #plot(p224r63_2011$B1_sre, col=rmpcp)
