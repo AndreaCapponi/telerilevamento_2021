@@ -10,7 +10,7 @@
 #I exploit  a function (brick) to import data from lab folder - external - to R - internal* -
 #Syntaxis' function for Windows is: renowned object name <- brick('original object name')
 #Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need ' '* 
-#Loading required packages: sp is successful
+#Loading required packages: sp is successful being classes and methods' database provider for spatial data 
 #p224r63_2011_masked.grd is imported in R with brick function according to Windows' syntaxis in which: renowned object name = p224r63_2011 and original object name = p224r63_2011_masked.grd
 #Final syntaxis' function in Windows is: p224r63_2011 <- brick('p224r63_2011_masked.grd')
 #How to visualize informations of p224r63_2011 in R? 
@@ -28,7 +28,7 @@
 #A further consideration for upper syntaxis' function: array is indicated by c letter and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
 #If I want the aforementioned new palette of colors - which is given the name of bgwcp - represents a greyscale, first and last color will be black and white (B/W) respectively whereas second, third, etc. colors will be greys of which the number of depth levels vary from 4 to 256
 #Final syntaxis' function in Windows is: bgwcp <- colorRampPalette(c('black','grey','white'))(100)
-#The previous R's function plot(p224r63_2011) must be reformulated by incorporating new palette of colors bgwcp: plot(p224r63_2011, col=bgwcp) will display graphically reflectance's values for each spectral bands in a greyscale
+#plot(p224r63_2011) must be reformulated by incorporating new palette of colors bgwcp: plot(p224r63_2011, col=bgwcp) will display graphically reflectance's values for each spectral bands in a greyscale
 #with what has been described so far, I create a futher new palette of colors called rmpcp in which first, second and last color will be red, magenta and pink respectively with number's value of depth levels taken to the extreme being 1000!
 #Final syntaxis' function in Windows is: rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
 #If in the final syntaxis' function for Windows systems is included a color (first, second, ..., last) freely selected by the user but unobtainable through an additive color model which is RGB (color gamut is created from red, green and blue as primary colors) therefore will be displayed the underlying string ↓
@@ -39,17 +39,15 @@
 #Error in dev.off() : cannot shut down the device 1 (dispositivo null) message appears exclusively when the user has closed manually graphical display's window clicking on the x at the top right
 #I exploit a function ($) to extract, from the initial (plot)¹ of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of ''interest''
 #Syntaxis' function for Windows: plot(renowned object name$name of the object's level in which the user is interested for graphical visualization)
-#Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre) if for example the only spectral band in p224r63_2011 I would graphically visualize is B1: blue!
-#
+#What will be the final syntaxis' function in Windows if my p224r63_2011's level of ''interest'' is the set of data which will be graphically visualized in their functional whole being as the spectral band B1:blue?
+#Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre) 
 
-#Al di sotto di questo commento tradurre e organizzare la lezione del 19/03/2021
-#p224r63? path 224, sinusoide landsat righe ro, come paralleli quindi r 63 csr sistema di riferimento coordinate punti punto centrale immagine landsat stessa immagine nel tempo per monitoraggio area
-#crs: zone=fuso coordinates x min x max y min ymax datum wgs 84 proiezione utm unità di misura su carta in metri da gradi coordinate dell'immagine raster brick + uniti tra di loro 4447533 pixels per banda risoluzione 30x30 metri bande specifiche banda1 blu banda 2 verde banda 3 rosso banda 4 NIR banda 5 SW red banda 6 infrarosso termico banda 7 infrarosso medio
+#For the user $ function's relevance in R is manifest at a higher level with the function par through which there is the possibility?
+
+#rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
+#plot(p224r63_2011$B1_sre, col=rmpcp)
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 24/03/2021
-#sp gestione dati all'interno del nostro software, classes and methods for spatial data 
-#centro foresta amazzonica p224r63r
-
 # plot band 1 with a predefined colut ramp palette
 #> rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
 #plot(p224r63_2011$B1_sre, col=rmpcp)
@@ -88,6 +86,8 @@
 #plot(p224r63_2011$B4_sre, col=clnir)
 #sempre prima multiframe per la collocazione delle bande corrette nel colore per i valori della riflettanza
 #é importatntissimo che sia l'utente a scegliere il plottaggio delle immagini in telerilevamento! 
+
+#Al di sotto di questo commento tradurre e organizzare la lezione del 26/03/2021
 
 
 #Sequence of informatic commands for R_remote_code_sensing_first.r
