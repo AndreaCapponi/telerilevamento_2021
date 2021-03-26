@@ -88,6 +88,72 @@
 #é importatntissimo che sia l'utente a scegliere il plottaggio delle immagini in telerilevamento! 
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 26/03/2021
+#Visualizzare dati attraverso un plot RGB
+#Definizione di RGB
+#Di 7 B, 3 per volta per colorazione naturale!
+#3 2 1 associazione per bande
+#Qual è la funzione? Plot ma in RGB!
+#Multulayered raster object red green blue plot
+#plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
+#Quali bandi associamo a ogni elemento di LANDSAT?
+#Argomeno ulteriore stretch: valori per la riflettanza (energia riflessa/energia totale tra 0 e 1) affinchè non ci sia un eccessivo stiramento nelle bande di colore (tutte le sfumatura possibili) 
+#Se valori per esempio compresi tra 0,1 e o,5, attraverso una funzione lineare, li riporto tra 0 e 1! (Finalità di visualizzzazione grafica)
+#Error in .rasterImagePlot(object, col = col, xlab = xlab, ylab = ylab,  : l'argomento 14 si associa a più argomenti formali
+#La funzione non sfrutta il nome della banda perchè si indica il punto nel quale è collocata la banda corrispondente tramite numero integer
+#Invece per l'nfrarosso?
+#4 3 2 R G B, la banda blu viene eliminata!
+#plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
+#Visualizzazione grafica della vegetazione per l'infrarosso (elevato valore per la riflettanza banda numero 4) riflessa contrariamente al primo plot dove l'interpretazione non sarebbe stata possibile 
+#Visualizzazione in falsi colori in riferimento ai nostri occhi, ai nostri ''sensori''!
+#plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin'), cosa accadrà?
+#Vegetazione verde per spostamento dell'infrarosso sulla componente green di RGB
+#Apprezzamento di maggiori dettagli nell'immagine p224r63_2011
+#Viola=suolo nudo, senza vegetazione
+#plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
+#giallo=suolo nudo, componente blu per l'infrarosso
+#par montando le quatrro immagini con differenti plot in RGB 2 x 2 
+
+par(mfrow=c(2,2))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
+
+#Salvare immagine con tasto destro semplice
+#Come si fa a salvare una immagine in PDF in lab?
+#funzione pdf()
+#La sintassi è: pdf('ilnomedelpdf.pdf')
+#dev.off per pulizia
+
+pdf('ilnomedelpdfnuovotentativo.pdf')
+par(mfrow=c(2,2))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
+dev.off()
+
+#Lo strecht potrebbe anche essere istagram e non solamente lineare
+
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
+
+# Com'è la nuova visualizzazione?
+#Al dettaglio. Con questa visualizzaione si apprezzano i bacini e le reti idrografiche all'interno della foresta amazzonica in esame
+
+#par natural colors, false colors and fals colors with hist
+
+par(mfrow=c(3,1))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
+
+#Ma la legenda?
+#I colori non sono decisi dall'utente ma dipendono dai valori della riflettanza!
+#Colorist: coloring wildlife distributions in space time
+#
+
+
+
 
 
 #Sequence of informatic commands for R_remote_code_sensing_first.r
