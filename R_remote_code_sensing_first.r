@@ -20,11 +20,11 @@
 #crs string in p224r63_2011's informations summary is for example: +proj=utm +zone=22 +datum=WGS84 +units=m +no_defs 
 #If I want to obtain visually spectral bands in p224r63_2011?
 #I exploit  a function (plot) to obtain visually spectral bands ¹
-#Syntaxis' function for Windows is: plot(object)
+#Syntax's function for Windows is: plot(object)
 #In R function plot(p224r63_2011) lead me to a schedule with spectral bands explained graphically through the concept of reflectance
 #Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1_SRE to B7_SRE representing each spectral bands
 #I exploit  a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
-#Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
+#Syntax's function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
 #A further consideration for upper syntaxis' function: array is indicated by c letter and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
 #If I want the aforementioned new palette of colors - which is given the name of bgwcp - represents a greyscale, first and last color will be black and white (B/W) respectively whereas second, third, etc. colors will be greys of which the number of depth levels vary from 4 to 256
 #Final syntaxis' function in Windows is: bgwcp <- colorRampPalette(c('black','grey','white'))(100)
@@ -38,13 +38,20 @@
 #I exploit a function dev.off() to end a graphical display depending on the R's (plot) function and if it is syntactically correct, the user will see this message appears: null device 1
 #Error in dev.off() : cannot shut down the device 1 (dispositivo null) message appears exclusively when the user has closed manually graphical display's window clicking on the x at the top right
 #I exploit a function ($) to extract, from the initial (plot)¹ of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of ''interest''
-#Syntaxis' function for Windows: plot(renowned object name$name of the object's level in which the user is interested for graphical visualization)
-#What will be the final syntaxis' function in Windows if my p224r63_2011's level of ''interest'' is the set of data which will be graphically visualized in their functional whole being as the spectral band B1:blue?
-#Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre) 
+#Initial syntaxis' function for Windows: plot(renowned object name$name of the object's level in which the user is interested for graphical visualization)
+#What will be the final syntaxis' function in Windows if my p224r63_2011's level of ''interest''² is the set of data which will be graphically visualized in their functional whole being as the spectral band B1:blue?
+#In progress syntaxis' function in Windows is: plot(p224r63_2011$B1_sre) 
+#With plot(p224r63_2011$B1_sre) the user graphically will visualize the spectral band B1:blue stand-alone² in its reflectance's values which colors belonging to a defaul palette of R
+#plot is a R's function whose syntaxis could be implemented with colorRampPalette in order that I substitute default palette of colors belonging to R with a palette the user created
+#syntaxis' function for Windows: plot(renowned object name$name of the object's level in which the user is interested for graphical visualization, col=name of selected colors' palette)
+#Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre, col=rmpcp), if I take advantage of my own and invetnted palette of colors
 
-#For the user $ function's relevance in R is manifest at a higher level with the function par through which there is the possibility?
-
+#For the user $ function's relevance in R is manifest at a higher level with the function (par)
+#through which there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their
+#Syntaxis' function for Windows:par(mfrow =c(1,2)), par(mfcol =c(1,2))
+#mf multiframe, row righe , col colonne 
 #rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
+
 #plot(p224r63_2011$B1_sre, col=rmpcp)
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 24/03/2021
