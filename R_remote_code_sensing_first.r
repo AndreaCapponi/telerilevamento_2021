@@ -54,21 +54,8 @@
 #Along the lines of what was suggested to visualize in a single graphic solution the first two of them through R's par function in multiframe, the final syntaxis' function in Windows will be: par(mfrow=c(4,1)) followed by plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre)
 #Being the previously selected spectral bands of LANDSAT in even number, the best graphical visualization of B1_sre:blue, B2_sre:green, B3_sre:red and B4_sre:near-infrared is in a two rows x two columns multiframe square generated in a new window starting from an adapted R's function: par(mfrow=c(2,2)) followed by plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre)
 #plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre) should be reformulated by incorporating new palette of colors for reflectance's values in accordance with regions of the electromagnetic spectrum of each bands from B1_sre to B7_sre detectable by LANDSAT satellites
-#The aforementioned new palette of colors for reflectance's values in accordance with regions of the electromagnetic spectrum of each bands from B1_sre to B7_sre detectable by LANDSAT satellites through ColorRampPalette are: dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) (100), ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100), drrlrcp <- colorRampPalette(c("dark red","red","light red")) (100) and do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100)
-#Final syntaxis' function in Windows is: par(mfrow=c(2,2)) dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) (100) plot(p224r63_2011$B1_sre, col=dbblbcp) ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100) plot(p224r63_2011$B2_sre, col=dgglgcp) drrlrcp <- colorRampPalette(c("dark red","red","light red")) (100) plot(p224r63_2011$B2_sre, col=drrlrcp) do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100) plot(p224r63_2011$B4_sre, col=doolocp)
-
-par(mfrow=c(2,2)) 
-dbblbcp <- colorRampPalette(c("dark blue","blue","light blue")) (100)
-plot(p224r63_2011$B1_sre, col=dbblbcp)
-dgglgcp <- colorRampPalette(c("dark green","green","light green")) (100)
-plot(p224r63_2011$B2_sre, col=dgglgcp)
-drrlrcp <- colorRampPalette(c("dark red","red","light red")) (100)
-plot(p224r63_2011$B2_sre, col=drrlrcp)
-doolocp <- colorRampPalette(c("dark orange","orange","light orange")) (100)
-plot(p224r63_2011$B4_sre, col=doolocp)
-
-#sempre prima multiframe per la collocazione delle bande corrette nel colore per i valori della riflettanza
-#é importatntissimo che sia l'utente a scegliere il plottaggio delle immagini in telerilevamento! 
+#The aforementioned new palette of colors for reflectance's values in accordance with regions of the electromagnetic spectrum of each bands from B1_sre to B7_sre detectable by LANDSAT satellites through ColorRampPalette are: dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) (100), ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100), r4r3r2cp <- colorRampPalette(c("red4","red3","red2")) (100) and do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100)
+#Final syntaxis' function in Windows is: par(mfrow=c(2,2)) dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) followed by (100) plot(p224r63_2011$B1_sre, col=dbbcfbcp), ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100) followed by plot(p224r63_2011$B2_sre, col=ag3sg2sgcp), r4r3r2cp <- colorRampPalette(c("red4","red3","red2")) (100) followed by plot(p224r63_2011$B2_sre, col=r4r3r2cp) and do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100) followed by plot(p224r63_2011$B4_sre, col=do4or1ocp)
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 26/03/2021
 #Visualizzare dati attraverso un plot RGB
@@ -133,11 +120,6 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
 #Ma la legenda?
 #I colori non sono decisi dall'utente ma dipendono dai valori della riflettanza!
 #Colorist: coloring wildlife distributions in space time
-#
-
-
-
-
 
 #Sequence of informatic commands for R_remote_code_sensing_first.r
 
@@ -203,7 +185,7 @@ plot(p224r63_2011$B1_sre, col=dbbcfbcp)
 
 ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100)
 
-plot(p224r63_2011$B2_sre, col=ag3sg2sgcp )
+plot(p224r63_2011$B2_sre, col=ag3sg2sgcp)
 
 r4r3r2cp <- colorRampPalette(c("red4","red3","red2")) (100)
 
