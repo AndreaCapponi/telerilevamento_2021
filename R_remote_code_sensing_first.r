@@ -25,7 +25,7 @@
 #Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1_SRE to B7_SRE representing each spectral bands
 #I exploit  a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
 #Syntax's function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
-#A further consideration for upper syntaxis' function: array is indicated by c letter and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
+#A further consideration for upper syntaxis' function: array is indicated by c letter⁴ and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
 #If I want the aforementioned new palette of colors - which is given the name of bgwcp - represents a greyscale, first and last color will be black and white (B/W) respectively whereas second, third, etc. colors will be greys of which the number of depth levels vary from 4 to 256
 #Final syntaxis' function in Windows is: bgwcp <- colorRampPalette(c('black','grey','white'))(100)
 #plot(p224r63_2011) must be reformulated by incorporating new palette of colors bgwcp: plot(p224r63_2011, col=bgwcp) will display graphically reflectance's values for each spectral bands in a greyscale
@@ -45,35 +45,30 @@
 #plot is a R's function which syntaxis is in that case implemented with colorRampPalette³ in order that I can freely opt for the palette of colors to foster a clear interpretation of reflectance's values from the spectral band B1_sre:blue in replacement of previous and useless R's default palette of colors
 #Extended syntaxis' function for Windows: plot(renowned object name$name of the object's level in which the user is interested for graphical visualization, col=name of selected colors' palette)
 #Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre, col=rmpcp), where the palette of colors rmpcp is the one I created in the 33rd string
-
-#For the user $ function's relevance in R is manifest at a higher level with the function (par)
-#through which there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their
-#Syntaxis' function for Windows:par(mfrow =c(1,2)), par(mfcol =c(1,2))
-#mf multiframe, row righe , col colonne 
-#rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
-
-#plot(p224r63_2011$B1_sre, col=rmpcp)
+#For the user $ function's relevance in R is manifest at a higher level with the function (par) through which there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
+#Syntaxis' function for Windows:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
+#If I would combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one row and two columns in an understandable multiframe for which par will be R's function of choice?
+#Final syntaxis' function in Windows is: par(mfrow=c(1,2)) which has significance if and only if there will be plot(p224r63_2011$B1_sre) and plot(p224r63_2011$B2_sre) 
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 24/03/2021
-# plot band 1 with a predefined colut ramp palette
-#> rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
-#plot(p224r63_2011$B1_sre, col=rmpcp)
-#plot singole bande tramite la funzione par
 #grafico con due plot per bande B1 e B2, questo è un multiframe MF
 #1 riga, 2 colonne: par(mfrow =c(1,2)) grafico interno, row prima numero righe, col prima numero colonne
 #Bande successive tramite plot si sovrappongono nel grafico quindi è funzionale creare un multiframe con le bande di mio interesse andando a descrivere come R organizzerà le immagini in un grafico R
 # par(mfrow=c(1,2))
 # plot(p224r63_2011$B1_sre)
 # plot(p224r63_2011$B2_sre)
+
 # par(mfcol=c(1,2))
 # plot(p224r63_2011$B1_sre)
 # plot(p224r63_2011$B2_sre)
+
 #plot the first four bands of landsat
 #par(mfrow=c(4,1))
 #plot(p224r63_2011$B1_sre)
 #plot(p224r63_2011$B2_sre)
 #plot(p224r63_2011$B3_sre)
 #plot(p224r63_2011$B4_sre)
+
 #Come cambiare la configurazione per la visualizzazione?
 #Quadrato 2 x 2 
 #par(mfrow=c(2,2))
@@ -81,6 +76,7 @@
 #plot(p224r63_2011$B2_sre)
 #plot(p224r63_2011$B3_sre)
 #plot(p224r63_2011$B4_sre)
+
 #Quadrato 2 x 2 con color palette per ciascuna banda
 #par(mfrow=c(2,2)) 
 #clb <- colorRampPalette(c("dark blue","blue","light blue")) (100)
@@ -182,3 +178,13 @@ plot(p224r63_2011, col=bgwcp)
 rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
 
 plot(p224r63_2011, col=rmpcp)
+
+dev.off()
+
+plot(p224r63_2011$B1_sre)
+
+par(mfrow=c(1,2))
+
+plot(p224r63_2011$B1_sre)
+
+plot(p224r63_2011$B2_sre)
