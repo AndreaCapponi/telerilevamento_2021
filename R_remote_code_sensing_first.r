@@ -34,7 +34,7 @@
 #If in the final syntaxis' function for Windows systems is included a color (first, second, ..., last) freely selected by the user but unobtainable through an additive color model which is RGB (color gamut is created from red, green and blue as primary colors) therefore will be displayed the underlying string ↓
 ##Error in col2rgb(colors, alpha = alpha) : invalid color name 'fuchsia' rmpcp <- colorRampPalette(c('red','magenta','fuchsia','pink'))(1000) where fuchsia in RGB's color gamut doesn't exist being unobtainable through the addition of primary colors!
 #Adapted R's function plot(p224r63_2011, col=rmpcp)³ will display graphically reflectance's values for each spectral bands in a colorscale invented starting from scratch by the user
-#If the user requires adapted R's function plot(p224r63_2011, col=rmpcp) will display graphically reflectance's values for one of the previous spectral bands (B1: blue, B2: green, B3: red, B4:near-infrared, B5:mid-infrared, B6: far-infrared or B7: other mid-infrared)? 
+#If the user requires adapted R's function plot(p224r63_2011, col=rmpcp) will display graphically reflectance's values for one of the previous spectral bands (B1:blue, B2:green, B3:red, B4:near-infrared, B5:mid-infrared, B6:far-infrared or B7:other mid-infrared)? 
 #I exploit a function dev.off() to end a graphical display depending on the R's (plot) function and if it is syntactically correct, the user will see this message appears: null device 1
 #Error in dev.off() : cannot shut down the device 1 (dispositivo null) message appears exclusively when the user has closed manually graphical display's window clicking on the x at the top right
 #I exploit a function ($) to extract, from the initial (plot)¹ of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of ''interest''
@@ -50,23 +50,10 @@
 #How would I combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one row and two columns in an understandable multiframe for which par will be R's function of choice?
 #Final syntaxis' function in Windows is: par(mfrow=c(1,2)) which has a functional significance if and only followed by plot(p224r63_2011$B1_sre) and plot(p224r63_2011$B2_sre)
 #par(mfrow=c(1,2)) and par(mfcol=c(1,2)) syntactically and funtionally are different because the second - compared to the first one - will combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one column and two rows in the required multiframe
-
-#Al di sotto di questo commento tradurre e organizzare la lezione del 24/03/2021
-
-#plot the first four bands of landsat
-#par(mfrow=c(4,1))
-#plot(p224r63_2011$B1_sre)
-#plot(p224r63_2011$B2_sre)
-#plot(p224r63_2011$B3_sre)
-#plot(p224r63_2011$B4_sre)
-
-#Come cambiare la configurazione per la visualizzazione?
-#Quadrato 2 x 2 
-#par(mfrow=c(2,2))
-#plot(p224r63_2011$B1_sre)
-#plot(p224r63_2011$B2_sre)
-#plot(p224r63_2011$B3_sre)
-#plot(p224r63_2011$B4_sre)
+#Which could be the final syntaxis' function in Windows if LANDSAT spectral bands of interest to us or to researchers will be B1_sre:blue, B2_sre:green, B3_sre:red and B4_sre:near-infrared (4/7)?
+#Along the lines of what was suggested to visualize in a single graphic solution the first two of them through R's par function in multiframe, the final syntaxis' function in Windows will be: par(mfrow=c(4,1)) followed by #plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre)
+#Being the previously selected spectral bands of LANDSAT in even number, the best graphical visualization of B1_sre:blue, B2_sre:green, B3_sre:red and B4_sre:near-infrared is in a two rows x two columns multiframe square generated in a new window starting from an adapted R's function: par(mfrow=c(2,2)) followed by #plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre)
+#
 
 #Quadrato 2 x 2 con color palette per ciascuna banda
 #par(mfrow=c(2,2)) 
@@ -185,3 +172,23 @@ par(mfcol=c(1,2))
 plot(p224r63_2011$B1_sre)
 
 plot(p224r63_2011$B2_sre)
+
+par(mfrow=c(4,1))
+
+plot(p224r63_2011$B1_sre)
+
+plot(p224r63_2011$B2_sre)
+
+plot(p224r63_2011$B3_sre)
+
+plot(p224r63_2011$B4_sre)
+
+par(mfrow=c(2,2))
+
+plot(p224r63_2011$B1_sre)
+
+plot(p224r63_2011$B2_sre)
+
+plot(p224r63_2011$B3_sre)
+
+plot(p224r63_2011$B4_sre)
