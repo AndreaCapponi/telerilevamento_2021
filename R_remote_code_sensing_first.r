@@ -51,20 +51,22 @@
 #Final syntaxis' function in Windows is: par(mfrow=c(1,2)) which has a functional significance if and only followed by plot(p224r63_2011$B1_sre) and plot(p224r63_2011$B2_sre)
 #par(mfrow=c(1,2)) and par(mfcol=c(1,2)) syntactically and funtionally are different because the second - compared to the first one - will combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one column and two rows in the required multiframe
 #Which could be the final syntaxis' function in Windows if LANDSAT spectral bands of interest to us or to researchers will be B1_sre:blue, B2_sre:green, B3_sre:red and B4_sre:near-infrared (4/7)?
-#Along the lines of what was suggested to visualize in a single graphic solution the first two of them through R's par function in multiframe, the final syntaxis' function in Windows will be: par(mfrow=c(4,1)) followed by #plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre)
-#Being the previously selected spectral bands of LANDSAT in even number, the best graphical visualization of B1_sre:blue, B2_sre:green, B3_sre:red and B4_sre:near-infrared is in a two rows x two columns multiframe square generated in a new window starting from an adapted R's function: par(mfrow=c(2,2)) followed by #plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre)
-#
+#Along the lines of what was suggested to visualize in a single graphic solution the first two of them through R's par function in multiframe, the final syntaxis' function in Windows will be: par(mfrow=c(4,1)) followed by plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre)
+#Being the previously selected spectral bands of LANDSAT in even number, the best graphical visualization of B1_sre:blue, B2_sre:green, B3_sre:red and B4_sre:near-infrared is in a two rows x two columns multiframe square generated in a new window starting from an adapted R's function: par(mfrow=c(2,2)) followed by plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre)
+#plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre) should be reformulated by incorporating new palette of colors for reflectance's values in accordance with regions of the electromagnetic spectrum of each bands from B1_sre to B7_sre detectable by LANDSAT satellites
+#The aforementioned new palette of colors for reflectance's values in accordance with regions of the electromagnetic spectrum of each bands from B1_sre to B7_sre detectable by LANDSAT satellites through ColorRampPalette are: dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) (100), ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100), drrlrcp <- colorRampPalette(c("dark red","red","light red")) (100) and do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100)
+#Final syntaxis' function in Windows is: par(mfrow=c(2,2)) dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) (100) plot(p224r63_2011$B1_sre, col=dbblbcp) ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100) plot(p224r63_2011$B2_sre, col=dgglgcp) drrlrcp <- colorRampPalette(c("dark red","red","light red")) (100) plot(p224r63_2011$B2_sre, col=drrlrcp) do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100) plot(p224r63_2011$B4_sre, col=doolocp)
 
-#Quadrato 2 x 2 con color palette per ciascuna banda
-#par(mfrow=c(2,2)) 
-#clb <- colorRampPalette(c("dark blue","blue","light blue")) (100)
-#plot(p224r63_2011$B1_sre, col=clb)
-#clg <- colorRampPalette(c("dark green","green","light green")) (100)
-#plot(p224r63_2011$B2_sre, col=clg)
-#clg <- colorRampPalette(c("dark green","green","light green")) (100)
-#plot(p224r63_2011$B2_sre, col=clg)
-#clnir <- colorRampPalette(c("red","orange","yellow")) (100)
-#plot(p224r63_2011$B4_sre, col=clnir)
+par(mfrow=c(2,2)) 
+dbblbcp <- colorRampPalette(c("dark blue","blue","light blue")) (100)
+plot(p224r63_2011$B1_sre, col=dbblbcp)
+dgglgcp <- colorRampPalette(c("dark green","green","light green")) (100)
+plot(p224r63_2011$B2_sre, col=dgglgcp)
+drrlrcp <- colorRampPalette(c("dark red","red","light red")) (100)
+plot(p224r63_2011$B2_sre, col=drrlrcp)
+doolocp <- colorRampPalette(c("dark orange","orange","light orange")) (100)
+plot(p224r63_2011$B4_sre, col=doolocp)
+
 #sempre prima multiframe per la collocazione delle bande corrette nel colore per i valori della riflettanza
 #é importatntissimo che sia l'utente a scegliere il plottaggio delle immagini in telerilevamento! 
 
@@ -192,3 +194,21 @@ plot(p224r63_2011$B2_sre)
 plot(p224r63_2011$B3_sre)
 
 plot(p224r63_2011$B4_sre)
+
+par(mfrow=c(2,2)) 
+
+dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) (100)
+
+plot(p224r63_2011$B1_sre, col=dbbcfbcp)
+
+ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100)
+
+plot(p224r63_2011$B2_sre, col=ag3sg2sgcp )
+
+r4r3r2cp <- colorRampPalette(c("red4","red3","red2")) (100)
+
+plot(p224r63_2011$B2_sre, col=r4r3r2cp)
+
+do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100)
+
+plot(p224r63_2011$B4_sre, col=do4or1ocp)
