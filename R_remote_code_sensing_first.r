@@ -19,7 +19,7 @@
 #The reference system further analyzed has been extracted from the informations of a generic object as crs in which the user through R can find in order: projection, zone, datum and units
 #crs string in p224r63_2011's informations summary is for example: +proj=utm +zone=22 +datum=WGS84 +units=m +no_defs 
 #If I want to obtain visually spectral bands in p224r63_2011?
-#I exploit  a function (plot) to obtain visually spectral bands ¹
+#I exploit  a function (plot) to obtain visually spectral bands¹
 #Syntax's function for Windows is: plot(object)
 #In R function plot(p224r63_2011) lead me to a schedule with spectral bands explained graphically through the concept of reflectance
 #Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1_SRE to B7_SRE representing each spectral bands
@@ -47,20 +47,11 @@
 #Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre, col=rmpcp), where the palette of colors rmpcp is the one I created in the 33rd string
 #For the user $ function's relevance in R is manifest at a higher level with the function (par) through which there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
 #Syntaxis' function for Windows:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
-#If I would combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one row and two columns in an understandable multiframe for which par will be R's function of choice?
-#Final syntaxis' function in Windows is: par(mfrow=c(1,2)) which has significance if and only if there will be plot(p224r63_2011$B1_sre) and plot(p224r63_2011$B2_sre) 
+#How would I combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one row and two columns in an understandable multiframe for which par will be R's function of choice?
+#Final syntaxis' function in Windows is: par(mfrow=c(1,2)) which has a functional significance if and only followed by plot(p224r63_2011$B1_sre) and plot(p224r63_2011$B2_sre)
+#par(mfrow=c(1,2)) and par(mfcol=c(1,2)) syntactically and funtionally are different because the second - compared to the first one - will combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one column and two rows in the required multiframe
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 24/03/2021
-#grafico con due plot per bande B1 e B2, questo è un multiframe MF
-#1 riga, 2 colonne: par(mfrow =c(1,2)) grafico interno, row prima numero righe, col prima numero colonne
-#Bande successive tramite plot si sovrappongono nel grafico quindi è funzionale creare un multiframe con le bande di mio interesse andando a descrivere come R organizzerà le immagini in un grafico R
-# par(mfrow=c(1,2))
-# plot(p224r63_2011$B1_sre)
-# plot(p224r63_2011$B2_sre)
-
-# par(mfcol=c(1,2))
-# plot(p224r63_2011$B1_sre)
-# plot(p224r63_2011$B2_sre)
 
 #plot the first four bands of landsat
 #par(mfrow=c(4,1))
@@ -184,6 +175,12 @@ dev.off()
 plot(p224r63_2011$B1_sre)
 
 par(mfrow=c(1,2))
+
+plot(p224r63_2011$B1_sre)
+
+plot(p224r63_2011$B2_sre)
+
+par(mfcol=c(1,2))
 
 plot(p224r63_2011$B1_sre)
 
