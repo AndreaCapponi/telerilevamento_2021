@@ -121,6 +121,8 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
 #I colori non sono decisi dall'utente ma dipendono dai valori della riflettanza!
 #Colorist: coloring wildlife distributions in space time
 
+#Al di sotto di questo commento tradurre e organizzare la lezione del 31/03/2021
+
 #Sequence of informatic commands for R_remote_code_sensing_first.r
 
 install.packages('raster')
