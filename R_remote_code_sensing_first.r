@@ -120,8 +120,65 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
 #Ma la legenda?
 #I colori non sono decisi dall'utente ma dipendono dai valori della riflettanza!
 #Colorist: coloring wildlife distributions in space time
+#RGB not associated 
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 31/03/2021
+> install.packages("RStoolbox")
+provo con l'URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/RStoolbox_0.2.6.zip'
+Content type 'application/zip' length 2170101 bytes (2.1 MB)
+downloaded 2.1 MB
+
+package ‘RStoolbox’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\PC\AppData\Local\Temp\RtmpEx7d3z\downloaded_packages
+> library(RStoolbox)
+> 
+#p224r63_1988, quali formati nella cartella lab? 
+#Importare p224r63_1988_masked in R
+#Indicare di utilizzare il pacchetto raster tramite le stringhe library(raster) e setwd('C:/lab/')
+#Caricare il dato secondo la stringa p224r63_2011 <- brick('p224r63_2011_masked.grd')
+#Visualizzare le informazioni tramite p224r63_2011
+#Multitemporal set
+#Caricare il dato secondo la stringa p224r63_1988 <- brick('p224r63_1988_masked.grd')
+#Visualizzare le informazioni tramite 
+#Visualizzare le informazioni tramite p224r63_1988
+#Lo scopo iniziale è quello di eseguire il plot(p224r63_1988)
+#Poi si potrebbe associare le bande allo schema RGB: plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin"), plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+#Per vedere evoluzione foresta, plot 1988 e 2011 tramite la funzione par. Come?
+#par(mfrow=c(2,1))
+#plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+#plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+#Differenziazione multitemporale
+
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+
+#Effetto haze, rumore di fondo, non apprezzabile le variazioni reali per estensione della foresta Amazzonica
+#Come salvare il PDF?
+
+pdf('1988-2011Differenziazionemultitemporale.pdf')
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+
+pdf("multitemp.pdf")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+
+#merged PDFs file.pdf
+#pdftk 
+#bash scripting:
+ pdftk *.pdf  cat output mergedfile.pdf
+#
+#
 
 #Sequence of informatic commands for R_remote_code_sensing_first.r
 
