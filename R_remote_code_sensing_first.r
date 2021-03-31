@@ -46,7 +46,7 @@
 #Extended syntaxis' function for Windows: plot(renowned object name$name of the object's level in which the user is interested for graphical visualization, col=name of selected colors' palette)
 #Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre, col=rmpcp), where the palette of colors rmpcp is the one I created in the 33rd string
 #For the user $ function's relevance in R is manifest at a higher level with the function (par) through which there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
-#Syntaxis' function for Windows:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
+#Syntaxis' function for Windows is:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
 #How would I combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one row and two columns in an understandable multiframe for which par will be R's function of choice?
 #Final syntaxis' function in Windows is: par(mfrow=c(1,2)) which has a functional significance if and only followed by plot(p224r63_2011$B1_sre) and plot(p224r63_2011$B2_sre)
 #par(mfrow=c(1,2)) and par(mfcol=c(1,2)) syntactically and funtionally are different because the second - compared to the first one - will combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one column and two rows in the required multiframe
@@ -56,13 +56,25 @@
 #plot(p224r63_2011$B1_sre), plot(p224r63_2011$B2_sre), plot(p224r63_2011$B3_sre) and plot(p224r63_2011$B4_sre) should be reformulated by incorporating new palette of colors for reflectance's values in accordance with regions of the electromagnetic spectrum of each bands from B1_sre to B7_sre detectable by LANDSAT satellites
 #The aforementioned new palette of colors for reflectance's values in accordance with regions of the electromagnetic spectrum of each bands from B1_sre to B7_sre detectable by LANDSAT satellites through ColorRampPalette are: dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) (100), ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100), r4r3r2cp <- colorRampPalette(c("red4","red3","red2")) (100) and do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100)
 #Final syntaxis' function in Windows is: par(mfrow=c(2,2)) dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) followed by (100) plot(p224r63_2011$B1_sre, col=dbbcfbcp), ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100) followed by plot(p224r63_2011$B2_sre, col=ag3sg2sgcp), r4r3r2cp <- colorRampPalette(c("red4","red3","red2")) (100) followed by plot(p224r63_2011$B2_sre, col=r4r3r2cp) and do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100) followed by plot(p224r63_2011$B4_sre, col=do4or1ocp)
+#The graphical visualization of p224r63_2011 in true colors, being LANDSAT equipped with true colour, thermal and multispectral sensors in a complex acquisition system, will be obtained from the visible spectrum to which I associate B1_sre:blue, B2_sre:green, B3_sre:red spectral bands of the initial object
+#This graphical visualization in true colors is in RGB and independent from user's selection of a palette of colors through colorRampPalette function because the three levels of interest selected by the user from B1_sre to B7_sre are in a image combined such that they represent exclusively the red, green and blue channel in true colour sensors of LANDSAT satellite
+#Syntax's function for Windows is: plotRGB(renowned object name, r= number of selected spectral band which will be graphically visualized through red channel , g= number of selected spectral band which will be graphically visualized through green channel , b= number of selected spectral band which will be graphically visualized through blue channel,type of stretch for reflectance's values in order that their graphical visualization is optimal ='Lin if the stretch has to normalize reflectance's values between 0 e 1 (ρ=Φr/Φ0)' or 'hist if the stretch has to divides the reflectance's values into equally sized ranges from the lowest to the highest value')
+#Final syntaxis' function in Windows is: plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
+#The graphical visualization of p224r63_2011 in false color, not being the human eye thermal and multispectral sensors in a biological complex acquisition system, will be obtained by substituting B1_sre:blue spectral band with and replacing it with B4:near-infrared. 
+#Final syntaxis' function in Windows is: plotRGB(p224r63_2011, r=4, g=3,
+#plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
+#plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
+#par(mfrow=c(2,2))
+#plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
+#plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
+#plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
+#plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
+#
+#
+#
+#
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 26/03/2021
-#Visualizzare dati attraverso un plot RGB
-#Definizione di RGB
-#Di 7 B, 3 per volta per colorazione naturale!
-#3 2 1 associazione per bande
-#Qual è la funzione? Plot ma in RGB!
 #Multulayered raster object red green blue plot
 #plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
 #Quali bandi associamo a ogni elemento di LANDSAT?
@@ -253,3 +265,7 @@ plot(p224r63_2011$B2_sre, col=r4r3r2cp)
 do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100)
 
 plot(p224r63_2011$B4_sre, col=do4or1ocp)
+
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
+
+
