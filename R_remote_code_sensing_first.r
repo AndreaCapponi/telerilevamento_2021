@@ -57,27 +57,23 @@
 #The aforementioned new palette of colors for reflectance's values in accordance with regions of the electromagnetic spectrum of each bands from B1_sre to B7_sre detectable by LANDSAT satellites through ColorRampPalette are: dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) (100), ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100), r4r3r2cp <- colorRampPalette(c("red4","red3","red2")) (100) and do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100)
 #Final syntaxis' function in Windows is: par(mfrow=c(2,2)) dbbcfbcp <- colorRampPalette(c("darkblue","blue","cornflowerblue")) followed by (100) plot(p224r63_2011$B1_sre, col=dbbcfbcp), ag3sg2sgcp <- colorRampPalette(c("springgreen3","springgreen2","springgreen1")) (100) followed by plot(p224r63_2011$B2_sre, col=ag3sg2sgcp), r4r3r2cp <- colorRampPalette(c("red4","red3","red2")) (100) followed by plot(p224r63_2011$B2_sre, col=r4r3r2cp) and do4or1ocp <- colorRampPalette(c("darkorange4","orangered1","orange")) (100) followed by plot(p224r63_2011$B4_sre, col=do4or1ocp)
 #The graphical visualization of p224r63_2011 in true colors, being LANDSAT equipped with true colour, thermal and multispectral sensors in a complex acquisition system, will be obtained from the visible spectrum to which I associate B1_sre:blue, B2_sre:green, B3_sre:red spectral bands of the initial object
-#This graphical visualization in true colors is in RGB and independent from user's selection of a palette of colors through colorRampPalette function because the three levels of interest selected by the user from B1_sre to B7_sre are in a image combined such that they represent exclusively the red, green and blue channel in true colour sensors of LANDSAT satellite
-#Syntax's function for Windows is: plotRGB(renowned object name, r= number of selected spectral band which will be graphically visualized through red channel , g= number of selected spectral band which will be graphically visualized through green channel , b= number of selected spectral band which will be graphically visualized through blue channel,type of stretch for reflectance's values in order that their graphical visualization is optimal ='Lin if the stretch has to normalize reflectance's values between 0 e 1 (ρ=Φr/Φ0)' or 'hist if the stretch has to divides the reflectance's values into equally sized ranges from the lowest to the highest value')
+#This graphical visualization in true colors is therefore in RGB and independent from user's selection of a palette of colors through colorRampPalette function because the three levels of interest selected by the user herself/himself from B1_sre to B7_sre are combined such that they represent exclusively the red⁵, green⁶ and blue⁷ channel in true colour sensors of LANDSAT satellite
+#Syntax's function for Windows is: plotRGB(renowned object name, r= number of selected spectral band which will be graphically visualized through red channel, g= number of selected spectral band which will be graphically visualized through green channel, b= number of selected spectral band which will be graphically visualized through blue channel,type of stretch for reflectance's values in order that their graphical visualization is optimal ='Lin if the stretch has to normalize reflectance's values between 0 e 1 (ρ=Φr/Φ0)' or 'hist if the stretch has to divides the reflectance's values into equally sized ranges from the lowest to the highest value') where the number of selected spectral band is to be indicated being a integer function!
 #Final syntaxis' function in Windows is: plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
-#The graphical visualization of p224r63_2011 in false color, not being the human eye thermal and multispectral sensors in a biological complex acquisition system, will be obtained by substituting B1_sre:blue spectral band with and replacing it with B4:near-infrared. 
-#Final syntaxis' function in Windows is: plotRGB(p224r63_2011, r=4, g=3,
-#plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
-#plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
-#par(mfrow=c(2,2))
-#plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
-#plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
-#plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
-#plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
-#
-#
-#
+#The graphical visualization of p224r63_2011 in false color, not being the human eye thermal and multispectral sensors in a biological complex acquisition system, will be obtained by substituting B1_sre:blue spectral band with B4_sre:near-infrared, B5_sre:mid-infrared, B6_sre:far-infrared or B7_sre:other mid-infrared spectral bands on a case by case basis in remote sensing analysis
+#For example in the graphical visualization of p224r63_2011 in true colors vegetational coverage of the Amazon rainforest isn't appreciable through this remote sensing analysis because the maximum reflectance's value for leaves is to be found in near-infrared region of the electromagnetic spectrum. The graphical visualization of p224r63_2011 in false color based on B4:near-infrared spectral band allows the user to appreciate through this new and adapted remote sensing analysis the vegetational coverage of the Amazon rainforest
+#Final syntaxis' function in Windows is: plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin') if the graphical visualization of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest is through the red channel⁵
+#Final syntaxis' function in Windows is: plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') if the graphical visualization of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest is through the green channel⁶
+#Final syntaxis' function in Windows is: plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin') if the graphical visualization of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest is through the blue channel⁷
+#Through par function the user will be able to combine the four doable graphical visualizations of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest in a two rows x two columns multiframe square as described in the 55th string
+##Final syntaxis' function in Windows is: par(mfrow=c(2,2)) followed by plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin'), plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin'),plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') and plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
+#I exploit a function (pdf) to produce PDF graphics
+#Syntax's function for Windows is: pdf('name of the future PDF graphic.pdf')
+#Final syntaxis' function in Windows is: pdf('RGBAmazonRainforest.pdf'), par(mfrow=c(2,2)) followed by plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin'), plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin'), plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') and plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin') at the end dev.off() for graphics cleaning
 #
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 26/03/2021
 #Multulayered raster object red green blue plot
-#plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
-#Quali bandi associamo a ogni elemento di LANDSAT?
 #Argomeno ulteriore stretch: valori per la riflettanza (energia riflessa/energia totale tra 0 e 1) affinchè non ci sia un eccessivo stiramento nelle bande di colore (tutte le sfumatura possibili) 
 #Se valori per esempio compresi tra 0,1 e o,5, attraverso una funzione lineare, li riporto tra 0 e 1! (Finalità di visualizzzazione grafica)
 #Error in .rasterImagePlot(object, col = col, xlab = xlab, ylab = ylab,  : l'argomento 14 si associa a più argomenti formali
@@ -107,7 +103,7 @@ plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
 #La sintassi è: pdf('ilnomedelpdf.pdf')
 #dev.off per pulizia
 
-pdf('ilnomedelpdfnuovotentativo.pdf')
+pdf('RGBAmazonRainforest.pdf')
 par(mfrow=c(2,2))
 plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
@@ -268,4 +264,32 @@ plot(p224r63_2011$B4_sre, col=do4or1ocp)
 
 plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
 
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
 
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
+
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
+
+par(mfrow=c(2,2)) 
+
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
+
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
+
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
+
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
+
+pdf('RGBAmazonRainforest.pdf')
+
+par(mfrow=c(2,2))
+
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
+
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
+
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
+
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
+
+dev.off()
