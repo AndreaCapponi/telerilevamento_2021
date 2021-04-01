@@ -47,7 +47,7 @@
 #Final syntaxis' function in Windows is: plot(p224r63_2011$B1_sre, col=rmpcp), where the palette of colors rmpcp is the one I created in the 33rd string
 #For the user $ function's relevance in R is manifest at a higher level with the function (par) through which there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
 #Syntaxis' function for Windows is:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
-#How would I combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one row and two columns in an understandable multiframe for which par will be R's function of choice?
+#How would I combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic solution in an understandable multiframe for which par will be R's function of choice?
 #Final syntaxis' function in Windows is: par(mfrow=c(1,2)) which has a functional significance if and only followed by plot(p224r63_2011$B1_sre) and plot(p224r63_2011$B2_sre)
 #par(mfrow=c(1,2)) and par(mfcol=c(1,2)) syntactically and funtionally are different because the second - compared to the first one - will combine the spectral bands B1_sre:blue and B2_sre:green as my p224r63_2011's level of ''interest'' from LANDSAT in a single graphic visualization solution organizing them by one column and two rows in the required multiframe
 #Which could be the final syntaxis' function in Windows if LANDSAT spectral bands of interest to us or to researchers will be B1_sre:blue, B2_sre:green, B3_sre:red and B4_sre:near-infrared (4/7)?
@@ -70,65 +70,17 @@
 #I exploit a function (pdf) to produce PDF graphics
 #Syntax's function for Windows is: pdf('name of the future PDF graphic.pdf')
 #Final syntaxis' function in Windows is: pdf('RGBAmazonRainforest.pdf'), par(mfrow=c(2,2)) followed by plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin'), plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin'), plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') and plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin') at the end dev.off() for graphics cleaning
-#
+#Another final syntaxis' for plotRGB function in Windows could be: plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist') if the graphical visualization of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest was through the green channel⁶ and the type of stretch for reflectance's values in order that its graphical visualization is optimal in histogram
+#How the graphical visualization of p224r63_2011 in false color will be for vegetational coverage of the Amazon rainforest through the green channel⁶ and if the type of stretch for reflectance's values in order that its graphical visualization is optimal in histogram?
+#Through par function I will be able to combine the graphical visualization of p224r63_2011 in true colors, in false color through the green channel in a plotRGB where the selected stretch is L̲i̲n̲ear and in false color through the green channel in a plotRGB where on the contrary selected stretch is hi̲s̲t̲ogram organizing them by three rows and one column in a intriguing multiframe
+#Final syntaxis' function in Windows is: par(mfrow=c(3,1)) followed by plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin'), plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') and plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
+#The final conclusion from an accurate comparison of previous p224r63_2011 graphical and multiframe visualizations of vegetational coverage localized in the Amazon rainforest trough three different plotRGB is that with the last plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist') will be visible also its river basin/catchment basin made up of springs, rivers, lakes and swamps!
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 26/03/2021
 #Multulayered raster object red green blue plot
-#Argomeno ulteriore stretch: valori per la riflettanza (energia riflessa/energia totale tra 0 e 1) affinchè non ci sia un eccessivo stiramento nelle bande di colore (tutte le sfumatura possibili) 
-#Se valori per esempio compresi tra 0,1 e o,5, attraverso una funzione lineare, li riporto tra 0 e 1! (Finalità di visualizzzazione grafica)
 #Error in .rasterImagePlot(object, col = col, xlab = xlab, ylab = ylab,  : l'argomento 14 si associa a più argomenti formali
-#La funzione non sfrutta il nome della banda perchè si indica il punto nel quale è collocata la banda corrispondente tramite numero integer
-#Invece per l'nfrarosso?
-#4 3 2 R G B, la banda blu viene eliminata!
-#plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
-#Visualizzazione grafica della vegetazione per l'infrarosso (elevato valore per la riflettanza banda numero 4) riflessa contrariamente al primo plot dove l'interpretazione non sarebbe stata possibile 
-#Visualizzazione in falsi colori in riferimento ai nostri occhi, ai nostri ''sensori''!
-#plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin'), cosa accadrà?
-#Vegetazione verde per spostamento dell'infrarosso sulla componente green di RGB
-#Apprezzamento di maggiori dettagli nell'immagine p224r63_2011
-#Viola=suolo nudo, senza vegetazione
-#plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
-#giallo=suolo nudo, componente blu per l'infrarosso
-#par montando le quatrro immagini con differenti plot in RGB 2 x 2 
-
-par(mfrow=c(2,2))
-plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
-plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
-plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
-
-#Salvare immagine con tasto destro semplice
-#Come si fa a salvare una immagine in PDF in lab?
-#funzione pdf()
-#La sintassi è: pdf('ilnomedelpdf.pdf')
-#dev.off per pulizia
-
-pdf('RGBAmazonRainforest.pdf')
-par(mfrow=c(2,2))
-plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
-plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
-plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
-dev.off()
-
-#Lo strecht potrebbe anche essere istagram e non solamente lineare
-
-plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
-
-# Com'è la nuova visualizzazione?
-#Al dettaglio. Con questa visualizzaione si apprezzano i bacini e le reti idrografiche all'interno della foresta amazzonica in esame
-
-#par natural colors, false colors and fals colors with hist
-
-par(mfrow=c(3,1))
-plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
-plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
-plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
-
-#Ma la legenda?
-#I colori non sono decisi dall'utente ma dipendono dai valori della riflettanza!
 #Colorist: coloring wildlife distributions in space time
-#RGB not associated 
+
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 31/03/2021
 > install.packages("RStoolbox")
@@ -293,3 +245,14 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
 plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
 
 dev.off()
+
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
+
+par(mfrow=c(3,1))
+
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin')
+
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
+
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
+
