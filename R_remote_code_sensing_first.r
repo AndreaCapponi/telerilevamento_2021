@@ -65,16 +65,36 @@
 #Final syntaxis' function in Windows is: plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin') if the graphical visualization of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest is through the red channel⁵
 #Final syntaxis' function in Windows is: plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') if the graphical visualization of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest is through the green channel⁶
 #Final syntaxis' function in Windows is: plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin') if the graphical visualization of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest is through the blue channel⁷
-#Through par function the user will be able to combine the four doable graphical visualizations of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest in a two rows x two columns multiframe square as described in the 55th string
-##Final syntaxis' function in Windows is: par(mfrow=c(2,2)) followed by plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin'), plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin'),plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') and plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
+#Through par function the user will be able to combine the four doable graphical visualizations of p224r63_2011 in true and false colors for vegetational coverage of the Amazon rainforest in a two rows x two columns multiframe square as described in the 55th string
+#Final syntaxis' function in Windows is: par(mfrow=c(2,2)) followed by plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin'), plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin'),plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') and plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin')
 #I exploit a function (pdf) to produce PDF graphics
 #Syntax's function for Windows is: pdf('name of the future PDF graphic.pdf')
 #Final syntaxis' function in Windows is: pdf('RGBAmazonRainforest.pdf'), par(mfrow=c(2,2)) followed by plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin'), plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin'), plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') and plotRGB(p224r63_2011, r=3, g=2, b=4, stretch='Lin') at the end dev.off() for graphics cleaning
-#Another final syntaxis' for plotRGB function in Windows could be: plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist') if the graphical visualization of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest was through the green channel⁶ and the type of stretch for reflectance's values in order that its graphical visualization is optimal in histogram
+#Another final syntaxis' for plotRGB function in Windows could be: plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist') if the graphical visualization of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest was through the green channel⁶ and the type of stretch for reflectance's values in order that its graphical visualization was optimal in histogram
 #How the graphical visualization of p224r63_2011 in false color will be for vegetational coverage of the Amazon rainforest through the green channel⁶ and if the type of stretch for reflectance's values in order that its graphical visualization is optimal in histogram?
 #Through par function I will be able to combine the graphical visualization of p224r63_2011 in true colors, in false color through the green channel in a plotRGB where the selected stretch is L̲i̲n̲ear and in false color through the green channel in a plotRGB where on the contrary selected stretch is hi̲s̲t̲ogram organizing them by three rows and one column in a intriguing multiframe
 #Final syntaxis' function in Windows is: par(mfrow=c(3,1)) followed by plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin'), plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') and plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
 #The final conclusion from an accurate comparison of previous p224r63_2011 graphical and multiframe visualizations of vegetational coverage localized in the Amazon rainforest trough three different plotRGB is that with the last plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist') will be visible also its river basin/catchment basin made up of springs, rivers, lakes and swamps!
+
+#Finora sembrerebbe esistere un'unico esemplare del satellite spaziale LANDSAT quando invece, essendo un programma spaziale congiunto della NASA e della USGS, di satelliti con questo nome se ne sono susseguiti ben 8 dal primo lancio avvenuto il 6 gennaio 1978 per il LANDSAT 1 fino ad arrivare al LANDSAT 8 lanciato l'11 febbraio 2013. La continuità nel collezionare dati tramite telerilevamento è essenziale per studiare l'evoluzione dell'ambiente, delle risorse e i cambiamenti naturali e artificiali avvenuti sulla superficie terrestre!
+#In R io posso importare un'immagine della copertura vegetale per la Foresta Amazzonica che sia antecedente a quella del 2011 (ciò è possibile per la continuità appena citata nella stringa soprastante) e analizzare se c'è stata una espansione o riduzione dipendentemente dalle attività antropiche in Brasile
+#As in the beginning, I exploit setwd function for the association between R and lab folder
+#Syntaxis' function for Windows is: setwd('C:/lab/')
+#After the association between R and lab folder, how I import data from lab folder to R?
+#I exploit a function (brick) to import data from lab folder - external - to R - internal* -
+#Syntaxis' function for Windows is: renowned object name <- brick('original object name')
+#p224r63_1988 <- brick('p224r63_1988_masked.grd')
+#How to visualize informations of p224r63_2011 in R? 
+#In R, visualizing informations of an object, name of it followed by enter as physical command by keyboard
+#p224r63_1988
+#plot(p224r63_1988)
+#plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin"), plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+#par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+
 
 #Al di sotto di questo commento tradurre e organizzare la lezione del 26/03/2021
 #Multulayered raster object red green blue plot
@@ -149,6 +169,8 @@ library(raster)
 setwd('C:/lab/')  
 
 p224r63_2011 <- brick('p224r63_2011_masked.grd')
+
+p224r63_2011
 
 plot(p224r63_2011)
 
@@ -256,3 +278,12 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
 
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
 
+library(raster)
+
+setwd('C:/lab/') 
+
+p224r63_1988 <- brick('p224r63_1988_masked.grd')
+
+p224r63_1988
+
+plot(p224r63_1988)
