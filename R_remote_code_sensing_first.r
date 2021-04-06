@@ -9,22 +9,24 @@
 #After the association between R and lab folder, how I import data from lab folder to R?
 #I exploit  a function (brick) to import data from lab folder - external - to R - internal* -
 #Syntaxis' function for Windows is: renowned object name <- brick('original object name')
-#Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need ' '* 
+#Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)* 
 #Loading required packages: sp is successful being classes and methods' database provider for spatial data 
 #p224r63_2011_masked.grd is imported in R with brick function according to Windows' syntaxis in which: renowned object name = p224r63_2011 and original object name = p224r63_2011_masked.grd
 #Final syntaxis' function in Windows is: p224r63_2011 <- brick('p224r63_2011_masked.grd')
 #How to visualize informations of p224r63_2011 in R? 
-#In R, visualizing informations of an object, name of it followed by enter as physical command by keyboard
+#In R, visualizing informations of an object, name of it followed by Enter as physical command by keyboard
+#Syntaxis' function for Windows is: renowned object name ↵ Enter
+#Final syntaxis' function in Windows is: p224r63_2011 ↵ Enter
 #Important: any object name includes also informations about the number assigned to a sinusoid on space satellite's path (preceded by p letter) and of any parallel (preceded by letter r) that intersected it in a specific reference system: consequently the name of p224r63 object refers to the sinusoid numbered 224 on LANDSAT's path and to Earth's parallel numbered 63 that intersected the former in WGS84 reference system 
 #The reference system further analyzed has been extracted from the informations of a generic object as crs in which the user through R can find in order: projection, zone, datum and units
 #crs string in p224r63_2011's informations summary is for example: +proj=utm +zone=22 +datum=WGS84 +units=m +no_defs 
 #If I want to obtain visually spectral bands in p224r63_2011?
 #I exploit  a function (plot) to obtain visually spectral bands¹
-#Syntax's function for Windows is: plot(object)
-#In R function plot(p224r63_2011) lead me to a schedule with spectral bands explained graphically through the concept of reflectance
+#Syntaxis' function for Windows is: plot(object)
+#In R function plot(p224r63_2011) lead me to a window with spectral bands explainable graphically through the concept of reflectance
 #Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1_SRE to B7_SRE representing each spectral bands
 #I exploit  a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
-#Syntax's function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
+#Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
 #A further consideration for upper syntaxis' function: array is indicated by c letter⁴ and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
 #If I want the aforementioned new palette of colors - which is given the name of bgwcp - represents a greyscale, first and last color will be black and white (B/W) respectively whereas second, third, etc. colors will be greys of which the number of depth levels vary from 4 to 256
 #Final syntaxis' function in Windows is: bgwcp <- colorRampPalette(c('black','grey','white'))(100)
@@ -75,21 +77,36 @@
 #Through par function I will be able to combine the graphical visualization of p224r63_2011 in true colors, in false color through the green channel in a plotRGB where the selected stretch is L̲i̲n̲ear and in false color through the green channel in a plotRGB where on the contrary selected stretch is hi̲s̲t̲ogram organizing them by three rows and one column in a intriguing multiframe
 #Final syntaxis' function in Windows is: par(mfrow=c(3,1)) followed by plotRGB(p224r63_2011, r=3, g=2, b=1, stretch='Lin'), plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin') and plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
 #The final conclusion from an accurate comparison of previous p224r63_2011 graphical and multiframe visualizations of vegetational coverage localized in the Amazon rainforest trough three different plotRGB is that with the last plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist') will be visible also its river basin/catchment basin made up of springs, rivers, lakes and swamps!
-
-#Finora sembrerebbe esistere un'unico esemplare del satellite spaziale LANDSAT quando invece, essendo un programma spaziale congiunto della NASA e della USGS, di satelliti con questo nome se ne sono susseguiti ben 8 dal primo lancio avvenuto il 6 gennaio 1978 per il LANDSAT 1 fino ad arrivare al LANDSAT 8 lanciato l'11 febbraio 2013. La continuità nel collezionare dati tramite telerilevamento è essenziale per studiare l'evoluzione dell'ambiente, delle risorse e i cambiamenti naturali e artificiali avvenuti sulla superficie terrestre!
-#In R io posso importare un'immagine della copertura vegetale per la Foresta Amazzonica che sia antecedente a quella del 2011 (ciò è possibile per la continuità appena citata nella stringa soprastante) e analizzare se c'è stata una espansione o riduzione dipendentemente dalle attività antropiche in Brasile
+#So far it would seem to exist a single example of the LANDSAT space satellite when instead, being a joint space program of NASA and USGS, there have been 8 satellites with this name from the first launch on 6 January 1978 for LANDSAT 1 up to arrive at LANDSAT 8 launched on 11 February 2013. Continuity in collecting data by remote sensing is essential to study the evolution of the environment, resources and the natural and man-made changes that have occurred on the earth's surface!
+#In R I can import an image of the vegetation cover for the Amazon forest that is antecedent to that of 2011 (this is possible due to the continuity in LANDSAT joint space program of NASA and USGS just mentioned in the string above ↑) and analyze whether there has been an expansion or reduction of it depending on the anthropic activities in Brazil
 #As in the beginning, I exploit setwd function for the association between R and lab folder
 #Syntaxis' function for Windows is: setwd('C:/lab/')
 #After the association between R and lab folder, how I import data from lab folder to R?
-#I exploit a function (brick) to import data from lab folder - external - to R - internal* -
+#I exploit a function (brick) to import data from lab folder - external - to R - internal*-
+#Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)* 
+#Loading required packages: sp is successful being classes and methods' database provider for spatial data name of the package the user be in need of
+#Important: the installation of a package that the user be in need of through install.packages function must be done only after the launch of R because if necessary it is the library function that loads the package mentioned and previously installed!
+#p224r63_1988_masked.grd is imported in R with brick function according to Windows' syntaxis in which: renowned object name = p224r63_1988 and original object name = p224r63_1988_masked.grd
 #Syntaxis' function for Windows is: renowned object name <- brick('original object name')
-#p224r63_1988 <- brick('p224r63_1988_masked.grd')
-#How to visualize informations of p224r63_2011 in R? 
-#In R, visualizing informations of an object, name of it followed by enter as physical command by keyboard
-#p224r63_1988
-#plot(p224r63_1988)
-#plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin"), plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+#Final syntaxis' function in Windows is: p224r63_1988 <- brick('p224r63_1988_masked.grd')
+#How to visualize informations of p224r63_1988 in R? 
+#In R, visualizing informations of an object, name of it followed by Enter as physical command by keyboard 
+#Syntaxis' function for Windows is: renowned object name ↵ Enter
+#Final syntaxis' function in Windows is: p224r63_1988 ↵ Enter
+#I exploit a function (plot) to obtain visually spectral bands¹
+#Syntax's function for Windows is: plot(object)
+#In R function plot(p224r63_1988) lead me to a window with spectral bands explainable graphically through the concept of reflectance
+#Inizialmente una differenziazione multitemporale nella copertura vegetale della Foresta Amazzonica potrebbe essere apprezzabile attraverso una visualizzazione grafica a colori reali con la funzione plotRGB di p224r63_1988 e p224r63_2011 organizzate in due righe e una colonna con la funzione par
+#Final syntaxis' function in Windows is: par(mfrow=c(2,1)) followed by plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin") and plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+
 #par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+
+pdf('1988-2011Differenziazionemultitemporale.pdf')
+par(mfrow=c(2,2))
 plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
 plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
@@ -278,6 +295,7 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
 
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
 
+
 library(raster)
 
 setwd('C:/lab/') 
@@ -287,3 +305,23 @@ p224r63_1988 <- brick('p224r63_1988_masked.grd')
 p224r63_1988
 
 plot(p224r63_1988)
+
+par(mfrow=c(2,1)) 
+
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin") 
+
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+
+pdf('1988-2011Differenziazionemultitemporale.pdf')
+
+par(mfrow=c(2,2))
+
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+
+
