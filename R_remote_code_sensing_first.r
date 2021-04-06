@@ -96,86 +96,10 @@
 #I exploit a function (plot) to obtain visually spectral bands¹
 #Syntax's function for Windows is: plot(object)
 #In R function plot(p224r63_1988) lead me to a window with spectral bands explainable graphically through the concept of reflectance
-#Inizialmente una differenziazione multitemporale nella copertura vegetale della Foresta Amazzonica potrebbe essere apprezzabile attraverso una visualizzazione grafica a colori reali con la funzione plotRGB di p224r63_1988 e p224r63_2011 organizzate in due righe e una colonna con la funzione par
+#Initially a multitemporal differentiation in the vegetation cover of the Amazon rainforest could be appreciable through a false color graphic visualization with the plotRGB function of p224r63_1988 and p224r63_2011 in the red channel of LANDSAT's sensors with a syntax R = B4_sre: near-infrared, G = B3_sre: red and B = B2_sre: green with linear strecht Lin organizing them in a multiframe of two rows and a column with the function par so that there is no overlapping of successive plotRGB for a single image!
 #Final syntaxis' function in Windows is: par(mfrow=c(2,1)) followed by plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin") and plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
-
-#par(mfrow=c(2,2))
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
-
-pdf('1988-2011Differenziazionemultitemporale.pdf')
-par(mfrow=c(2,2))
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
-
-
-#Al di sotto di questo commento tradurre e organizzare la lezione del 26/03/2021
-#Multulayered raster object red green blue plot
-#Error in .rasterImagePlot(object, col = col, xlab = xlab, ylab = ylab,  : l'argomento 14 si associa a più argomenti formali
-#Colorist: coloring wildlife distributions in space time
-
-
-#Al di sotto di questo commento tradurre e organizzare la lezione del 31/03/2021
-> install.packages("RStoolbox")
-provo con l'URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/RStoolbox_0.2.6.zip'
-Content type 'application/zip' length 2170101 bytes (2.1 MB)
-downloaded 2.1 MB
-
-package ‘RStoolbox’ successfully unpacked and MD5 sums checked
-
-The downloaded binary packages are in
-        C:\Users\PC\AppData\Local\Temp\RtmpEx7d3z\downloaded_packages
-> library(RStoolbox)
-> 
-#p224r63_1988, quali formati nella cartella lab? 
-#Importare p224r63_1988_masked in R
-#Indicare di utilizzare il pacchetto raster tramite le stringhe library(raster) e setwd('C:/lab/')
-#Caricare il dato secondo la stringa p224r63_2011 <- brick('p224r63_2011_masked.grd')
-#Visualizzare le informazioni tramite p224r63_2011
-#Multitemporal set
-#Caricare il dato secondo la stringa p224r63_1988 <- brick('p224r63_1988_masked.grd')
-#Visualizzare le informazioni tramite 
-#Visualizzare le informazioni tramite p224r63_1988
-#Lo scopo iniziale è quello di eseguire il plot(p224r63_1988)
-#Poi si potrebbe associare le bande allo schema RGB: plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin"), plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
-#Per vedere evoluzione foresta, plot 1988 e 2011 tramite la funzione par. Come?
-#par(mfrow=c(2,1))
-#plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
-#plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
-#Differenziazione multitemporale
-
-par(mfrow=c(2,2))
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
-
-#Effetto haze, rumore di fondo, non apprezzabile le variazioni reali per estensione della foresta Amazzonica
-#Come salvare il PDF?
-
-pdf('1988-2011Differenziazionemultitemporale.pdf')
-par(mfrow=c(2,2))
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
-
-pdf("multitemp.pdf")
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
-
-#merged PDFs file.pdf
-#pdftk 
-#bash scripting:
- pdftk *.pdf  cat output mergedfile.pdf
-#
-#
+#Subsequently, to analyze the multitemporal differentiation in the vegetation cover of the Amazon forest by remote sensing beyond the annoying background haze, the previous false color graphic visualization with the plotRGB function of p224r63_1988 and p224r63_2011 in the red channel of LANDSAT's sensors could have a syntax R = B4_sre: near-infrared, G = B3_sre: red and B = B2_sre: green but with both linear (Lin) and histogram (his) strecht organizing them in a square multiframe of two rows and two columns with the same function par and being saved as a PDF with the name of AmazonRainforestMultitemporalDifferentiation
+#Final syntaxis' function in Windows is: pdf('AmazonRainforestMultitemporalDifferentiation.pdf'), par(mfrow=c(2,2)) followed by plotRGB(p224r63_1988, r=4, g=3, b=2, stretch='Lin'), plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin'), plotRGB(p224r63_1988, r=4, g=3, b=2, stretch='hist') and plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='hist')
 
 #Sequence of informatic commands for R_remote_code_sensing_first.r
 
@@ -295,10 +219,15 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='Lin')
 
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch='hist')
 
-
 library(raster)
 
 setwd('C:/lab/') 
+
+p224r63_2011 <- brick('p224r63_2011_masked.grd')
+
+p224r63_2011
+
+plot(p224r63_2011)
 
 p224r63_1988 <- brick('p224r63_1988_masked.grd')
 
@@ -308,20 +237,18 @@ plot(p224r63_1988)
 
 par(mfrow=c(2,1)) 
 
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin") 
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch='Lin') 
 
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
 
-pdf('1988-2011Differenziazionemultitemporale.pdf')
+pdf('AmazonRainforestMultitemporalDifferentiation.pdf')
 
 par(mfrow=c(2,2))
 
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch='Lin')
 
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='Lin')
 
-plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch='hist')
 
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
-
-
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch='hist')
