@@ -78,3 +78,6 @@ plotRGB(TGr, 2, 3, 4, stretch="Lin")
 con dei valori immagini dasatellite per i valori della temperatura!
 plotRGB(TGr, 4, 3, 2, stretch="Lin")
 
+#Sequence of informatic commands for R_code_time_series.r:
+
+
