@@ -80,4 +80,58 @@ plotRGB(TGr, 4, 3, 2, stretch="Lin")
 
 #Sequence of informatic commands for R_code_time_series.r:
 
+install.packages('raster')
 
+install.packages('RStoolbox')
+
+install.packages('rasterVis')
+
+install.packages("rgdal")
+
+library(raster)
+
+setwd('C:/greenland/')  
+
+lst_2000 <- raster('lst_2000.tif')
+
+plot(lst_2000)
+
+lst_2005 <- raster('lst_2005.tif')
+
+plot(lst_2005)
+
+lst_2010 <- raster('lst_2010.tif')
+
+plot(lst_2010)
+
+lst_2015 <- raster('lst_2015.tif')
+
+plot(lst_2015)
+
+par(mfrow=c(2,2))
+
+plot(lst_2000)
+
+plot(lst_2010)
+
+plot(lst_2010)
+
+plot(lst_2015)
+
+rlist <- list.files(pattern="lst") 
+
+rlist
+
+import <- lapply(rlist,raster)
+
+import
+
+TGr <- stack(import)
+
+plot(TGr)
+
+plotRGB(TGr, 1, 2, 3, stretch="Lin")
+
+plotRGB(TGr, 2, 3, 4, stretch="Lin")
+
+plotRGB(TGr, 4, 3, 2, stretch="Lin")
