@@ -36,23 +36,22 @@ install.packages('rasterVis')
 Methods for enhanced visualization and interaction with raster data. It implements visualization methods for quantitative data and categorical data, both for univariate and multivariate rasters. It also provides methods to display spatiotemporal rasters, and vector fields. See the website for examples.
 install.packages("rgdal")
  
-#Which folder must R use in the computer for?
-#In the computer R must use the folder named greenland
+#Which folder must R use in the computer for this new code?
+#In the computer R must use the subfolder named greenland
 #I exploit a function (setwd) for the association between R and greenland subfolder
 #Syntaxix' function for Windows is: setwd(''C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R'')
 #Final syntaxis' function for Windows is: setwd(''C:/lab/greenland'')
 #After the association between R and greenland subfolder, how I import data from greenland subfolder to R?
 #In a different way from the previous R code, although I exploit a function to import data from greenland subfolder - external - to R - internal* - this will be raster and not brick because data theirself are in this format
-#Perchè la funzione raster e non brick? C'è una differenza o ci sono delle differenze?
 #Syntaxis' function for Windows is: renowned object name <- raster('original object name')
 #Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)* 
 #Loading required packages: sp is successful being classes and methods' database provider for spatial data 
 #lst_2000.tif, lst_2005.tif, lst_2010.tif and lst_2015.tif are imported in R with raster function according to Windows' syntaxis in which: renowned object name = lst_2000,lst_2005, lst_2010 and lst_2015 and original object name = lst_2000.tif, lst_2005.tif, lst_2010.tif and lst_2015.tif
 #Final syntaxis' function in Windows is: lst_2000 <- raster('lst_2000.tif'),lst_2000 <- raster('lst_2005.tif'), lst_2010 <- raster('lst_2010.tif') and lst_2015 <- raster('lst_2015.tif')
-#If I want to obtain visually spectral bands in p224r63_2011?
-#I exploit  a function (plot) to obtain visually spectral bands¹
+#If I want to obtain visually land surface temperature in lst_2000, lst_2005, lst_2010 and lst_2015?
+#I exploit a function (plot) to obtain land surface temperature in Greenland
 #Syntaxis' function for Windows is: plot(object)
-#In R function plot(p224r63_2011) lead me to a window with spectral bands explainable graphically through the concept of reflectance
+#In R function plot(lst_2000), plot(lst_2005), plot(lst_2010) and plot(last_2015) lead me to a window with land surface temperature explainable graphically through the concept of reflectance
 #La funzione plot applicata singolarmente a ciascun raster è una procedura lenta e non efficiente!
 #For the user $ function's relevance in R is manifest at a higher level with the function (par) through which there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
 #Syntaxis' function for Windows is:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
