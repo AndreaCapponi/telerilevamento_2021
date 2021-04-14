@@ -171,6 +171,7 @@ plotRGB(TGr, 4, 3, 2, stretch="Lin")
 #melt_amount
 #levelplot(melt_amount, col.regions=clb)
 
+
 #Sequence of informatic commands for R_code_time_series.r:
 
 install.packages('raster')
