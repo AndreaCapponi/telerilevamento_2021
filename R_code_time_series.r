@@ -1,73 +1,50 @@
 #Code time series 
 #Greenland increases of temperature
 #Data and code from Emanuela Cosma
-#library
-#setwd# install.packages("raster")
-library(raster)
- 
-setwd("~/lab/greenland") # Linux
-# setwd("C:/lab/greenland") # Windows
-# setwd("/Users/name/Desktop/lab/greenland") # Mac
-> install.packages("RStoolbox")
-provo con l'URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/RStoolbox_0.2.6.zip'
-Content type 'application/zip' length 2170101 bytes (2.1 MB)
-downloaded 2.1 MB
-
-package ‘RStoolbox’ successfully unpacked and MD5 sums checked
-
-The downloaded binary packages are in
-        C:\Users\PC\AppData\Local\Temp\RtmpEx7d3z\downloaded_packages
-> library(RStoolbox)
-
-Useremo questi pacchetti: raster (già installato) e rasterVis. Quindi:
-
-install.packages("rasterVis") # attenzione alla maiuscola e virgolette perché usciamo da R
-The downloaded binary packages are in
-        C:\Users\PC\AppData\Local\Temp\RtmpekzTGh\downloaded_packages
 
 #Al di sotto di questo commento studiare e organizzare la lezione del 07/04/2021
 
 #Which is the title for R's developing code?
 #My R code for time series
-install.packages('raster')
-install.packages('RStoolbox')
-Toolbox for remote sensing image processing and analysis such as calculating spectral indices, principal component transformation, unsupervised and supervised classification or fractional cover analyses
-install.packages('rasterVis')
-Methods for enhanced visualization and interaction with raster data. It implements visualization methods for quantitative data and categorical data, both for univariate and multivariate rasters. It also provides methods to display spatiotemporal rasters, and vector fields. See the website for examples.
-install.packages("rgdal")
- 
 #Which folder must R use in the computer for this new code?
-#In the computer R must use the subfolder named greenland
+#In the computer R must use the subfolder named greenland contained within the ''mother'' folder simply called lab
 #I exploit a function (setwd) for the association between R and greenland subfolder
 #Syntaxix' function for Windows is: setwd(''C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R'')
 #Final syntaxis' function for Windows is: setwd(''C:/lab/greenland'')
 #After the association between R and greenland subfolder, how I import data from greenland subfolder to R?
-#In a different way from the previous R code, although I exploit a function to import data from greenland subfolder - external - to R - internal* - this will be raster and not brick because data theirself are in this format
+#In a different way from the previous R code, although I still exploit a function to import data from greenland subfolder - external - to R - internal* - this will be raster and not brick because data theirself are in this format
 #Syntaxis' function for Windows is: renowned object name <- raster('original object name')
 #Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)* 
 #Loading required packages: sp is successful being classes and methods' database provider for spatial data 
+#For the operation of this code, I shall install.packages('RStoolbox') and install.packages('rasterVis')
+#Through install.packages('RStoolbox') I have a diversied toolbox for remote sensing image processing and analysis as calculating spectral indices, principal component transformation, unsupervised and supervised classification or fractional cover analyses
+#Messaggio di caricamento avvenuto con successo: provo con l'URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/RStoolbox_0.2.6.zip' Content type 'application/zip' length 2170101 bytes (2.1 MB)downloaded 2.1 MBpackage ‘RStoolbox’ successfully unpacked and MD5 sums checkedThe downloaded binary packages are inC:\Users\PC\AppData\Local\Temp\RtmpEx7d3z\downloaded_packages
+#Through install.packages(rasterVis') I have methods to apply for an enhanced visualization and interaction with raster data. It implements visualization methods for quantitative data and categorical data, both for univariate and multivariate rasters. It also provides methods to display spatiotemporal rasters, and vector fields
+#Messaggio di caricamento avvenuto con successo: provo con l'URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/rasterVis_0.50.1.zip'Content type 'application/zip' length 216951 bytes (211 KB)downloaded 211 KBpackage ‘rasterVis’ successfully unpacked and MD5 sums checkedThe downloaded binary packages are inC:\Users\PC\AppData\Local\Temp\RtmpSKE0X0\downloaded_packages
 #lst_2000.tif, lst_2005.tif, lst_2010.tif and lst_2015.tif are imported in R with raster function according to Windows' syntaxis in which: renowned object name = lst_2000,lst_2005, lst_2010 and lst_2015 and original object name = lst_2000.tif, lst_2005.tif, lst_2010.tif and lst_2015.tif
 #Final syntaxis' function in Windows is: lst_2000 <- raster('lst_2000.tif'),lst_2000 <- raster('lst_2005.tif'), lst_2010 <- raster('lst_2010.tif') and lst_2015 <- raster('lst_2015.tif')
-#If I want to obtain visually land surface temperature in lst_2000, lst_2005, lst_2010 and lst_2015?
+#If I want to obtain visually land surface temperature for Greenland in lst_2000, lst_2005, lst_2010 and lst_2015?
 #I exploit a function (plot) to obtain land surface temperature in Greenland
 #Syntaxis' function for Windows is: plot(object)
-#In R function plot(lst_2000), plot(lst_2005), plot(lst_2010) and plot(last_2015) lead me to a window with land surface temperature explainable graphically through the concept of reflectance
-#La funzione plot applicata singolarmente a ciascun raster è una procedura lenta e non efficiente!
+#In R function plot(lst_2000), plot(lst_2005), plot(lst_2010) and plot(last_2015) lead me to a window with land surface temperature of Greenland explainable graphically through the concept of reflectance
+#The plot function applied individually to each raster is a slow and inefficient procedure!
 #For the user $ function's relevance in R is manifest at a higher level with the function (par) through which there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
 #Syntaxis' function for Windows is:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
-#Sintassi finale della funzione: par(mfrow=c(2,2)), plot(lst_2000), plot(lst_2010), plot(lst_2010) and plot(lst_2015)
-#Esiste la possibilità di importare contemporaneamente i precedenti quattro raster? 
-#What if I or any user wanted to import the four rasterslst_2000, lst_2010, lst_2010 e lst_2015 in a single computer operation?
+#Final syntaxis' function in Windows is: par(mfrow=c(2,2)) followed by plot(lst_2000), plot(lst_2010), plot(lst_2010) and plot(lst_2015)
+#Is there the possibility of importing the previous four rasters at the same time? 
+#What if I or any user wanted to import the four rasters lst_2000, lst_2010, lst_2010 and lst_2015 in a single computer operation?
+#My goal as a user is to import the four rasters lst_2000, lst_2010, lst_2010 and lst_2015 at the same time in R via the raster function by selecting them from a list in the greenland subfolder. Subsequently, by representing each raster the surface temperature of the earth in Greenland in different years (2000, 2005, 2010 and 2015), join the latter as levels of a single object, the plot of which will clarify overall the trend of the previous temperature in a time series analysis
+#Initially I exploit a function (rlist) through which I create a list of data, files or objects based on a key word
 #rlist: A Toolbox for Non-Tabular Data Manipulation.Provides a set of functions for data manipulation with list objects, including mapping, filtering, grouping, sorting, updating, searching, and other useful functions. Most functions are designed to be pipeline friendly so that data processing with lists can be chained.
-#Sintassi della funzione in Windows: <- list.files(pattern="lst") 
-#Io potrei selezionare come filtro nel pattern l'estensione tif però è talmente comune che è da privilegiare invece lst!
-#Sintassi finale della funzione in Windows:rlist <- list.files(pattern="lst") 
-#L'utente può applicare la funzione raster a una lista come quella che io ho creato? La risposta è sì!
-#lapply: Apply a Function over a List or Vector
-#Sintassi della funzione in Windows: import <- lapply(rlist,raster)
-#Sintassi finale della funzione: import <- lapply(rlist,raster)
-#Dopo aver importato i quattro raster in R dei quali si possono visualizzare le informazioni attraverso ↵ Enter, è possibile creare un'unico oggetto dagli stessi file raster?
-#stack: Stack or Unstack Vectors from a Data Frame or List
+#Syntaxis' function for Windows is: name of the list of objects selected by the user <- list.files(pattern="common unit in each name of the files of which you are creating the list") 
+#Since the number of my images is limited, I could have the tif format as a pattern in the rlist function. This user choice is not recommended because the tif format is common and widespread so my choice will fall on the lst pattern indicating in each raster what to represent in particular (land surface temperature)
+#Final syntaxis' function in Windows is: greenlandsubfolderlist <- list.files(pattern="lst")
+#After the creation of the list greenlandsubfolderlist consisting of lst_2000, lst_2005, lst_2010 and lst_2015, how to import it by applying the raster function globally?
+#I exploit a function (lapply) which apply a selected function by the user in R over a list
+#Syntaxis' function for Windows is: name of the list of objects on which is applied the function selected by the user <- lapply(rlist,selected function by the user)
+#Final syntaxis' function in Windows is: greenlandimportedr <- lapply(greenlandsubfolderlist,raster)
+#The display of the information of lst_2000, lst_2005, lst_2010 and lst_2015 is done simply by pressing ↵ Enter after the user has digitized greenlandimportedr where the rasters are listed with numbers between square brackets from 1 to 4
+#
 #Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated. Unstacking reverses this operation.
 #Sintassi della funzione: TGr <- stack(import)
 #Sintassi finale della funzione: TGr <- stack(import)
@@ -234,20 +211,20 @@ plot(lst_2010)
 
 plot(lst_2015)
 
-rlist <- list.files(pattern="lst") 
+greenlandsubfolderlist <- list.files(pattern="lst")
 
-rlist
+greenlandsubfolderlist
 
-import <- lapply(rlist,raster)
+greenlandimportedr <- lapply(greenlandsubfolderlist,raster)
 
-import
+greenlandimportedr
 
-TGr <- stack(import)
+TCSG <- stack(greenlandimportedr)
 
-plot(TGr)
+plot(TCSG)
 
-plotRGB(TGr, 1, 2, 3, stretch="Lin")
+plotRGB(TCSG, 1, 2, 3, stretch="Lin")
 
-plotRGB(TGr, 2, 3, 4, stretch="Lin")
+plotRGB(TCSG, 2, 3, 4, stretch="Lin")
 
-plotRGB(TGr, 4, 3, 2, stretch="Lin")
+plotRGB(TCSG, 4, 3, 2, stretch="Lin")
