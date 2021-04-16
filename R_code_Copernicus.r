@@ -26,7 +26,11 @@ The downloaded binary packages are in
 #Perchè cambia lo sfondo nel plot(snowcover2021, col=sc21gbwcp) essendo verde come l'assenza di copertura nevosa?
 #Valori NA da riclassificare per non c'è associazione con valori reali copNDVI <- raster::reclassify(copNDVI, cbind(252,255, NA), right=TRUE) selenzionandoli tramite metadata dal sito web per il programma Copernicu
 #Come diminuire la risoluzione con un ricampionamento?
-#
-#
 
+
+#Al di sotto di questo commento studiare e organizzare la lezione del 14/04/2021
+install.packages("RStoolbox")
+library(RStoolbox)
+install.packages('knitr', dependencies = TRUE)
+library(knitr)
 
