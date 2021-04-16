@@ -6,3 +6,7 @@
 #stitch function is required!
 #stitch: Automatically create a report based on an R script and a template
 #This is a convenience function for small-scale automatic reporting based on an R script and a template. The default template is an Rnw file (LaTeX); stitch_rhtml() and stitch_rmd() are wrappers on top of stitch() using the R HTML and R Markdown templates respectively.
+#setwd("C:/lab/")
+#Knitr è interno a R sfrutta un codice esterno per creare un report (inverted commas) importandolo nel programma per successivamente salvarlo come PDF nella cartella dove era collocato il codice precedente!
+#library(knitr)
+#
