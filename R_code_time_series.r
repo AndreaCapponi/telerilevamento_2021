@@ -1,9 +1,3 @@
-#Code time series 
-#Greenland increases of temperature
-#Data and code from Emanuela Cosma
-
-#Al di sotto di questo commento studiare e organizzare la lezione del 07/04/2021
-
 #Which is the title for R's developing code?
 #My R code for a time series
 #Which folder must R use in the computer for this new code?
@@ -19,19 +13,20 @@
 #Loading required packages: sp is successful being classes and methods' database provider for spatial data 
 #For the operation of this code, it is recommended by the professor to install also install.packages('RStoolbox') and install.packages('rasterVis') in order to have tools and visualization methods for remote sensing data analysis
 #Through install.packages('RStoolbox') the user have a diversied toolbox for remote sensing image processing and analysis as calculating spectral indices, principal component transformation, unsupervised and supervised classification or fractional cover analyses
-#Messaggio di caricamento avvenuto con successo: provo con l'URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/RStoolbox_0.2.6.zip' Content type 'application/zip' length 2170101 bytes (2.1 MB)downloaded 2.1 MBpackage ‘RStoolbox’ successfully unpacked and MD5 sums checkedThe downloaded binary packages are inC:\Users\PC\AppData\Local\Temp\RtmpEx7d3z\downloaded_packages
-#Through install.packages(rasterVis') I have methods to apply for an enhanced visualization and interaction with raster data. It implements visualization methods for quantitative data and categorical data, both for univariate and multivariate rasters. It also provides methods to display spatiotemporal rasters, and vector fields
-#Messaggio di caricamento avvenuto con successo: provo con l'URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/rasterVis_0.50.1.zip'Content type 'application/zip' length 216951 bytes (211 KB)downloaded 211 KBpackage ‘rasterVis’ successfully unpacked and MD5 sums checkedThe downloaded binary packages are inC:\Users\PC\AppData\Local\Temp\RtmpSKE0X0\downloaded_packages
+#Upload message successful: tryingURL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/RStoolbox_0.2.6.zip' Content type 'application/zip' length 2170101 bytes (2.1 MB)downloaded 2.1 MBpackage ‘RStoolbox’ successfully unpacked and MD5 sums checkedThe downloaded binary packages are inC:\Users\PC\AppData\Local\Temp\RtmpEx7d3z\downloaded_packages
+#Through install.packages(rasterVis') the user have methods to apply for an enhanced visualization and interaction with raster data. It implements visualization methods for quantitative data and categorical data, both for univariate and multivariate rasters. It also provides methods to display spatiotemporal rasters, and vector fields
+#Upload message successful: trying URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/rasterVis_0.50.1.zip'Content type 'application/zip' length 216951 bytes (211 KB)downloaded 211 KBpackage ‘rasterVis’ successfully unpacked and MD5 sums checkedThe downloaded binary packages are inC:\Users\PC\AppData\Local\Temp\RtmpSKE0X0\downloaded_packages
 #lst_2000.tif, lst_2005.tif, lst_2010.tif and lst_2015.tif are imported in R with raster function according to Windows' syntaxis in which: renowned object name = lst_2000,lst_2005, lst_2010 and lst_2015 and original object name = lst_2000.tif, lst_2005.tif, lst_2010.tif and lst_2015.tif
 #Final syntaxis' function in Windows is: lst_2000 <- raster('lst_2000.tif'),lst_2000 <- raster('lst_2005.tif'), lst_2010 <- raster('lst_2010.tif') and lst_2015 <- raster('lst_2015.tif')
-#If I want to obtain visually land surface temperature for Greenland in lst_2000, lst_2005, lst_2010 and lst_2015?
-#I exploit a function (plot) to obtain land surface temperature in Greenland
+#How to graphically visualize the Earth's surface temperature in Greenland from raster layer objects lst_2000, lst_2005, lst_2010 and lst_2015 (lst, acronym for land surface temperature)?
+#I exploit a function (plot) to obtain visually land surface temperature
 #Syntaxis' function for Windows is: plot(object)
 #In R function plot(lst_2000), plot(lst_2005), plot(lst_2010) and plot(last_2015) lead me to a window with land surface temperature of Greenland explainable graphically through the concept of reflectance
-#The plot function applied individually to each raster is a slow and inefficient procedure!
+
 #For the user $ function's relevance in R is manifest at a higher level with the function (par) through which there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
 #Syntaxis' function for Windows is:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
 #Final syntaxis' function in Windows is: par(mfrow=c(2,2)) followed by plot(lst_2000), plot(lst_2010), plot(lst_2010) and plot(lst_2015)
+#The plot function applied individually by the user to each raster layer object is a slow and inefficient iterative cycle!
 #Is there the possibility of importing the previous four rasters at the same time? 
 #What if I or any user wanted to import the four rasters lst_2000, lst_2010, lst_2010 and lst_2015 in a single computer operation?
 #My goal as a user is to import the four rasters lst_2000, lst_2010, lst_2010 and lst_2015 at the same time in R via the raster function by selecting them from a list in the greenland subfolder. Subsequently, by representing each raster the surface temperature of the earth in Greenland in different years (2000, 2005, 2010 and 2015), join the latter as levels of a single object, the plot of which will clarify overall the trend of the previous temperature in a time series analysis
