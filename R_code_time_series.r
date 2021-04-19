@@ -5,19 +5,20 @@
 #Al di sotto di questo commento studiare e organizzare la lezione del 07/04/2021
 
 #Which is the title for R's developing code?
-#My R code for time series
+#My R code for a time series
 #Which folder must R use in the computer for this new code?
-#In the computer R must use the subfolder named greenland contained within the ''mother'' folder simply called lab
+#In the computer R must use the subfolder named greenland within the "mother" folder simply called lab
 #I exploit a function (setwd) for the association between R and greenland subfolder
-#Syntaxix' function for Windows is: setwd(''C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R'')
+#Syntaxis' function for Windows is: setwd(''C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R'')
 #Final syntaxis' function for Windows is: setwd(''C:/lab/greenland'')
 #After the association between R and greenland subfolder, how I import data from greenland subfolder to R?
-#In a different way from the previous R code, although I still exploit a function to import data from greenland subfolder - external - to R - internal* - this will be raster and not brick because data theirself are in this format
+#In a different way from the previous R code, although I still exploit a function to import data from greenland subfolder - external - to R - internal* - this will be raster and not brick because our data does not represent a multi-layer raster object but raster layer objects!
 #Syntaxis' function for Windows is: renowned object name <- raster('original object name')
 #Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)* 
+#Important: the brick function creates a RasterBrick object that is a multi-layer raster object typically from a multi-layer (band) file. Instead the raster function creates a RasterLayer object from scratch, a file, an Extent object, a matrix, an 'image' object, or from a Raster *, Spatial *, im (spatstat) asc, kasc (adehabitat *), grf ( geoR) or kde object!
 #Loading required packages: sp is successful being classes and methods' database provider for spatial data 
-#For the operation of this code, I shall install.packages('RStoolbox') and install.packages('rasterVis')
-#Through install.packages('RStoolbox') I have a diversied toolbox for remote sensing image processing and analysis as calculating spectral indices, principal component transformation, unsupervised and supervised classification or fractional cover analyses
+#For the operation of this code, it is recommended by the professor to install also install.packages('RStoolbox') and install.packages('rasterVis') in order to have tools and visualization methods for remote sensing data analysis
+#Through install.packages('RStoolbox') the user have a diversied toolbox for remote sensing image processing and analysis as calculating spectral indices, principal component transformation, unsupervised and supervised classification or fractional cover analyses
 #Messaggio di caricamento avvenuto con successo: provo con l'URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/RStoolbox_0.2.6.zip' Content type 'application/zip' length 2170101 bytes (2.1 MB)downloaded 2.1 MBpackage ‘RStoolbox’ successfully unpacked and MD5 sums checkedThe downloaded binary packages are inC:\Users\PC\AppData\Local\Temp\RtmpEx7d3z\downloaded_packages
 #Through install.packages(rasterVis') I have methods to apply for an enhanced visualization and interaction with raster data. It implements visualization methods for quantitative data and categorical data, both for univariate and multivariate rasters. It also provides methods to display spatiotemporal rasters, and vector fields
 #Messaggio di caricamento avvenuto con successo: provo con l'URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/rasterVis_0.50.1.zip'Content type 'application/zip' length 216951 bytes (211 KB)downloaded 211 KBpackage ‘rasterVis’ successfully unpacked and MD5 sums checkedThe downloaded binary packages are inC:\Users\PC\AppData\Local\Temp\RtmpSKE0X0\downloaded_packages
