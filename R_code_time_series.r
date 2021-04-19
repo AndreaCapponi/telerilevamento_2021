@@ -6,9 +6,9 @@
 #Syntaxis' function for Windows is: setwd(''C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R'')
 #Final syntaxis' function for Windows is: setwd(''C:/lab/greenland'')
 #After the association between R and greenland subfolder, how I import data from greenland subfolder to R?
-#In a different way from the previous R code, although I still exploit a function to import data from greenland subfolder - external - to R - internal* - this will be raster and not brick because our data does not represent a multi-layer raster object but raster layer objects!
+#In a different way from the previous R code, although I still exploit a function to import data from greenland subfolder - external - to R - internal¹ - this will be raster and not brick because our data does not represent a multi-layer raster object³ but raster layer² objects!
 #Syntaxis' function for Windows is: renowned object name <- raster('original object name')
-#Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)* 
+#Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)¹ 
 #Important: the brick function creates a RasterBrick object that is a multi-layer raster object typically from a multi-layer (band) file. Instead the raster function creates a RasterLayer object from scratch, a file, an Extent object, a matrix, an 'image' object, or from a Raster *, Spatial *, im (spatstat) asc, kasc (adehabitat *), grf ( geoR) or kde object!
 #Loading required packages: sp is successful being classes and methods' database provider for spatial data 
 #For the operation of this code, it is recommended by the professor to install also install.packages('RStoolbox') and install.packages('rasterVis') in order to have tools and visualization methods for remote sensing data analysis
@@ -22,65 +22,34 @@
 #I exploit a function (plot) to obtain visually land surface temperature
 #Syntaxis' function for Windows is: plot(object)
 #In R function plot(lst_2000), plot(lst_2005), plot(lst_2010) and plot(last_2015) lead me to a window with land surface temperature of Greenland explainable graphically through the concept of reflectance
-
-#For the user $ function's relevance in R is manifest at a higher level with the function (par) through which there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
-#Syntaxis' function for Windows is:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
+#With the function (par) there is the possibility of combining in this case multiple levels of "interest" belonging to different objects² in their series into one graphical visualization of their called multiframe
+#Syntaxis' function for Windows is: par(multiframe, a graphical visualization of multiple levels of "interest" belonging to different objects² in their series organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array(number of rows or columns required, number of columns or rows required))
 #Final syntaxis' function in Windows is: par(mfrow=c(2,2)) followed by plot(lst_2000), plot(lst_2010), plot(lst_2010) and plot(lst_2015)
-#The plot function applied individually by the user to each raster layer object is a slow and inefficient iterative cycle!
-#Is there the possibility of importing the previous four rasters at the same time? 
-#What if I or any user wanted to import the four rasters lst_2000, lst_2010, lst_2010 and lst_2015 in a single computer operation?
-#My goal as a user is to import the four rasters lst_2000, lst_2010, lst_2010 and lst_2015 at the same time in R via the raster function by selecting them from a list in the greenland subfolder. Subsequently, by representing each raster the surface temperature of the earth in Greenland in different years (2000, 2005, 2010 and 2015), join the latter as levels of a single object, the plot of which will clarify overall the trend of the previous temperature in a time series analysis
-#Initially I exploit a function (rlist) through which I create a list of data, files or objects based on a key word
-#rlist: A Toolbox for Non-Tabular Data Manipulation.Provides a set of functions for data manipulation with list objects, including mapping, filtering, grouping, sorting, updating, searching, and other useful functions. Most functions are designed to be pipeline friendly so that data processing with lists can be chained.
-#Syntaxis' function for Windows is: name of the list of objects selected by the user <- list.files(pattern="common unit in each name of the files of which you are creating the list") 
-#Since the number of my images is limited, I could have the tif format as a pattern in the rlist function. This user choice is not recommended because the tif format is common and widespread so my choice will fall on the lst pattern indicating in each raster what to represent in particular (land surface temperature)
+#The plot and par functions applied individually by the user to each raster layer object are a slow and inefficient iterative cycle! 
+#What if I import the four rasters lst_2000, lst_2010, lst_2010 and lst_2015 at the same time in R via the raster function by selecting them from a list in the greenland subfolder? Subsequently, by representing each raster² the Earth's surface temperature for Greenland in different years (2000, 2005, 2010 and 2015), I would join the latter as levels of a single object³, the plot of which will clarify graphically the trend of the previous temperature in a time series analysis
+#Initially I exploit a function (rlist) through which I create a list of data, files or objects based on the matching of their names with a key regular expression selected by the user
+#Syntaxis' function for Windows is: name of the list of objects selected by the user <- list.files(pattern="a key regular expression in each name of previous objects of which you are creating the list") 
+#Since the number of my objects is limited, I could have the tif format as a pattern in the rlist function. This user choice is not recommended because the tif format is common and widespread so my choice will fall on the lst pattern indicating in each raster what to represent in particular (land surface temperature)
 #Final syntaxis' function in Windows is: greenlandsubfolderlist <- list.files(pattern="lst")
 #After the creation of the list greenlandsubfolderlist consisting of lst_2000, lst_2005, lst_2010 and lst_2015, how to import it by applying the raster function globally?
 #I exploit a function (lapply) which apply a selected function by the user in R over a list
-#Syntaxis' function for Windows is: name of the list of objects on which is applied the function selected by the user <- lapply(rlist,selected function by the user)
+#Syntaxis' function for Windows is: name of the list of objects on which is applied the function selected by the user <- lapply(original name of the list of objects on which will be applied the function selected by the user, selected function by the user)
 #Final syntaxis' function in Windows is: greenlandimportedr <- lapply(greenlandsubfolderlist,raster)
-#The display of the information of lst_2000, lst_2005, lst_2010 and lst_2015 is done simply by pressing ↵ Enter after the user has digitized greenlandimportedr where the rasters are listed with numbers between square brackets from 1 to 4
-#
-#Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated. Unstacking reverses this operation.
-#Sintassi della funzione: TGr <- stack(import)
-#Sintassi finale della funzione: TGr <- stack(import)
+#The display of the information of lst_2000, lst_2005, lst_2010 and lst_2015 is done simply by pressing ↵ Enter after I have digitized greenlandimportedr where the rasters are listed with numbers between square brackets from [1] to [4]
+#The last operation will be to merge the raster level objects lst_2000, lst_2005, lst_2010 and lst_2015 - contained in the greenlandimportedr list imported into R - into a multi-layer raster object whose name I have chosen will be TCSG through a new function called stack 
+#I exploit the (stack) function that stack or unstack vectors from a data frame or list generated by the user beforehand
+#Syntaxis' function for Windows is: name of the future multi-layer raster object <- stack(name of the list of objects on which the function selected by the user is applied to import them into R)
+#Final syntaxis' function in Windows is: TCSG <- stack(greenlandimportedr)
+
 #La funzione plot quindi può essere applicata direttamente all'oggetto che noi abbiamo creato!
 #Sintassi nuova o adattata all'oggetto che si è creato come finale:
 #Possibilità di un plottaggio RGB andando a selezionare l'associazione tra raster e livelli di colore
-
-greenlandsubfolderlist <- list.files(pattern="lst")
-
-greenlandsubfolderlist
-
-greenlandimportedr <- lapply(greenlandsubfolderlist,raster)
-
-greenlandimportedr
-
-TCSG <- stack(greenlandimportedr)
 
 plot(TCSG)
 
 
 
 #All'interno della carta lab, io ho scaricato la cartella greenland nella quale ho quattro layer i quali andranno a rappresentare l'incremento della temperatura in Groenlandia come land surface temperature nel 2000, 2005, 2010 e 2015
-#Se nel codice precedente è stata sfruttata la funzione brick per importare un oggetto o un layer dalla suddetta cartella, mentre ora si sfrutta la funzione raster perchè è questo il formato che si vuole
-#La sintassi della funzione è identica a brick:
-#Ogni layer viene importato da lab a R con l'ausilio delle virgolette, andando a costituire un ciclo iterativo di funzioni
-#La sintassi finale per la prima immagine sarà:
-#Lo stesso verrà fatto per le altre immagini di cui si può anche avere il plot
-#E' possibile creare un multiframe tramite la funzione par per visualizzare contemporaneamente i layers
-#La domanda è: come importare in una singola operazione tutti e quattro i layer?
-#inizialmente si può indicare la lista di file da importare sulla base di qualcosa che hanno in comune nel nome
-#lst e non tif perchè potrebbe essere l'estensione di altri file non di nostro interesse
-#sintassi della funzione:
-#importante: pattern
-#come applicare la funzione raster alle quattro immagini che si saranno individuate con list?
-#lapply
-#sintassi della funzione lapply
-#con la funzione lapply io ho definitivamente importato le quattro immagini sottoforma di raster numerandole da [1] a [4]
-#come creare un file unico con i raster importati?
-#funzione stack unisce i quattro raster in uno solo
-#sintassi della funzione
 #invece di eseguire 4 plot e costruire un multiframe è sufficiente il plot dell'oggetto multiraster creato
 #sintassi della funzione
 #sintassi finale della funzione
@@ -89,19 +58,6 @@ plot(TCSG)
 
 Stack insieme di dati, come importarli in blocco su R sottoforma di raster?
 Io devo importare gli strati in numero di 4 che rappresentano la stima della temperatura Copernicus per la Groenlandia 
-lst land surface temperature
-La funzione per caricare singoli dati non si chiama più brick ma raster. Nel pacchetto omonimo c una funzione con lo stesso nome create a rasterlayer object
-Si esce da R con la funzione raster e lo si porta in R con le solite virgolette: lst_2000 <- raster('lst_2000.tif')
-Ciclo iterativo di funzioni, in futuro!
-plot(lst_2000), orribile schema di colori dal bianco al verde
-lst_2000 <- raster('lst_2005.tif')
-plot(lst_2005)
-lst_2010 <- raster('lst_2010.tif')
-plot(lst_2010)
-lst_2015 <- raster('lst_2015.tif')
-plot(lst_2015)
-Quanto è lento caricare questi raster uno alla volta tramite la funzione raster?
-library(rgdal) da installare su Windows (?) abstraction library per tutti i file raster
 File che registra ogni decimale di temperatura sarebbe pesantissimo. Qual è il peso delle immagini che sto utilizzando? 8,5 MB Il valore è possibile per numeri interi!
 DNs digital numbers in bit per aumentare la compressione
 par(mfrow=c(2,2))
