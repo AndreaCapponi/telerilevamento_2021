@@ -78,6 +78,7 @@ plotRGB(TGr, 4, 3, 2, stretch="Lin")
 #TGr <- stack(import)
 #TGr tutte le informazioni con ↵ Enter
 #levelplot(TGr)
+#Integrazione con le precedenti stringhe di codice della precedente lezione!
 #levelplot(TCSG)
 #levelplot: Level Plots
 #Description
@@ -183,6 +184,8 @@ plotRGB(TCSG, 2, 3, 4, stretch="Lin")
 
 plotRGB(TCSG, 4, 3, 2, stretch="Lin")
 
+library(rasterVis)
+
 levelplot(TCSG)
 
 levelplot(TCSG$lst_2000)
@@ -200,3 +203,21 @@ levelplot(TCSG, col.regions=cl)
 levelplot(TCSG,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
 
 levelplot(TCSG,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+
+meltlist <- list.files(pattern="melt")
+
+melt_import <- lapply(meltlist,raster)
+
+melt <- stack(melt_import)
+
+levelplot(melt)
+
+melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
+
+clb <- colorRampPalette(c("blue","white","red"))(100)
+
+plot(melt_amount, col=clb)
+
+dev.off()
+
+levelplot(melt_amount, col.regions=clb)
