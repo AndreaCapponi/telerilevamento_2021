@@ -46,7 +46,6 @@
 #Syntax's function for Windows is: plotRGB(renowned object name, r= number of selected spectral band which will be graphically visualized through red channel, g= number of selected spectral band which will be graphically visualized through green channel, b= number of selected spectral band which will be graphically visualized through blue channel,type of stretch for reflectance's values in order that their graphical visualization is optimal ='Lin if the stretch has to normalize reflectance's values between 0 e 1 (ρ=Φr/Φ0)' or 'hist if the stretch has to divides the reflectance's values into equally sized ranges from the lowest to the highest value') where the number of selected spectral band is to be indicated being a integer function!
 #Final syntaxis' function in Windows is: plotRGB(TCSG, 1, 2, 3, stretch="Lin"), plotRGB(TCSG, 2, 3, 4, stretch="Lin") and plotRGB(TCSG, 4, 3, 2, stretch="Lin") where r, g and b could be implied!
 
-
 #All'interno della carta lab, io ho scaricato la cartella greenland nella quale ho quattro layer i quali andranno a rappresentare l'incremento della temperatura in Groenlandia come land surface temperature nel 2000, 2005, 2010 e 2015
 Io devo importare gli strati in numero di 4 che rappresentano la stima della temperatura Copernicus per la Groenlandia 
 File che registra ogni decimale di temperatura sarebbe pesantissimo. Qual è il peso delle immagini che sto utilizzando? 8,5 MB Il valore è possibile per numeri interi!
@@ -63,7 +62,13 @@ plotRGB(TGr, 4, 3, 2, stretch="Lin")
 #Al di sotto di questo commento studiare e organizzare la lezione dell' 08/04/2021
 
 #Visualitazione methods for raster data
-#install.packages('rasterVis')
+#install.packages('rasterVis'), da pacchetto precedente lattice
+#Carico il pacchetto richiesto: raster
+#Carico il pacchetto richiesto: sp
+#Carico il pacchetto richiesto: terra
+#terra version 1.1.4
+#Carico il pacchetto richiesto: lattice
+#Carico il pacchetto richiesto: latticeExtra
 #library(rasterVis)
 #setwd("C:/lab/greenland")
 #rlist <- list.files(pattern="lst")
@@ -71,24 +76,54 @@ plotRGB(TGr, 4, 3, 2, stretch="Lin")
 #import <- lapply(rlist,raster)
 #import
 #TGr <- stack(import)
-#TGr
+#TGr tutte le informazioni con ↵ Enter
 #levelplot(TGr)
-#levelplot(TGr$lst_2000)
+#levelplot(TCSG)
+#levelplot: Level Plots
+#Description
+#Draw Level Plots and Contour plots
+#Attraverso la funzione par utilizzavamo una legenda per ogni file, invece con levelplot un'unica legenda per il Rasterstack!
+#Che cosa accade se la stessa funzione levelplot viene applicata a ciascun strato di TCSG invece che globalmente come in precedenza?
+#levelplot(TCSG$lst_2000)
+#levelplot(TCSG$lst_2005)
+#levelplot(TCSG$lst_2010)
+#levelplot(TCSG$lst_2015)
+#Per singolo strato a 16 pixel vengono attribuiti valori per ciascuno di essi in bit per rappresentare il valore della temperatura. Nel momento in cui io considero una riga/colonna,
+#mi è possibile ottenere un valore medio come sommatoria di valori per la popolazione dei pixel per il numero totale dei pixel.
+#Il grafico è costruibile sui due assi che delimitano il grafico sopra e a destra dando l'andamento statistico dei valori lst oltre la classica legenda!
+#Bianco, non valori!
+#Come abbellire il levelplot(TCSG)?
 #cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
-#levelplot(TGr, col.regions=cl)
-#levelplot(TGr,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
-#levelplot(TGr,col.regions=cl, main="LST variation in time",
-          names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+#levelplot(TCSG, col.regions=cl)
+#Noi cambiamo il colore della nostra mappa finale differente da quelli preimpostati ed è aprrezzabile il cambiamento della temperatura nella time code series analysis
+#Come cambiare il nome degli strati nel levelplot(TSCG)?
+#Argomento aggiuntivo per la funzione per modificare il nome di quelli che in informatica sono attributi!
+#levelplot(TCSG,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+#Argomento main, titolo totale della nostra mappa finale
+#levelplot(TCSG,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+#Satellite NIMBUS-7, Nimbus-7 ha un sensore a microonde.E' possibile fare una stima relativa sulla quantità di ghiaccio che è stata persa in Groenlandia dal 1978 ad oggi!
+#Periodo di calibrazione di dati prima di avere accessibilità ai dati ottenuti tramite qualsiasi satellite anche come Landast!
+#Lista per importare i dati melt in R come fatto precedentemente!
 #meltlist <- list.files(pattern="melt")
+#Ancora l'estensione .tif è vietata, è possibile avere una key word differente da melt avendo la stessa lista?
 #melt_import <- lapply(meltlist,raster)
 #melt <- stack(melt_import)
-#melt
+#melt tutte le informazioni con ↵ Enter
+#Attenzione: la cartella zip melt potrebbe inserirsi in questo ciclo iterativo di funzioni e bloccare il processo per l'analisi che si sta conducendo!
+#2 alla 16, 65536 immagine a 16 pixel, quello è il numero dei valori attribuili per lst!
 #levelplot(melt)
-#clb <- colorRampPalette(c("blue","white","red"))(100)
-#plot(melt_amount, col=clb)
+#Legenda per valore di discioglimento del ghiaccio, tanto più è elevato tanto più si sarà disciolto. Disciogliemento effettivo, tra 1979 e 2007
+#Applicazione di algebra alle matrici di dati
+#Matrice di dati come insieme di pixel ai quali vengono attribuiti i valori di discioglimento del ghiaccio come bit. 2007-1979, come avere la differenza nei valori utile per comprendere il discioglimento
+#Legare il file originale allo strato di nostro interesse perchè non sarebbe che interpretato da R come componenete di TCSG
+melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
+clb <- colorRampPalette(c("blue","white","red"))(100)
+plot(melt_amount, col=clb)
+#Tutte le zone rosse sono quelle dove dal 1979 al 2007 c'è stato un elevato discioglimento del ghiaccio come da legenda.
 #melt_amount
+#-87 min e 92 max tramite la brachet informativa
 #levelplot(melt_amount, col.regions=clb)
-
+#Utilizzare dati multitemporali e poter visualizzare tutti i dati insieme attraverso il levelplot e differenze dipendentemente dall'anno considerato!
 
 #Sequence of informatic commands for R_code_time_series.r:
 
@@ -147,3 +182,21 @@ plotRGB(TCSG, 1, 2, 3, stretch="Lin")
 plotRGB(TCSG, 2, 3, 4, stretch="Lin")
 
 plotRGB(TCSG, 4, 3, 2, stretch="Lin")
+
+levelplot(TCSG)
+
+levelplot(TCSG$lst_2000)
+
+levelplot(TCSG$lst_2005)
+
+levelplot(TCSG$lst_2010)
+
+levelplot(TCSG$lst_2015)
+
+cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
+
+levelplot(TCSG, col.regions=cl)
+
+levelplot(TCSG,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+
+levelplot(TCSG,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
