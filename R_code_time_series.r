@@ -45,7 +45,7 @@
 #The graphical visualization of the increase in the surface temperature of the Earth in Greenland is obtained through a more detailed plot in RGB: I associate the levels of "interest" in TCSG multilayer raster object - which initially were a series of raster layer objects stand alone - to the channels of the red, green and blue for the multispectral sensors the LANDSAT satellite is equipped with
 #Syntax's function for Windows is: plotRGB(renowned object name, r= number of selected spectral band which will be graphically visualized through red channel, g= number of selected spectral band which will be graphically visualized through green channel, b= number of selected spectral band which will be graphically visualized through blue channel,type of stretch for reflectance's values in order that their graphical visualization is optimal ='Lin if the stretch has to normalize reflectance's values between 0 e 1 (ρ=Φr/Φ0)' or 'hist if the stretch has to divides the reflectance's values into equally sized ranges from the lowest to the highest value') where the number of selected spectral band is to be indicated being a integer function!
 #Final syntaxis' function in Windows is: plotRGB(TCSG, 1, 2, 3, stretch="Lin"), plotRGB(TCSG, 2, 3, 4, stretch="Lin") and plotRGB(TCSG, 4, 3, 2, stretch="Lin") where r, g and b could be implied!
-#Unione plotRGB e level plot
+
 #For a graphical visualization of the melting ice in Greenland depending on the Earth's surface temperature, it is possible to exploit another plot function that for the TCSG multi-layer raster object pools a legend for the reflectance values at lst_2000, lst_2005, lst_2010 and lst_2015?
 #I exploit a function (levelplot) to draw level plots and contour plots
 #Important: the above function is operative if and only if the user with the library function loads the previously installed rasterVis package
@@ -83,6 +83,10 @@
 #Syntaxis' function for Windows is: name of the future multi-layer raster object <- stack(name of the list of objects on which the function selected by the user is applied to import them into R)
 #Final syntaxis' function in Windows is: melt <- stack(melt_import)
 #The display of the information of melt is done simply by pressing ↵ Enter
+#For a graphical visualization of the melting ice in Greenland depending on the Earth's surface temperature, it is possible to exploit levelplot function
+#Syntaxis' function for Windows is: levelplot(name of the multi-layer object selected by the user)
+#Final syntaxis' function in Windows is: levelplot(melt)
+#
 
 #All'interno della carta lab, io ho scaricato la cartella greenland nella quale ho quattro layer i quali andranno a rappresentare l'incremento della temperatura in Groenlandia come land surface temperature nel 2000, 2005, 2010 e 2015
 Io devo importare gli strati in numero di 4 che rappresentano la stima della temperatura Copernicus per la Groenlandia 
@@ -110,7 +114,6 @@ plotRGB(TGr, 4, 3, 2, stretch="Lin")
 
 #Attenzione: la cartella zip melt potrebbe inserirsi in questo ciclo iterativo di funzioni e bloccare il processo per l'analisi che si sta conducendo!
 
-#levelplot(melt)
 #Legenda per valore di discioglimento del ghiaccio, tanto più è elevato tanto più si sarà disciolto. Disciogliemento effettivo, tra 1979 e 2007
 #Applicazione di algebra alle matrici di dati
 #Matrice di dati come insieme di pixel ai quali vengono attribuiti i valori di discioglimento del ghiaccio come bit. 2007-1979, come avere la differenza nei valori utile per comprendere il discioglimento
