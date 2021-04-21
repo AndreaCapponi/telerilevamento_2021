@@ -45,6 +45,30 @@
 #The graphical visualization of the increase in the surface temperature of the Earth in Greenland is obtained through a more detailed plot in RGB: I associate the levels of "interest" in TCSG multilayer raster object - which initially were a series of raster layer objects stand alone - to the channels of the red, green and blue for the multispectral sensors the LANDSAT satellite is equipped with
 #Syntax's function for Windows is: plotRGB(renowned object name, r= number of selected spectral band which will be graphically visualized through red channel, g= number of selected spectral band which will be graphically visualized through green channel, b= number of selected spectral band which will be graphically visualized through blue channel,type of stretch for reflectance's values in order that their graphical visualization is optimal ='Lin if the stretch has to normalize reflectance's values between 0 e 1 (ρ=Φr/Φ0)' or 'hist if the stretch has to divides the reflectance's values into equally sized ranges from the lowest to the highest value') where the number of selected spectral band is to be indicated being a integer function!
 #Final syntaxis' function in Windows is: plotRGB(TCSG, 1, 2, 3, stretch="Lin"), plotRGB(TCSG, 2, 3, 4, stretch="Lin") and plotRGB(TCSG, 4, 3, 2, stretch="Lin") where r, g and b could be implied!
+#Unione plotRGB e level plot
+#For a graphical visualization of the melting ice in Greenland depending on the Earth's surface temperature, it is possible to exploit another plot function that for the TCSG multi-layer raster object pools a legend for the reflectance values at lst_2000, lst_2005, lst_2010 and lst_2015?
+#I exploit a function (levelplot) to draw level plots and contour plots
+#Important: the above function is operative if and only if the user with the library function loads the previously installed rasterVis package
+#Syntaxis' function for Windows is: library(add-on package the user wants to load in R)
+#Final syntaxis' function in Windows is: library(rsaterVis)
+#Instead the syntax for the levelplot function in Windows is: levelplot(name of the multi-layer object selected by the user)
+#Final syntaxis' function in Windows is: levelplot(TCSG)
+#And if I wanted to apply the levelplot function to the single TCSG layer represented by my choice among the raster layer objects lst_2000, lst_2005, lst_2010 and lst_2015?
+#I exploit a function ($) to extract, from the initial (plot)¹ of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of ''interest''
+##Initial syntaxis' function for Windows: plot(renowned object name$name of the object's level in which the user is interested for graphical visualization)
+#What will be the final syntaxis' function in Windows if my p224r63_2011's level of ''interest''² is the set of data which will be graphically visualized in their functional whole being as the spectral band B1:blue?
+#Final syntaxis' function in Windows is: levelplot(TCSG$lst_2000), levelplot(TCSG$lst_2005), levelplot(TCSG$lst_2010) and levelplot(TCSG$lst_2015)
+#The graphical display through the levelplot function of the level raster objects lst_2000, lst_2005, lst_2010 and lst_2015 as layers of the TCSG multilevel raster object is more detailed: the temperature trend on the earth's surface is represented by a graph - above and to the right of it - whose values are attributed by row or column as the sum of the values belonging to the nth row or column in relation to the total number of pixels. If the number of pixels is equal to 16, 2 to 16 = 65,536 will be the average values potentially attributable in the form of bits so that it can be understood even for a single pixel if in a predetermined time span there has been an imperceptible variation of that temperature!
+#The graphical display of TCSG through levelplot function can be embellished by integrating the syntax of the function with the arguments to specify what is the user's need in the analysis of the temperature in Greenland. In my case I need to apply a new color palette for the correct interpretation of the reflectance values, change the name of the layers / raster objects of the layer and put a title on the graph itself
+##I exploit  a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
+#Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
+#Final syntaxis' function in Windows is: cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
+#Implemented syntaxis' function in Windows is: levelplot(name of the multi-layer object selected by the user, col.regions= name of new palette of colors)
+#Final syntaxis' function in Windows is: levelplot(TCSG, col.regions=cl)
+#Implemented syntaxis' function in Windows is: levelplot(name of the multi-layer object selected by the user, col.regions= name of new palette of colors, names.attr=c("user-selected name (s) for the layer (s) of multi-layer object)
+#Final syntaxis' function in Windows is: levelplot(TCSG,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+#Implemented syntaxis' function in Windows is: levelplot(name of the multi-layer object selected by the user, col.regions= name of new palette of colors, main=''title of the graphical visualization", names.attr=c("user-selected name (s) for the layer (s) of multi-layer object)
+#Final syntaxis' function in Windows is: levelplot(TCSG,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
 
 #All'interno della carta lab, io ho scaricato la cartella greenland nella quale ho quattro layer i quali andranno a rappresentare l'incremento della temperatura in Groenlandia come land surface temperature nel 2000, 2005, 2010 e 2015
 Io devo importare gli strati in numero di 4 che rappresentano la stima della temperatura Copernicus per la Groenlandia 
@@ -69,41 +93,9 @@ plotRGB(TGr, 4, 3, 2, stretch="Lin")
 #terra version 1.1.4
 #Carico il pacchetto richiesto: lattice
 #Carico il pacchetto richiesto: latticeExtra
-#library(rasterVis)
-#setwd("C:/lab/greenland")
-#rlist <- list.files(pattern="lst")
-#rlist
-#import <- lapply(rlist,raster)
-#import
-#TGr <- stack(import)
-#TGr tutte le informazioni con ↵ Enter
-#levelplot(TGr)
-#Integrazione con le precedenti stringhe di codice della precedente lezione!
-#levelplot(TCSG)
-#levelplot: Level Plots
-#Description
-#Draw Level Plots and Contour plots
-#Attraverso la funzione par utilizzavamo una legenda per ogni file, invece con levelplot un'unica legenda per il Rasterstack!
-#Che cosa accade se la stessa funzione levelplot viene applicata a ciascun strato di TCSG invece che globalmente come in precedenza?
-#levelplot(TCSG$lst_2000)
-#levelplot(TCSG$lst_2005)
-#levelplot(TCSG$lst_2010)
-#levelplot(TCSG$lst_2015)
-#Per singolo strato a 16 pixel vengono attribuiti valori per ciascuno di essi in bit per rappresentare il valore della temperatura. Nel momento in cui io considero una riga/colonna,
-#mi è possibile ottenere un valore medio come sommatoria di valori per la popolazione dei pixel per il numero totale dei pixel.
-#Il grafico è costruibile sui due assi che delimitano il grafico sopra e a destra dando l'andamento statistico dei valori lst oltre la classica legenda!
-#Bianco, non valori!
-#Come abbellire il levelplot(TCSG)?
-#cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
-#levelplot(TCSG, col.regions=cl)
-#Noi cambiamo il colore della nostra mappa finale differente da quelli preimpostati ed è aprrezzabile il cambiamento della temperatura nella time code series analysis
-#Come cambiare il nome degli strati nel levelplot(TSCG)?
-#Argomento aggiuntivo per la funzione per modificare il nome di quelli che in informatica sono attributi!
-#levelplot(TCSG,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
-#Argomento main, titolo totale della nostra mappa finale
-#levelplot(TCSG,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
 #Satellite NIMBUS-7, Nimbus-7 ha un sensore a microonde.E' possibile fare una stima relativa sulla quantità di ghiaccio che è stata persa in Groenlandia dal 1978 ad oggi!
 #Periodo di calibrazione di dati prima di avere accessibilità ai dati ottenuti tramite qualsiasi satellite anche come Landast!
+
 #Lista per importare i dati melt in R come fatto precedentemente!
 #meltlist <- list.files(pattern="melt")
 #Ancora l'estensione .tif è vietata, è possibile avere una key word differente da melt avendo la stessa lista?
