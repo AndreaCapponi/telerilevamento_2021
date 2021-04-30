@@ -7,7 +7,7 @@
 #par(mfrow=c(2,1))
 #plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
 #plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
-#
+#Al di sotto di questo commento studiare e organizzare la lezione del 30/04/2021
 #
 #
 #
