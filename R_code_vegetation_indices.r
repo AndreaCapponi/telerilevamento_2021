@@ -71,10 +71,19 @@
 #difndvi <- ndvi1 - ndvi2
 #plot(difndvi, col=cl)
 #Risultato corretto?
-#
-#
-#
-#
-#
+##Al di sotto di questo commento studiare e organizzare la lezione del 05/05/2021
+#Indice di vegetazione su scala globale (worldwide NDVI)
+#Il pacchetto da installare è rasterdiv (raster diversity)
+#La sintassi per l'installazione è: install.packages("rasterdiv")
+#Per caricare tale pacchetto la sintassi su cui basarsi è: library(rasterdiv)
+#Come effettuare il plot di copNDVI?
+#La sintassi è semplicemente: plot(copNDVI)
+#Come eliminare l'acqua?
+#I valori che identificano l'acqua (253, 254 e 255) sono da trasformare in non valori NA's attraverso l'argometo cbind della funzione reclassify
+#La sintassi definitiva è: copNDVI <- reclassify(copNDVI, cbind(253:255, NA))
+#I due punti definiscono il range di valori da trasformare. Il risultato ottenuto tramite plot(copNDVI) è in sfondo bianco e non più blu!
+#library(rasterVis)
+#levelplot(copNDVI)
+#Come la Terra ha respirato dal 1997 al 2020. I valori più alti sono osservabili in corrispondenza delle foreste come l'Amazzonica (i valori medi tra pixels riga/colonna hanno bit di informazione elevati in opposizione a quelli rappresentanti i pixels riga/colonna per i deserti alla latitudine 23,7 Tropico del Cancro)
 #
 #
