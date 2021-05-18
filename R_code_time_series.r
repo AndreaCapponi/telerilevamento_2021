@@ -58,17 +58,16 @@
 #What will be the final syntaxis' function in Windows if my p224r63_2011's level of ''interest''² is the set of data which will be graphically visualized in their functional whole being as the spectral band B1:blue?
 #Final syntaxis' function in Windows is: levelplot(TCSG$lst_2000), levelplot(TCSG$lst_2005), levelplot(TCSG$lst_2010) and levelplot(TCSG$lst_2015)
 #The graphical display through the levelplot function of the level raster objects lst_2000, lst_2005, lst_2010 and lst_2015 as layers of the TCSG multilevel raster object is more detailed: the temperature trend on the earth's surface is represented by a graph - above and to the right of it - whose values are attributed by row or column as the sum of the values belonging to the nth row or column in relation to the total number of pixels. If the number of pixels is equal to 16, 2 to 16 = 65,536 will be the average values potentially attributable in the form of bits so that it can be understood even for a single pixel if in a predetermined time span there has been an imperceptible variation of that temperature!
-
 #The graphical display of TCSG through levelplot function can be embellished by integrating the syntax of the function with the arguments to specify what is the user's need in the analysis of the temperature in Greenland. In my case I need to apply a new color palette for the correct interpretation of the reflectance values, change the name of the layers / raster objects of the layer and put a title on the graph itself
 #I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
 #Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
-#Final syntaxis' function in Windows is: cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
+#Final syntaxis' function in Windows is: blbprcp <- colorRampPalette(c("blue","light blue","pink","red"))(100)
 #Implemented syntaxis' function in Windows is: levelplot(name of the multi-layer object selected by the user, col.regions= name of new palette of colors)
-#Final syntaxis' function in Windows is: levelplot(TCSG, col.regions=cl)
-#(What name do you give to each graph and why?)
+#Final syntaxis' function in Windows is: levelplot(TCSG, col.regions=blbprcp)
+#Without exploiting any function, I manually select and insert the name (s) for the layer (s) of the multi layer object - which will be July 2000, July 2005, July 2010 and July 2015 - in the names.attr argument integrating in the preceding syntaxis of the levelplot function
 #Implemented syntaxis' function in Windows is: levelplot(name of the multi-layer object selected by the user, col.regions= name of new palette of colors, names.attr=c("user-selected name (s) for the layer (s) of multi-layer object)
-#Final syntaxis' function in Windows is: levelplot(TCSG,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
-#(What name do you give to this graphical visualization and why?)
+#Final syntaxis' function in Windows is: levelplot(TCSG, col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+#Finally I integrate in the syntaxis of the levelplot function the main argument to put a title to the graph that clarifies how the temperature of Earth's surface - reported in the legend for the four raster layer objects as reflectance values - have changed over time
 #Implemented syntaxis' function in Windows is: levelplot(name of the multi-layer object selected by the user, col.regions= name of new palette of colors, main=''title of the graphical visualization", names.attr=c("user-selected name (s) for the layer (s) of multi-layer object)
 #Final syntaxis' function in Windows is: levelplot(TCSG,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
 
@@ -87,10 +86,15 @@
 #Final syntaxis' function in Windows is: melt <- stack(melt_import)
 #The display of the information of melt is done simply by pressing ↵ Enter
 
-#For a graphical visualization of the melting ice in Greenland depending on the Earth's surface temperature, it is possible to* exploit levelplot function
+#For a graphical visualization of the melting ice in Greenland depending on the Earth's surface temperature, it is possible to exploit levelplot function!
 #Syntaxis' function for Windows is: levelplot(name of the multi-layer object selected by the user)
 #Final syntaxis' function in Windows is: levelplot(melt)
+#dev.off()
+#The above levelplot function on the multi-layer raster object melt leads to a graphical visualization that is difficult to interpret since it consists of each raster layer objects from 1979annual_melt to 2007annual_melt - contained in the melt_import list imported previously into R -. Despite the values for the x and y axes and the legend for the reflectance values, the user is unable to conclude what is the extent of the melting of the ice in Greenland in this time window. What solution to adopt?
+#The solution to be adopted is to create a raster layer object whose graphic display shows the actual melting of the ice in Greenland between 1979 and 2007!
+#The simple difference between the raster layer objects X2007annual_melt and X1979annual_melt is what I will call melt_amount
 #*melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
+#Attention, the $ function is essential to tell R how the raster objects layer in melt originated in TCSG
 #clb <- colorRampPalette(c("blue","white","red"))(100)
 #plot(melt_amount, col=clb)
 ##levelplot(melt_amount, col.regions=clb)
@@ -205,13 +209,13 @@ levelplot(TCSG$lst_2010)
 
 levelplot(TCSG$lst_2015)
 
-cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
+blbprcp <- colorRampPalette(c("blue","light blue","pink","red"))(100)
 
-levelplot(TCSG, col.regions=cl)
+levelplot(TCSG, col.regions=blbprcp)
 
-levelplot(TCSG,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+levelplot(TCSG,col.regions=blbprcp, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
 
-levelplot(TCSG,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+levelplot(TCSG,col.regions=blbprcp, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
 
 meltlist <- list.files(pattern="melt")
 
@@ -221,20 +225,12 @@ melt <- stack(melt_import)
 
 levelplot(melt)
 
-melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
-
-clb <- colorRampPalette(c("blue","white","red"))(100)
-
-plot(melt_amount, col=clb)
-
 dev.off()
 
-levelplot(melt_amount, col.regions=clb)
-
 melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
 
-clb <- colorRampPalette(c("blue","white","red"))(100)
+bwrcp <- colorRampPalette(c("blue","white","red"))(100)
 
-plot(melt_amount, col=clb)
+plot(melt_amount, col=bwrcp)
 
-levelplot(melt_amount, col.regions=clb)
+levelplot(melt_amount, col.regions=bwrcp)
