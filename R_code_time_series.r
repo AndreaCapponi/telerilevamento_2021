@@ -70,7 +70,6 @@
 #Finally I integrate in the syntaxis of the levelplot function the main argument to put a title to the graph that clarifies how the temperature of Earth's surface - reported in the legend for the four raster layer objects as reflectance values - have changed over time
 #Implemented syntaxis' function in Windows is: levelplot(name of the multi-layer object selected by the user, col.regions= name of new palette of colors, main=''title of the graphical visualization", names.attr=c("user-selected name (s) for the layer (s) of multi-layer object)
 #Final syntaxis' function in Windows is: levelplot(TCSG,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
-
 #The graphic visualization of the melting of the ice depending on the surface temperature of the Earth in Greenland is obtained with the same iterative cycle of list.files, lapply and stack functions but starting from level raster objects obtained from the Nimbus 7 satellite between 1979 and 2007 through its own microwave sensor
 #Initially I exploit a function (rlist) through which I create a list of data, files or objects based on the matching of their names with a key regular expression selected by the user
 #Syntaxis' function for Windows is: name of the list of objects selected by the user <- list.files(pattern="a key regular expression in each name of previous objects of which the user is creating a list")
@@ -85,20 +84,23 @@
 #Syntaxis' function for Windows is: name of the future multi-layer raster object <- stack(name of the list of objects on which the function selected by the user is applied to import them into R)
 #Final syntaxis' function in Windows is: melt <- stack(melt_import)
 #The display of the information of melt is done simply by pressing ↵ Enter
-
-#For a graphical visualization of the melting ice in Greenland depending on the Earth's surface temperature, it is possible to exploit levelplot function!
-#Syntaxis' function for Windows is: levelplot(name of the multi-layer object selected by the user)
+#For a graphical visualization of the melting ice in Greenland depending on the Earth's surface temperature, why not take advantage of the levelplot function that I introduced in this code?
+#Syntaxis' function for Windows as in the 53rd string of R_code_time_series.r is: levelplot(name of the multi-layer object selected by the user)
 #Final syntaxis' function in Windows is: levelplot(melt)
-#dev.off()
-#The above levelplot function on the multi-layer raster object melt leads to a graphical visualization that is difficult to interpret since it consists of each raster layer objects from 1979annual_melt to 2007annual_melt - contained in the melt_import list imported previously into R -. Despite the values for the x and y axes and the legend for the reflectance values, the user is unable to conclude what is the extent of the melting of the ice in Greenland in this time window. What solution to adopt?
-#The solution to be adopted is to create a raster layer object whose graphic display shows the actual melting of the ice in Greenland between 1979 and 2007!
-#The simple difference between the raster layer objects X2007annual_melt and X1979annual_melt is what I will call melt_amount
-#*melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
-#Attention, the $ function is essential to tell R how the raster objects layer in melt originated in TCSG
-#clb <- colorRampPalette(c("blue","white","red"))(100)
-#plot(melt_amount, col=clb)
-##levelplot(melt_amount, col.regions=clb)
-#What are the differences between mel and melt_amount?
+#The above levelplot function on the multi-layer raster object melt leads to a graphical visualization that is difficult to interpret since it consists of each raster layer objects from 1979annual_melt to 2007annual_melt - contained in the melt_import list imported previously into R -. Despite the values for the x and y axes and the legend for the reflectance values, the user is unable to conclude what could be the amount of melted ice in Greenland in that time window. What solution to adopt?
+#The solution to be adopted is to create a new raster layer object that shows in a single graphic solution the amount of melted ice in Greenland on the difference between the initial and final state represented respectively by the 1979annual_melt and 2007annual_melt raster layer objects.
+#The new raster layer object, to which I will give the name melt_amount, is created by a simple subtraction among the already selected raster layer objects 1979annual_melt and 2007annual_melt to represent minuend and subtrahend respectively
+#melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
+#Attention! The $ function is essential to tell R how the raster layer objects 2007annual_melt and 1979annual_melt belong to melt although were originated in TCSG 
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
+#Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
+#Final syntaxis' function in Windows is: bwrcp <- colorRampPalette(c("blue","white","red"))(100)
+#I exploit a function (plot) to obtain visually land surface temperature
+#Syntaxis' function for Windows is: plot(melt_amount, col=bwrcp)
+#I exploit a function (levelplot) to draw level plots and contour plots
+#Instead the syntax for the levelplot function in Windows is: levelplot(name of the multi-layer object selected by the user)
+#Final syntaxis' function in Windows is: levelplot(melt_amount, col.regions=bwrcp)
+#The graphical visualization of melt_amount with the plot and levelplot functions is easily interpretable for reflectance values obtained from the Nimbus 7 satellite which, through the three colors - white, red and blue - of the palette of colors called bwrcp, show those regions of Greenland where c 'was a significant loss of ice due to the increase in the Earth's surface temperature between 1979 and 2007.
 
 #All'interno della carta lab, io ho scaricato la cartella greenland nella quale ho quattro layer i quali andranno a rappresentare l'incremento della temperatura in Groenlandia come land surface temperature nel 2000, 2005, 2010 e 2015
 Io devo importare gli strati in numero di 4 che rappresentano la stima della temperatura Copernicus per la Groenlandia 
