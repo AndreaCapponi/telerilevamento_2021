@@ -6,17 +6,19 @@
 #Adapted syntaxis' function for Windows is: setwd("C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R")
 #Final syntaxis' function for Windows is: setwd("C:/lab/greenland")
 #After the association between R and greenland subfolder, how I import data from greenland subfolder to R?
+#I exploit  a function (brick) to import data from lab folder - external - to R - internal¹ - because our data do represent a multi-layer raster object!
+#Syntaxis' function for Windows is: renowned object name <- brick("original object name")
+#Previous function is based on install.packages("raster"): I indicate to R trough require function to upload them as require(raster) where syntaxis doesn't need inverted commas (“ ”)¹ 
+#Loading required packages: sp is successful being classes and methods' database provider for spatial data 
+#
 #In a different way from the R_remote_code_sensing_first.r, although I still exploit a function to import data from greenland subfolder - external - to R - internal¹ - this will be raster and not brick because our data does not represent a multi-layer raster object³ but raster layer² objects!
-#Syntaxis' function for Windows is: renowned object name <- raster("original object name")
-#Previous function is based on install.packages("raster"): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)¹ 
+#Syntaxis' function for Windows is: renowned object name <- brick("original object name")
+#Previous function is based on install.packages("raster"): I indicate to R trough library function to upload them as require(raster) where syntaxis doesn't need inverted commas (“ ”)¹ 
 #Important: the brick function creates a RasterBrick object that is a multi-layer raster object typically from a multi-layer (band) file. Instead the raster function creates a RasterLayer object from scratch, a file, an Extent object, a matrix, an 'image' object, or from a Raster *, Spatial *, im (spatstat) asc, kasc (adehabitat *), grf (geoR) or kde object!
 #Loading required packages: sp is successful being classes and methods' database provider for spatial data 
-#I exploit  a function (brick) to import data from lab folder - external - to R - internal* -
-#Syntaxis' function for Windows is: renowned object name <- brick('original object name')
-#Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)* 
-#Loading required packages: sp is successful being classes and methods' database provider for spatial data 
+
 #p224r63_2011_masked.grd is imported in R with brick function according to Windows' syntaxis in which: renowned object name = p224r63_2011 and original object name = p224r63_2011_masked.grd
-#Final syntaxis' function in Windows is: p224r63_2011 <- brick('p224r63_2011_masked.grd')
+#Final syntaxis' function in Windows is: p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
 #library(raster)/require(raster)
 The library() by default returns an error if the requested package does not exist.
@@ -42,11 +44,14 @@ there is no package called ‘xyz’
 #par(mfrow=c(2,1))
 #plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
 #plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
+           
 #Al di sotto di questo commento studiare e organizzare la lezione del 30/04/2021
-#DVI = lambda NIR - lambda RED
+#DVI (D͟ifference V͟egetation I͟ndex) is the simplest vegetation index calculated as the difference between the near-infrared and red values: DVI = NIR - R
 #Valori compresi tra -255 a +255, nel caso di un'immagine a 8 bit
 #Normalizazzione a NDVI
-#NDVI = ?
+#NDVI (N͟ormalized D͟ifference V͟egetation I͟ndex) is another vegetation index calculated as the ratio between the difference (-) and the sum (+) of the near-infrared and red values respectively to the numerator and denominators: NDVI = (NIR – R)/(NIR + R)
+– Ranges from -1 to 1
+
 #DVI1, come si chiamano le bande per NIR E RED?
 #Digitare il nome del file originale per trovare il nome delle bande
 #defor1 Enter
