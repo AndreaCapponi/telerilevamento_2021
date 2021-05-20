@@ -3,21 +3,22 @@
 #Which folder must R use in the computer for this new code?
 #In the computer R must use the subfolder named greenland within the "mother" folder simply called lab
 #I exploit a function (setwd) for the association between R and greenland subfolder
-#Adapted syntaxis' function for Windows is: setwd(''C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R'')
-#Final syntaxis' function for Windows is: setwd(''C:/lab/greenland'')
+#Adapted syntaxis' function for Windows is: setwd("C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R")
+#Final syntaxis' function for Windows is: setwd("C:/lab/greenland")
 #After the association between R and greenland subfolder, how I import data from greenland subfolder to R?
 #In a different way from the R_remote_code_sensing_first.r, although I still exploit a function to import data from greenland subfolder - external - to R - internal¹ - this will be raster and not brick because our data does not represent a multi-layer raster object³ but raster layer² objects!
-#Syntaxis' function for Windows is: renowned object name <- raster('original object name')
-#Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)¹ 
+#Syntaxis' function for Windows is: renowned object name <- raster("original object name")
+#Previous function is based on install.packages("raster"): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)¹ 
 #Important: the brick function creates a RasterBrick object that is a multi-layer raster object typically from a multi-layer (band) file. Instead the raster function creates a RasterLayer object from scratch, a file, an Extent object, a matrix, an 'image' object, or from a Raster *, Spatial *, im (spatstat) asc, kasc (adehabitat *), grf (geoR) or kde object!
 #Loading required packages: sp is successful being classes and methods' database provider for spatial data 
-#For the operation of this code, it is recommended by the professor to install also install.packages('RStoolbox') and install.packages('rasterVis') in order to have tools and visualization methods for remote sensing data analysis
-#Through install.packages('RStoolbox') the user have a diversied toolbox for remote sensing image processing and analysis as calculating spectral indices, principal component transformation, unsupervised and supervised classification or fractional cover analyses
+#For the operation of this code, it is recommended by the professor to install also install.packages("RStoolbox") and install.packages("rasterVis") in order to have tools and visualization methods for remote sensing data analysis
+#Through install.packages("RStoolbox") the user have a diversied toolbox for remote sensing image processing and analysis as calculating spectral indices, principal component transformation, unsupervised and supervised classification or fractional cover analyses
 #Upload message successful: trying URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/RStoolbox_0.2.6.zip' Content type 'application/zip' length 2170101 bytes (2.1 MB)downloaded 2.1 MBpackage ‘RStoolbox’ successfully unpacked and MD5 sums checkedThe downloaded binary packages are inC:\Users\PC\AppData\Local\Temp\RtmpEx7d3z\downloaded_packages
-#Through install.packages(rasterVis') the user have methods to apply for an enhanced visualization and interaction with raster data. It implements visualization methods for quantitative data and categorical data, both for univariate and multivariate rasters. It also provides methods to display spatiotemporal rasters, and vector fields
+#Through install.packages("rasterVis") the user have methods to apply for an enhanced visualization and interaction with raster data. It implements visualization methods for quantitative data and categorical data, both for univariate and multivariate rasters. It also provides methods to display spatiotemporal rasters, and vector fields
 #Upload message successful: trying URL 'https://cran.mirror.garr.it/CRAN/bin/windows/contrib/4.0/rasterVis_0.50.1.zip'Content type 'application/zip' length 216951 bytes (211 KB)downloaded 211 KBpackage ‘rasterVis’ successfully unpacked and MD5 sums checkedThe downloaded binary packages are inC:\Users\PC\AppData\Local\Temp\RtmpSKE0X0\downloaded_packages
+#The rasterVis package installation incorporates preexisting lattice and latticeExtra packages: lattice is a powerful and elegant high-level data visualization system inspired by Trellis graphics, with an emphasis on multivariate data while latticeExtra provides several new high-level functions and methods to lattice itself  
 #lst_2000.tif, lst_2005.tif, lst_2010.tif and lst_2015.tif are imported in R with raster function according to Windows' syntaxis in which: renowned object name = lst_2000,lst_2005, lst_2010 and lst_2015 and original object name = lst_2000.tif, lst_2005.tif, lst_2010.tif and lst_2015.tif
-#Final syntaxis' function in Windows is: lst_2000 <- raster('lst_2000.tif'),lst_2000 <- raster('lst_2005.tif'), lst_2010 <- raster('lst_2010.tif') and lst_2015 <- raster('lst_2015.tif')
+#Final syntaxis' function in Windows is: lst_2000 <- raster("lst_2000.tif"),lst_2000 <- raster("lst_2005.tif"), lst_2010 <- raster("lst_2010.tif") and lst_2015 <- raster("lst_2015.tif")
 #How to graphically visualize the Earth's surface temperature in Greenland from raster layer objects lst_2000, lst_2005, lst_2010 and lst_2015 (lst, acronym for land surface temperature)?
 #I exploit a function (plot) to obtain visually land surface temperature
 #Syntaxis' function for Windows is: plot(object)
@@ -70,10 +71,11 @@
 #Finally I integrate in the syntaxis of the levelplot function the main argument to put a title to the graph that clarifies how the temperature of Earth's surface - reported in the legend for the four raster layer objects as reflectance values - have changed over time
 #Implemented syntaxis' function in Windows is: levelplot(name of the multi-layer object selected by the user, col.regions= name of new palette of colors, main=''title of the graphical visualization", names.attr=c("user-selected name (s) for the layer (s) of multi-layer object)
 #Final syntaxis' function in Windows is: levelplot(TCSG,col.regions=cl, main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
-#The graphic visualization of the melting of the ice depending on the surface temperature of the Earth in Greenland is obtained with the same iterative cycle of list.files, lapply and stack functions but starting from level raster objects obtained from the Nimbus 7 satellite between 1979 and 2007 through its own microwave sensor
+#The graphic visualization of the amount of melted ice depending on the surface temperature of the Earth in Greenland is obtained with the same iterative cycle of list.files, lapply and stack functions but starting from level raster objects obtained from the Nimbus 7 satellite between 1979 and 2007 through its own microwave sensor
 #Initially I exploit a function (rlist) through which I create a list of data, files or objects based on the matching of their names with a key regular expression selected by the user
 #Syntaxis' function for Windows is: name of the list of objects selected by the user <- list.files(pattern="a key regular expression in each name of previous objects of which the user is creating a list")
 #Since the number of my objects is limited, I could have the tif format as a pattern in the rlist function. This user choice is not recommended because the tif format is common and widespread so my choice will be the melt pattern indicating in each raster what represents in particular (amount of melted ice)
+#Attention! The zip folder whose name is melt could be integrated into this iterative loop of functions and halt the process for the analysis I'm conducting!
 #Final syntaxis' function in Windows is: meltlist <- list.files(pattern="melt")
 #After the creation of the list meltlist consisting of 1979annual_melt to 2007annual_melt, how to import it by applying the raster function globally?
 #I exploit a function (lapply) which apply a selected function by the user in R over a list
@@ -88,66 +90,28 @@
 #Syntaxis' function for Windows as in the 53rd string of R_code_time_series.r is: levelplot(name of the multi-layer object selected by the user)
 #Final syntaxis' function in Windows is: levelplot(melt)
 #The above levelplot function on the multi-layer raster object melt leads to a graphical visualization that is difficult to interpret since it consists of each raster layer objects from 1979annual_melt to 2007annual_melt - contained in the melt_import list imported previously into R -. Despite the values for the x and y axes and the legend for the reflectance values, the user is unable to conclude what could be the amount of melted ice in Greenland in that time window. What solution to adopt?
-#The solution to be adopted is to create a new raster layer object that shows in a single graphic solution the amount of melted ice in Greenland on the difference between the initial and final state represented respectively by the 1979annual_melt and 2007annual_melt raster layer objects.
-#The new raster layer object, to which I will give the name melt_amount, is created by a simple subtraction among the already selected raster layer objects 1979annual_melt and 2007annual_melt to represent minuend and subtrahend respectively
+#The solution to be adopted is to create a new raster layer object that shows in a single graphic solution the amount of melted ice in Greenland on the difference between the initial and final state represented respectively by the 1979annual_melt and 2007annual_melt raster layer objects
+#The new raster layer object, to which I will give the name melt_amount, is created by a simple subtraction among the already selected raster layer objects 1979annual_melt and 2007annual_melt representing minuend and subtrahend respectively
 #melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
 #Attention! The $ function is essential to tell R how the raster layer objects 2007annual_melt and 1979annual_melt belong to melt although were originated in TCSG 
-#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
+#Not being R's default color palette satisfactory, I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
 #Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
 #Final syntaxis' function in Windows is: bwrcp <- colorRampPalette(c("blue","white","red"))(100)
-#I exploit a function (plot) to obtain visually land surface temperature
+#I exploit a function (plot) to obtain visually the amount of melted ice
 #Syntaxis' function for Windows is: plot(melt_amount, col=bwrcp)
 #I exploit a function (levelplot) to draw level plots and contour plots
 #Instead the syntax for the levelplot function in Windows is: levelplot(name of the multi-layer object selected by the user)
 #Final syntaxis' function in Windows is: levelplot(melt_amount, col.regions=bwrcp)
-#The graphical visualization of melt_amount with the plot and levelplot functions is easily interpretable for reflectance values obtained from the Nimbus 7 satellite which, through the three colors - white, red and blue - of the palette of colors called bwrcp, show those regions of Greenland where c 'was a significant loss of ice due to the increase in the Earth's surface temperature between 1979 and 2007.
-
-#All'interno della carta lab, io ho scaricato la cartella greenland nella quale ho quattro layer i quali andranno a rappresentare l'incremento della temperatura in Groenlandia come land surface temperature nel 2000, 2005, 2010 e 2015
-Io devo importare gli strati in numero di 4 che rappresentano la stima della temperatura Copernicus per la Groenlandia 
-File che registra ogni decimale di temperatura sarebbe pesantissimo. Qual è il peso delle immagini che sto utilizzando? 8,5 MB Il valore è possibile per numeri interi!
-DNs digital numbers in bit per aumentare la compressione
-plotRGB(TGr, 1, 2, 3, stretch="Lin")
-blu + alto 2010
-verde + alto 2005
-rosso + alto 2000
-Mappa abbastanza blu, ciò potrebbe significare che i valori più alti sono nel 2010
-plotRGB(TGr, 2, 3, 4, stretch="Lin")
-con dei valori immagini dasatellite per i valori della temperatura!
-plotRGB(TGr, 4, 3, 2, stretch="Lin")
-
-#Al di sotto di questo commento studiare e organizzare la lezione dell' 08/04/2021
-
-#Visualitazione methods for raster data
-#install.packages('rasterVis'), da pacchetto precedente lattice
-#Carico il pacchetto richiesto: raster
-#Carico il pacchetto richiesto: sp
-#Carico il pacchetto richiesto: terra
-#terra version 1.1.4
-#Carico il pacchetto richiesto: lattice
-#Carico il pacchetto richiesto: latticeExtra
-
-#Attenzione: la cartella zip melt potrebbe inserirsi in questo ciclo iterativo di funzioni e bloccare il processo per l'analisi che si sta conducendo!
-
-#Legenda per valore di discioglimento del ghiaccio, tanto più è elevato tanto più si sarà disciolto. Disciogliemento effettivo, tra 1979 e 2007
-#Applicazione di algebra alle matrici di dati
-#Matrice di dati come insieme di pixel ai quali vengono attribuiti i valori di discioglimento del ghiaccio come bit. 2007-1979, come avere la differenza nei valori utile per comprendere il discioglimento
-#Legare il file originale allo strato di nostro interesse perchè non sarebbe che interpretato da R come componenete di TCSG
-melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
-clb <- colorRampPalette(c("blue","white","red"))(100)
-plot(melt_amount, col=clb)
-#Tutte le zone rosse sono quelle dove dal 1979 al 2007 c'è stato un elevato discioglimento del ghiaccio come da legenda.
-#melt_amount
-#-87 min e 92 max tramite la brachet informativa
-#levelplot(melt_amount, col.regions=clb)
-#Utilizzare dati multitemporali e poter visualizzare tutti i dati insieme attraverso il levelplot e differenze dipendentemente dall'anno considerato!
+#The graphical visualization of melt_amount with the plot and levelplot functions is easily interpretable for reflectance values obtained from the Nimbus 7 satellite which, through the three colors - white, red and blue - of the palette of colors called bwrcp, show those regions of Greenland where there was a significant loss of ice due to the increase in the Earth's surface temperature between 1979 and 2007
+#A special thank to my colleague Daniela Cosma for politely sharing the data of her future thesis for the creation of this code!
 
 #Sequence of informatic commands for R_code_time_series.r:
 
-install.packages('raster')
+install.packages("raster")
 
-install.packages('RStoolbox')
+install.packages("RStoolbox")
 
-install.packages('rasterVis')
+install.packages("rasterVis")
 
 install.packages("rgdal")
 
@@ -155,19 +119,19 @@ library(raster)
 
 setwd("C:/lab/greenland/")
 
-lst_2000 <- raster('lst_2000.tif')
+lst_2000 <- raster("lst_2000.tif")
 
 plot(lst_2000)
 
-lst_2005 <- raster('lst_2005.tif')
+lst_2005 <- raster("lst_2005.tif")
 
 plot(lst_2005)
 
-lst_2010 <- raster('lst_2010.tif')
+lst_2010 <- raster("lst_2010.tif")
 
 plot(lst_2010)
 
-lst_2015 <- raster('lst_2015.tif')
+lst_2015 <- raster("lst_2015.tif")
 
 plot(lst_2015)
 
