@@ -1,9 +1,7 @@
-#Al di sotto di questo commento studiare e organizzare la lezione del 28/04/2021
-
 #Which is the title for R's developing code?
-#My R code for a time series
-#Which folder must R use in the computer for this new code?
-#In the computer R must use the subfolder named greenland within the "mother" folder simply called lab
+#My R code for vegetation indices
+#Which folder must R use in the computer?
+#In the computer R must use the folder named simply lab
 #I exploit a function (setwd) for the association between R and greenland subfolder
 #Adapted syntaxis' function for Windows is: setwd("C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R")
 #Final syntaxis' function for Windows is: setwd("C:/lab/greenland")
@@ -21,7 +19,23 @@
 #Final syntaxis' function in Windows is: p224r63_2011 <- brick('p224r63_2011_masked.grd')
 
 #library(raster)/require(raster)
+The library() by default returns an error if the requested package does not exist.
+
+example:
+> library(xyz)
+Error in library(xyz) : there is no package called ‘xyz’
+
+The require() is designed to be used inside functions as it gives a warning message and returns a logical value say, FALSE if the requested package is not found and TRUE if the package is loaded.
+
+example:
+> require(xyz)
+Loading required package: xyz
+Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE, :
+there is no package called ‘xyz’
 #setwd("C:/lab/") 
+           
+           
 #defor1 <- brick("defor1.jpg")
 #defor2 <- brick("defor2.jpg")
 #banda 1 = NIR, banda 2 = red e banda 3 = green
