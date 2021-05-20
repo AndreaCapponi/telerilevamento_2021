@@ -1,4 +1,25 @@
 #Al di sotto di questo commento studiare e organizzare la lezione del 28/04/2021
+
+#Which is the title for R's developing code?
+#My R code for a time series
+#Which folder must R use in the computer for this new code?
+#In the computer R must use the subfolder named greenland within the "mother" folder simply called lab
+#I exploit a function (setwd) for the association between R and greenland subfolder
+#Adapted syntaxis' function for Windows is: setwd("C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R")
+#Final syntaxis' function for Windows is: setwd("C:/lab/greenland")
+#After the association between R and greenland subfolder, how I import data from greenland subfolder to R?
+#In a different way from the R_remote_code_sensing_first.r, although I still exploit a function to import data from greenland subfolder - external - to R - internal¹ - this will be raster and not brick because our data does not represent a multi-layer raster object³ but raster layer² objects!
+#Syntaxis' function for Windows is: renowned object name <- raster("original object name")
+#Previous function is based on install.packages("raster"): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)¹ 
+#Important: the brick function creates a RasterBrick object that is a multi-layer raster object typically from a multi-layer (band) file. Instead the raster function creates a RasterLayer object from scratch, a file, an Extent object, a matrix, an 'image' object, or from a Raster *, Spatial *, im (spatstat) asc, kasc (adehabitat *), grf (geoR) or kde object!
+#Loading required packages: sp is successful being classes and methods' database provider for spatial data 
+#I exploit  a function (brick) to import data from lab folder - external - to R - internal* -
+#Syntaxis' function for Windows is: renowned object name <- brick('original object name')
+#Previous function is based on install.packages('raster'): I indicate to R trough library function to upload them as library(raster) where syntaxis doesn't need inverted commas (“ ”)* 
+#Loading required packages: sp is successful being classes and methods' database provider for spatial data 
+#p224r63_2011_masked.grd is imported in R with brick function according to Windows' syntaxis in which: renowned object name = p224r63_2011 and original object name = p224r63_2011_masked.grd
+#Final syntaxis' function in Windows is: p224r63_2011 <- brick('p224r63_2011_masked.grd')
+
 #library(raster)/require(raster)
 #setwd("C:/lab/") 
 #defor1 <- brick("defor1.jpg")
