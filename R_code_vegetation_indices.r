@@ -2,49 +2,28 @@
 #My R code for vegetation indices
 #Which folder must R use in the computer?
 #In the computer R must use the folder named simply lab
-#I exploit a function (setwd) for the association between R and greenland subfolder
+#I exploit a function (setwd) for the association between R and lab folder
 #Adapted syntaxis' function for Windows is: setwd("C:/name of the folder in which there is a subfolder of interest to the user/name of the subfolder which will be associated with R")
 #Final syntaxis' function for Windows is: setwd("C:/lab/greenland")
-#After the association between R and greenland subfolder, how I import data from greenland subfolder to R?
-#I exploit  a function (brick) to import data from lab folder - external - to R - internal¹ - because our data do represent a multi-layer raster object!
+#After the association between R and lab folder, how I import data from lab folder to R?
+#Identically to the R_remote_code_sensing_first.r, I still exploit a function to import data from lab folder - external - to R - internal¹ - and this will be brick and not raster because our data does not represent raster layer objects but multi-layer raster objects²³!
 #Syntaxis' function for Windows is: renowned object name <- brick("original object name")
 #Previous function is based on install.packages("raster"): I indicate to R trough require function to upload them as require(raster) where syntaxis doesn't need inverted commas (“ ”)¹ 
+#What is the difference between the library function and the require function in loading a user-requested packages into R?
+#The library function, if the requested package does not exist, by default returns an error message: there is no package called (name of the package requested by the user to load in R) while the require function is designed to be used inside functions as it gives a warning message and returns a logical value say, FALSE if the requested package is not found and TRUE if the package is loaded
 #Loading required packages: sp is successful being classes and methods' database provider for spatial data 
-#
-#In a different way from the R_remote_code_sensing_first.r, although I still exploit a function to import data from greenland subfolder - external - to R - internal¹ - this will be raster and not brick because our data does not represent a multi-layer raster object³ but raster layer² objects!
-#Syntaxis' function for Windows is: renowned object name <- brick("original object name")
-#Previous function is based on install.packages("raster"): I indicate to R trough library function to upload them as require(raster) where syntaxis doesn't need inverted commas (“ ”)¹ 
 #Important: the brick function creates a RasterBrick object that is a multi-layer raster object typically from a multi-layer (band) file. Instead the raster function creates a RasterLayer object from scratch, a file, an Extent object, a matrix, an 'image' object, or from a Raster *, Spatial *, im (spatstat) asc, kasc (adehabitat *), grf (geoR) or kde object!
-#Loading required packages: sp is successful being classes and methods' database provider for spatial data 
+#defor1.jpg¹ and defor2.jpg² are imported in R with brick function according to Windows' syntaxis in which: renowned object name = defor1, defor2 and original object name = defor1.jpg, defor2.jpg
+#Final syntaxis' function in Windows is: defor1 <- brick("defor1.jpg") and defor2 <- brick("defor2.jpg")           
+#The graphical visualization of both defor1 and defor2 in false colors, being Terra (EOS AM-1) equipped with true colour, thermal and multispectral sensors in a complex acquisition system, will be obtained from the visible spectrum to which I associate B1_sre:NIR, B2_sre:red, B3_sre:grenn spectral bands of the initial object
+#This graphical visualization in true colors is therefore in RGB and independent from user's selection of a palette of colors through colorRampPalette function because the three levels of interest selected by the user herself/himself from B1_sre to B3_sre are combined such that they represent exclusively the red⁵, green⁶ and blue⁷ channel in true colour sensors of LANDSAT satellite         
+#Syntax's function for Windows is: plotRGB(renowned object name, r= number of selected spectral band which will be graphically visualized through red channel, g= number of selected spectral band which will be graphically visualized through green channel, b= number of selected spectral band which will be graphically visualized through blue channel,type of stretch for reflectance's values in order that their graphical visualization is optimal ='Lin if the stretch has to normalize reflectance's values between 0 e 1 (ρ=Φr/Φ0)' or 'hist if the stretch has to divides the reflectance's values into equally sized ranges from the lowest to the highest value') where the number of selected spectral band is to be indicated being a integer function!         
+#With the function (par) through there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
+#Syntaxis' function for Windows is:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
+#Final syntaxis' function in Windows is: par(mfrow=c(2,1)) which has a functional significance if and only followed by plotRGB(defor1, r=1, g=2, b=3, stretch="lin") and plotplotRGB(defor2, r=1, g=2, b=3, stretch="lin")    
 
-#p224r63_2011_masked.grd is imported in R with brick function according to Windows' syntaxis in which: renowned object name = p224r63_2011 and original object name = p224r63_2011_masked.grd
-#Final syntaxis' function in Windows is: p224r63_2011 <- brick("p224r63_2011_masked.grd")
+#Qual è il nome delle bande per le bande multispettralli del vicino all'infrarosso, rosso e verde?
 
-#library(raster)/require(raster)
-The library() by default returns an error if the requested package does not exist.
-
-example:
-> library(xyz)
-Error in library(xyz) : there is no package called ‘xyz’
-
-The require() is designed to be used inside functions as it gives a warning message and returns a logical value say, FALSE if the requested package is not found and TRUE if the package is loaded.
-
-example:
-> require(xyz)
-Loading required package: xyz
-Warning message:
-In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE, :
-there is no package called ‘xyz’
-#setwd("C:/lab/") 
-           
-           
-#defor1 <- brick("defor1.jpg")
-#defor2 <- brick("defor2.jpg")
-#banda 1 = NIR, banda 2 = red e banda 3 = green
-#par(mfrow=c(2,1))
-#plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
-#plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
-           
 #Al di sotto di questo commento studiare e organizzare la lezione del 30/04/2021
 #DVI (D͟ifference V͟egetation I͟ndex) is the simplest vegetation index calculated as the difference between the near-infrared and red values: DVI = NIR - R
 #Valori compresi tra -255 a +255, nel caso di un'immagine a 8 bit
