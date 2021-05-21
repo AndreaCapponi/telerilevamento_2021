@@ -142,7 +142,9 @@ p3 <- ggplot() +
 geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis(option="turbo")+ggtitle("Standard deviation of PC1 by turbo colour scale")
 #grid.arrange(p1, p2, p3, nrow=1)
-#
+#La variabilità è studiabile attraverso la funzione focal
+#E' possibile esportare stringhe di codice per proseguire nella creazione o nello studio attraverso la funzione source
+#Con ggplot2 è possibile andare a graficare la variabilità citata precedentemente
 #
 
 
