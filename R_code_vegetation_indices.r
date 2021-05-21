@@ -20,11 +20,14 @@
 #Syntax's function for Windows is: plotRGB(renowned object name, r= number of selected spectral band which will be graphically visualized through red channel, g= number of selected spectral band which will be graphically visualized through green channel, b= number of selected spectral band which will be graphically visualized through blue channel,type of stretch for reflectance's values in order that their graphical visualization is optimal ='Lin if the stretch has to normalize reflectance's values between 0 e 1 (ρ=Φr/Φ0)' or 'hist if the stretch has to divides the reflectance's values into equally sized ranges from the lowest to the highest value') where the number of selected spectral band is to be indicated being a integer function!         
 #With the function (par) through there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
 #Syntaxis' function for Windows is:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
-#Final syntaxis' function in Windows is: par(mfrow=c(2,1)) which has a functional significance if and only followed by plotRGB(defor1, r=1, g=2, b=3, stretch="lin") and plotplotRGB(defor2, r=1, g=2, b=3, stretch="lin")    
+#Final syntaxis' function in Windows is: par(mfrow=c(2,1)) which has a functional significance if and only followed by plotRGB(defor1, r=1, g=2, b=3, stretch="lin") and plotRGB(defor2, r=1, g=2, b=3, stretch="lin")    
 
 #Qual è il nome delle bande per le bande multispettralli del vicino all'infrarosso, rosso e verde?
 
 #Al di sotto di questo commento studiare e organizzare la lezione del 30/04/2021
+
+#Vegetation Indices (VIs) are combinations of surface reflectance at two or more wavelengths designed to highlight a particular property of vegetation
+#A VI is a simple measure of some vegetation property calculated from reflected solar radiation measurements made across the optical spectrum. The solar-reflected optical spectrum spans a wavelength range of 400 nm to 3000 nm. Of this range, the 400 nm to 2500 nm region is routinely measured using a variety of optical sensors ranging from multispectral (for example, Landsat TM) to hyperspectral (for example, AVIRIS)
 #DVI (D͟ifference V͟egetation I͟ndex) is the simplest vegetation index calculated as the difference between the near-infrared and red values: DVI = NIR - R
 #Valori compresi tra -255 a +255, nel caso di un'immagine a 8 bit
 #Normalizazzione a NDVI
@@ -90,6 +93,7 @@
 #difndvi <- ndvi1 - ndvi2
 #plot(difndvi, col=cl)
 #Risultato corretto?
+
 ##Al di sotto di questo commento studiare e organizzare la lezione del 05/05/2021
 #Indice di vegetazione su scala globale (worldwide NDVI)
 #Il pacchetto da installare è rasterdiv (raster diversity)
