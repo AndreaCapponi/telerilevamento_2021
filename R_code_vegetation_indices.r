@@ -26,13 +26,23 @@
 
 #Al di sotto di questo commento studiare e organizzare la lezione del 30/04/2021
 
-#Vegetation Indices (VIs) are combinations of surface reflectance at two or more wavelengths designed to highlight a particular property of vegetation
-#A VI is a simple measure of some vegetation property calculated from reflected solar radiation measurements made across the optical spectrum. The solar-reflected optical spectrum spans a wavelength range of 400 nm to 3000 nm. Of this range, the 400 nm to 2500 nm region is routinely measured using a variety of optical sensors ranging from multispectral (for example, Landsat TM) to hyperspectral (for example, AVIRIS)
+#The study by remote sensing of deforestation in the dry tropical forests of Mato Grosso (NT0140) is based on vegetation indices (VIs)
+#What is a vegetation index (VI)?
+#A vegetation index (VI) is a measure of vegetation properties calculated by the amount of solar radiation reflected in the optical spectrum
+#The spectral signature of healthy vegetation depends on the higher reflectance values of 0,7 to 1,1 µm in the near infrared (NIR) region than in the visible region due to the cellular structure of the leaves - in particular the spongy mesophyll - where almost all of the light is absorbed by photosynthetic pigments. Chlorophyll intensely absorbs energy in the blue and red wavelengths from 0,4 a 0,7 µm, reflecting in the green wavelength instead. Finally, the reflectance in the short wave infrared (SWIR) wavelengths is related to the water content of the vegetation with absorption bands around 1.45, 1.95 and 2.50 µm. Outside of these absorption bands, leaf reflectance generally increases as the water content in the leaf decreases!
 #DVI (D͟ifference V͟egetation I͟ndex) is the simplest vegetation index calculated as the difference between the near-infrared and red values: DVI = NIR - R
+
+
 #Valori compresi tra -255 a +255, nel caso di un'immagine a 8 bit
 #Normalizazzione a NDVI
 #NDVI (N͟ormalized D͟ifference V͟egetation I͟ndex) is another vegetation index calculated as the ratio between the difference (-) and the sum (+) of the near-infrared and red values respectively to the numerator and denominators: NDVI = (NIR – R)/(NIR + R)
 – Ranges from -1 to 1
+
+#How to visualize informations of defor1 in R? 
+#In R, visualizing informations of an object, name of it followed by Enter as physical command by keyboard
+#Syntaxis' function for Windows is: object name ↵ Enter
+#Final syntaxis' function in Windows is: defor1 ↵ Enter
+#
 
 #DVI1, come si chiamano le bande per NIR E RED?
 #Digitare il nome del file originale per trovare il nome delle bande
@@ -48,6 +58,47 @@
 #cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
 #plot(dvi1, col=cl)
 #plot(dvi1, col=cl, main="DVI at time 1")
+
+#I initially associate the channels for the NIR and the R of the ASTER sensor on the Earth satellite (EOS AM-1) to defor1 and defor2 to get the reflectance values in those bands of the electromagnetic spectrum
+#Their name is viewable in the names category for general information
+#How to view information of defor1 in R?
+#In R, display the information of an object, its name followed by Enter as a physical keyboard command
+#The syntax function for Windows is: object name ↵ Enter
+#The final syntax function in Windows is: defor1 ↵ Enter
+#The bands of my interest will be for defor1, defor.1.1 and defor1.2 that are associated with them through the $ function
+#Insert contextualized dollar function
+#Name and band of the dataset to link to the dollar function
+#defor1 $ defor1.1, first band for NIR!
+#defor1 $ defor1.2, second tier for RED!
+#For each defor1 pixel I am considering the value in the NIR band and the value in the R band in difference. From this operation we will obtain a map formed by pixels in difference with respect to the previous values!
+#dvi1 <- defor1 $ defor1.1 - defor1 $ defor1.2
+#plot (dvi1)
+#State of health, yellow meh green excellent. Change color to better appreciate this vegetation index!
+#cl <- colorRampPalette (c ('dark blue', 'yellow', 'red', 'black')) (100)
+#plot (dvi1, col = cl)
+#plot (dvi1, col = cl, main = "DVI at time 1")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #defor2 Enter
 #defor2$defor2.1, prima banda per NIR!
 #defor2$defor2.2, seconda banda per RED!
