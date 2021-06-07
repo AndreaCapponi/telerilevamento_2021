@@ -21,24 +21,25 @@
 #With the function (par) through there is the possibility of combining multiple object's level of ''interest'' into one graphical visualization of their called multiframe
 #Syntaxis' function for Windows is:par(multiframe, a graphical visualization of multiple object's level of ''interest'' organized by r̲o̲w̲s or c̲o̲l̲umns at the user's discretion = array⁴(number of rows or columns required, number of columns or rows required))
 #Final syntaxis' function in Windows is: par(mfrow=c(2,1)) which has a functional significance if and only followed by plotRGB(defor1, r=1, g=2, b=3, stretch="lin") and plotRGB(defor2, r=1, g=2, b=3, stretch="lin")    
-
-↓
-
 #The study by remote sensing of deforestation in the dry tropical forests of Mato Grosso (NT0140) is based on vegetation indices (VIs)
 #What is a vegetation index (VI)?
-
-A vegetation index (VI) is a measure of vegetation properties calculated by the amount of solar radiation reflected in the optical spectrum
-
+#A vegetation index (VI) is a measure of vegetation properties calculated by the amount of solar radiation reflected in the optical spectrum
 #The spectral signature of healthy vegetation depends on the higher reflectance values of 0,7 to 1,1 µm in the near infrared (NIR) region than in the visible region due to the cellular structure of the leaves - in particular the spongy mesophyll - where almost all of the light is absorbed by photosynthetic pigments. Chlorophyll intensely absorbs energy in the blue and red wavelengths from 0,4 a 0,7 µm, reflecting in the green wavelength instead. Finally, the reflectance in the short wave infrared (SWIR) wavelengths is related to the water content of the vegetation with absorption bands around 1.45, 1.95 and 2.50 µm. Outside of these absorption bands, leaf reflectance generally increases as the water content in the leaf decreases!
 #DVI (D͟ifference V͟egetation I͟ndex) is the simplest vegetation index calculated as the difference between the near-infrared and red values: DVI = NIR - R
 #The ASTER sensor of the Terra satellite (EOS AM-1) has 14 channels for wavelength values in the visible, NIR, SWIR and LWIR. Through the bands B1, B2, B3N and B3B belonging to the visible and NIR spectrum - because their wavelengths are between 0.520 µm and 0.860 µm - it is possible to obtain the reflectance values necessary for the calculation of the DVI index in dry tropical forests del Mato Grosso (NT0140)
-
-From the name of the bands B1, B2, B3N and B3B for the wavelengths belonging to the visible and near infrared spectrum through the ASTER sensor of the Earth satellite (EOS AM-1) to the name with which they are identified within the object of interest defor1
-
+#How to progress to the name with the previous bands B1, B2, B3N and B3B are identified within the object of interest defor1?
+#The name/s attributed to the spectral band/s is to be found in the summary of its informations under the 𝘯𝘢𝘮𝘦𝘴 category
 #How to visualize informations of defor1 in R? 
 #In R, visualizing informations of an object, name of it followed by Enter as physical command by keyboard
 #Syntaxis' function for Windows is: object name ↵ Enter
 #Final syntaxis' function in Windows is: defor1 ↵ Enter
+
+↓
+
+#I exploit a function ($) to extract, from the initial object represented by a matrix of data, a set of them that will allow the user to visualize it graphically through the level of "interest"
+#What will be the final syntaxis' function in Windows if my defor1's levels of "interest"² are two set of data which will be graphically visualized in their functional whole being as the spectral bands defor1.1² and defor1.2²?
+#Final syntaxis' function in Windows for red (R) band B1 is: defor1$defor1.1
+#Final syntaxis' function in Windows for near-infrared (NIR) band B2 is: defor1$defor1.2
 
 #I associate the NIR and R bands with the names defor1.1 and defor1.2 to the original image defor1 through the $ function being my two levels of "interest"
 #The bands of my interest will be for defor1, defor.1.1 and defor1.2 that are associated with them through the $ function
