@@ -36,34 +36,42 @@
 
 ↓
 
-#I exploit a function ($) to extract, from the initial object represented by a matrix of data, a set of them that will allow the user to visualize it graphically through the level of "interest"
+#From the 𝘯𝘢𝘮𝘦𝘴 category in the summary of defor1 information 
+
+#If the user requires R's function plot(defor1) it will graphically display the reflectance values for the previous spectral bands?
+#I exploit a function ($) to extract, from the initial (plot) of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of ''interest''
+#Initial syntaxis' function for Windows: plot(object name$name of the object's level in which the user is interested for graphical visualization)
 #What will be the final syntaxis' function in Windows if my defor1's levels of "interest"² are two set of data which will be graphically visualized in their functional whole being as the spectral bands defor1.1² and defor1.2²?
 #Final syntaxis' function in Windows for red (R) band B1 is: defor1$defor1.1
 #Final syntaxis' function in Windows for near-infrared (NIR) band B2 is: defor1$defor1.2
+#With plot(p224r63_2011$B1_sre) the user graphically will visualize the spectral band B1_sre:blue stand-alone² in its reflectance's values which colorscale is ax expected by default in R itself
+#plot(defor1$defor1.1)
+#plot(defor1$defor1.2)
+#For each defor1 pixel I am considering the value in the NIR band and the value in the R band in difference. From this operation we will obtain a map formed by pixels in difference with respect to the previous values!
+#dvi1 <- defor1 $ defor1.1 - defor1 $ defor1.2
 
-#I associate the NIR and R bands with the names defor1.1 and defor1.2 to the original image defor1 through the $ function being my two levels of "interest"
-#The bands of my interest will be for defor1, defor.1.1 and defor1.2 that are associated with them through the $ function
 #If the user requires adapted R's function plot(p224r63_2011, col=rmpcp) will display graphically reflectance's values for one of the previous spectral bands (B1:blue, B2:green, B3:red, B4:near-infrared, B5:mid-infrared, B6:far-infrared or B7:other mid-infrared)? 
 #I exploit a function ($) to extract, from the initial (plot)¹ of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of ''interest''
 #Initial syntaxis' function for Windows: plot(renowned object name$name of the object's level in which the user is interested for graphical visualization)
 #What will be the final syntaxis' function in Windows if my defor1's level of ''interest''² is the set of data which will be graphically visualized in their functional whole being as the spectral bands defor1.1 and defor1.2?
-#Final syntaxis' function in Windows for red (R) band B1 is: defor1$defor1.1
-#Final syntaxis' function in Windows for near-infrared (NIR) band B2 is: defor1$defor1.2
+
 #With plot(p224r63_2011$B1_sre) the user graphically will visualize the spectral band B1_sre:blue stand-alone² in its reflectance's values which colorscale is ax expected by default in R itself
 
-#For each defor1 pixel I am considering the value in the NIR band and the value in the R band in difference. From this operation we will obtain a map formed by pixels in difference with respect to the previous values!
-#dvi1 <- defor1 $ defor1.1 - defor1 $ defor1.2
-#How to graphically visualize the state of health of the vegetation of the dry forests of Mato Grosso from raster layer objects lst_2000, lst_2005, lst_2010 and lst_2015 (lst, acronym for land surface temperature)?
+
+
+
+
+#How to graphically visualize the state of health of the vegetation of the dry forests of Mato Grosso from raster multi-layer raster object defor1? 
 #I exploit a function (plot) to obtain visually the vegetation's state of health
 #Syntaxis' function for Windows is: plot(object)
 #In R function plot (dvi1) lead me to a window with the state of health of the vegetation of the dry forests of Mato Grosso through the concept of reflectance
-#Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1_SRE to B7_SRE representing each spectral bands
-#I exploit  a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
+#Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1/defor1.1 to B2/defor1.2 representing each spectral bands
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
 #Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
-#A further consideration for upper syntaxis' function: array is indicated by c letter⁴ and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
+#A further consideration for upper syntaxis' function: array is indicated by c letter and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
 #If I want the aforementioned new palette of colors - which is given the name of bgwcp - represents a greyscale, first and last color will be black and white (B/W) respectively whereas second, third, etc. colors will be greys of which the number of depth levels vary from 4 to 256
-#Final syntaxis' function in Windows is: bgwcp <- colorRampPalette(c('black','grey','white'))(100)
-#plot(p224r63_2011) must be reformulated by incorporating new palette of colors bgwcp: plot(p224r63_2011, col=bgwcp) will display graphically reflectance's values for each spectral bands in a greyscale
+#Final syntaxis' function in Windows is: cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+#plot(dvi) must be reformulated by incorporating new palette of colors bgwcp: plot(p224r63_2011, col=bgwcp) will display graphically reflectance's values for each spectral bands in a greyscale
 #with what has been described so far, I create a futher new palette of colors called rmpcp in which first, second and last color will be red, magenta and pink respectively with number's value of depth levels taken to the extreme being 1000!
 #Final syntaxis' function in Windows is: rmpcp <- colorRampPalette(c('red','magenta','pink'))(1000)
 #cl <- colorRampPalette (c ('dark blue', 'yellow', 'red', 'black')) (100)
@@ -172,6 +180,10 @@ defor1
 defor1$defor1.1
 
 defor1$defor1.2
+
+plot(defor1$defor1.1)
+
+plot(defor1$defor1.2)
 
 dvi1 <- defor1$defor1.1 - defor1$defor1.2
 
