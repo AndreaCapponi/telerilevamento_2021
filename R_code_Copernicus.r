@@ -1,4 +1,19 @@
 #Al di sotto di questo commento studiare e organizzare la lezione del 14/04/2021
+
+#How to download a satellite image from the official website of the Copernicus program?
+#https://www.copernicus.eu/en
+
+#What is Copernicus? 
+#Copernicus is the European Union’s Earth Observation Programme, which monitors our planet and its environment for the ultimate benefit ofthe citizens of Europe. It delivers data, information and services based on satellite Earth Observation data and insitu (non-space) data. The Programmeis funded, coordinated and managedby the European Commission in cooperation with partners such as ESA and EUMETSAT
+
+#How to register a personal account on the website?
+#Sign up
+#Firstname, lastname, username, password, confirm password, email, confirm email, select domain, select usage, select country
+
+#By registering in this website you are deemed to have accepted the T&C for Sentinel data use
+
+#Register
+
 #Visualizzaione di dati dal programma Copernicus Europe's eyes on Earth
 #Iscrizione al programma Copernicus Europe's eyes on Earth tramite sito web
 #Come scaricare un'immagine da un programma specifico?
