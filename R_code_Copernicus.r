@@ -1,10 +1,24 @@
-#Al di sotto di questo commento studiare e organizzare la lezione del 14/04/2021
-
-#How to download a satellite image from the official website of the Copernicus program?
-#https://www.copernicus.eu/en
-
 #What is Copernicus? 
-#Copernicus is the European Union’s Earth Observation Programme, which monitors our planet and its environment for the ultimate benefit ofthe citizens of Europe. It delivers data, information and services based on satellite Earth Observation data and insitu (non-space) data. The Programmeis funded, coordinated and managedby the European Commission in cooperation with partners such as ESA and EUMETSAT
+#Copernicus is the European Union’s Earth Observation Programme, which monitors our planet and its environment for the ultimate benefit of the citizens of Europe. It delivers data, information and services based on satellite Earth Observation data and insitu (non-space) data. The Programmeis funded, coordinated and managedby the European Commission in cooperation with partners such as ESA and EUMETSAT
+#What is the official Copernicus website to connect to?
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+#What is the official Copernicus - European Union’s Earth Observation Programme website?
+#The official Copernicus - European Union’s Earth Observation Programme website is https://www.copernicus.eu/en
+#
+#How to download a satellite image from the official website of the Copernicus program?
+#To download a satellite image of the Copernicus program, I have to visit the website indicated in the string below ↓
+
+
 
 #How to register a personal account on the website?
 #Sign up
@@ -13,6 +27,32 @@
 #By registering in this website you are deemed to have accepted the T&C for Sentinel data use
 
 #Register
+
+#Vegetation state, Energy budget, Water Cycle and Cryosphere
+
+#Vegetation State
+	
+VEGETATION PROPERTIES VEGETATION INDICATORS DRY MATTER PRODUCTIVITY 	
+FIRE DISTURBANCE SOIL WATER INDEX 	
+SURFACE SOIL MOISTURE
+
+ROOT - TOP OF CANOPY REFLECTANCE 	
+ALBEDO
+
+LAND SURFACE TEMPERATURE
+
+LAKE SURFACE WATER TEMPERATURE 	
+LAKE WATER QUALITY WATER BODIES WATER LEVEL
+
+CRYOSPHERE
+
+#Collections, prodotti disponibili da scaricare in anteprima
+#i, informazioni sul tema
+
+#Help The "Catalogue search" tab allows you to define search criteria and start a search within the catalogue
+#Date  Start date End Date 
+# Roi coordinate geografiche della zona di interesse
+#Search in progress please wait
 
 #Visualizzaione di dati dal programma Copernicus Europe's eyes on Earth
 #Iscrizione al programma Copernicus Europe's eyes on Earth tramite sito web
