@@ -560,4 +560,86 @@ mountsainthelensbasicextentlist
 
 c(secondextentthirteenmountsainthelens, secondextentfourteenmountsainthelens, secondextentfifteenmountsainthelens, secondextentsixteenmountsainthelens, secondextentseventyninemountsainthelens, secondextenteightynmountsainthelens, secondextenteightyonemountsainthelens, secondextenteightytwomountsainthelens, secondextenteightythreemountsainthelens,mountsainthelensbasicextentlist)
 
+#Se io considero le immagini satellittari dal 1984 al 1999, è possibile effettuare il plot:
+
 plot(TCSMSH)
+
+install.packages("rasterVis")
+
+library(rasterVis)
+
+levelplot(TCSMSH)
+
+# ↓ Questo è in dubbio perché quale significato ha dipendentemente dalle bande che costituiscono le immagini satellitari? 
+
+vegetation_amount <- TCSMSH$X99_MSH_ - TCSMSH$X84_MSH_ 
+
+plot(vegetation_amount)
+
+levelplot(vegetation_amount)
+
+disruptedvegetation <- brick("80_MSH.jpg")
+
+newlyvegetation <- brick("2015_MSH.jpg")
+
+par(mfrow=c(2,1))
+
+plotRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
+
+plotRGB(newlyvegetation, r=1, g=2, b=3, stretch="lin")
+
+disruptedvegetation
+
+disruptedvegetation$X80_MSH.1
+
+disruptedvegetation$X80_MSH.2
+
+plot(disruptedvegetation$X80_MSH.1)
+
+plot(disruptedvegetation$X80_MSH.2)
+
+firstdvi <- disruptedvegetation$X80_MSH.1 - disruptedvegetation$X80_MSH.2
+
+plot(firstdvi)
+
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+
+plot(firstdvi, col=cl)
+
+plot(firstdvi, col=cl, main="DVI in 1980")
+
+newlyvegetation
+
+newlyvegetation$X2015_MSH.1
+
+newlyvegetation$X2015_MSH.2
+
+plot(newlyvegetation$X2015_MSH.1)
+
+plot(newlyvegetation$X2015_MSH.2)
+
+seconddvi <- newlyvegetation$X2015_MSH.1 - newlyvegetation$X2015_MSH.2
+
+plot(seconddvi)
+
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+
+plot(seconddvi, col=cl, main="DVI in 2016")
+
+par(mfcol=c(1,2)) / par(mfrow=c(2,1))
+
+plot(firstdvi, col=cl, main="DVI in 1980")
+
+plot(seconddvi, col=cl, main="DVI in 2016")
+
+difdvi <- firstdvi - seconddvi
+
+
+
+
+
+
+
+
+
+
