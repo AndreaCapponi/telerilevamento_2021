@@ -6,6 +6,26 @@ library(raster)
 
 setwd("C:/lab/mountsainthelens")
 
+seventyninemountsainthelens <- raster("79_MSH.jpg")
+
+eightymountsainthelens <- raster("80_MSH.jpg")
+
+par(mfrow=c(1,2))
+
+plot(seventyninemountsainthelens)
+
+plot(eightymountsainthelens)
+
+seventyninemountsainthelens <- brick("79_MSH.jpg")
+
+eightymountsainthelens <- brick("80_MSH.jpg")
+
+par(mfrow=c(3,3))
+
+plot(seventyninemountsainthelens)
+
+plot(eightymountsainthelens)
+
 mountsainthelenssubfolderlist <- list.files(pattern="MSH")
 
 mountsainthelenssubfolderlist
