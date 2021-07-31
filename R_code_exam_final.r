@@ -385,6 +385,9 @@ increasedpercentages
 
 ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
 
+Error in ggplot(increasedpercentages, aes(x = MSHcover, y = coverpercentagein1987,  : 
+  non trovo la funzione "ggplot"                                       
+
 ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
 
 pDV <- ggplot(losspercentages, aes(x=MSHcover, y=coverpercentagein1987, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
@@ -392,6 +395,7 @@ pDV <- ggplot(losspercentages, aes(x=MSHcover, y=coverpercentagein1987, color=MS
 pNV <- ggplot(losspercentages, aes(x=MSHcover, y=coverpercentagein1996, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
 
 grid.arrange(pDV, pNV, nrow=1)
+
 
 
 
