@@ -100,5 +100,96 @@ levelplot(TCSMSH,col.regions=pal, names.attr=c("1987","1990", "1993","1996"))
 
 levelplot(TCSMSH,col.regions=pal, main="Variation of the vegetation cover on the volcanic landslide of Mount Saint Helens over time", names.attr=c("1987","1990", "1993","1996"))
 
+dev.off()
+
+disruptedvegetation <- brick("MSHanalysis_87.jpg")
+
+newlyvegetation <- brick("MSHanalysis_96.jpg")
+
+par(mfrow=c(1,2))
+
+plotRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
+
+plotRGB(disruptedvegetation, r=1, g=2, b=3, stretch="his")
+
+par(mfrow=c(1,2))
+
+plotRGB(newlyvegetation, r=1, g=2, b=3, stretch="lin")
+
+plotRGB(newlyvegetation, r=1, g=2, b=3, stretch="his")
+
+disruptedvegetation
+
+class      : RasterBrick 
+dimensions : 2083, 2054, 4278482, 3  (nrow, ncol, ncell, nlayers)
+resolution : 1, 1  (x, y)
+extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
+crs        : NA 
+source     : MSHanalysis_87.jpg 
+names      : MSHanalysis_87.1, MSHanalysis_87.2, MSHanalysis_87.3 
+min values :                0,                0,                0 
+max values :              255,              255,              255
+
+disruptedvegetation$MSHanalysis_87.1
+
+class      : RasterLayer 
+band       : 1  (of  3  bands)
+dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
+resolution : 1, 1  (x, y)
+extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
+crs        : NA 
+source     : MSHanalysis_87.jpg 
+names      : MSHanalysis_87.1 
+values     : 0, 255  (min, max)
+
+disruptedvegetation$MSHanalysis_87.2
+
+class      : RasterLayer 
+band       : 2  (of  3  bands)
+dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
+resolution : 1, 1  (x, y)
+extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
+crs        : NA 
+source     : MSHanalysis_87.jpg 
+names      : MSHanalysis_87.2 
+values     : 0, 255  (min, max)
+
+plot(disruptedvegetation$MSHanalysis_87.1)
+
+plot(disruptedvegetation$MSHanalysis_87.2)
+
+disruptedvegetationdvi <- disruptedvegetation$MSHanalysis_87.1 - disruptedvegetation$MSHanalysis_87.2
+
+plot(disruptedvegetationdvi)
+
+MSHdvcp <- colorRampPalette(c('white','green','brown','black'))(100)
+
+plot(disruptedvegetationdvi, col=MSHdvcp)
+
+plot(disruptedvegetationdvi, col=MSHdvcp, main="DVI of disrupted vegetation in 1987")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
