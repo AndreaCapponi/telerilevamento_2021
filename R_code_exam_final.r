@@ -8,6 +8,10 @@ install.packages("rasterVis")
 
 install.packages("RColorBrewer")
 
+install.packages("ggplot2")
+
+install.packages("gridExtra")
+
 library(raster)
 
 library(RStoolbox)
@@ -15,6 +19,10 @@ library(RStoolbox)
 library(rasterVis)
 
 library(RColorBrewer)
+
+library(ggplot2)
+
+library(gridExtra)
 
 setwd("C:/lab/mountsainthelens")
 
@@ -267,6 +275,134 @@ plot(newlyvegetationndvi, col=MSHcp, main="NDVI of newly vegetation in 1996")
 multitemporalndvi <- disruptedvegetationndvi - newlyvegetationndvi
 
 plot(multitemporalndvi, col=MSHcp)
+
+ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
+
+ggRGB(newlyvegetation, r=1, g=2, b=3, stretch="lin")
+
+DVe <- ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
+
+NVe <- ggRGB(newlyvegetation, r=1, g=2, b=3, stretch="lin")
+
+grid.arrange(DVe, NVe, nrow=2)
+
+DVc <- unsuperClass(disruptedvegetation, nClass=3)
+
+DVc
+
+*************** Map ******************
+$map
+class      : RasterLayer 
+dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
+resolution : 1, 1  (x, y)
+extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
+crs        : NA 
+source     : r_tmp_2021-07-31_171720_15220_28543.grd 
+names      : layer 
+values     : 1, 3  (min, max)
+
+plot(DVc$map)
+
+NVc <- unsuperClass(newlyvegetation, nClass=3)
+
+NVc
+
+*************** Map ******************
+$map
+class      : RasterLayer 
+dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
+resolution : 1, 1  (x, y)
+extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
+crs        : NA 
+source     : r_tmp_2021-07-31_171833_15220_95861.grd 
+names      : layer 
+values     : 1, 3  (min, max)
+
+plot(NVc$map)
+
+par(mfrow=c(1,2))
+
+plot(DVc$map)
+
+plot(NVc$map)
+
+freq(DVc$map)
+
+value   count
+[1,]     1 2749366
+[2,]     2 1039672
+[3,]     3  489444
+
+freq(NVc$map)
+
+value   count
+[1,]     1  373380
+[2,]     2 3052520
+[3,]     3  852582
+
+sDV <- 2749366 + 1039672 + 489444
+
+sDV
+[1] 4278482
+
+sNV <- 373380 + 3052520 + 852582
+
+sNV
+[1] 4278482
+
+pDV <- freq(DVc$map)/sDV
+
+pDV
+
+value     count
+[1,] 2.337278e-07 0.6426031
+[2,] 4.674555e-07 0.2430002
+[3,] 7.011833e-07 0.1143966
+
+pNV <-freq(NVc$map)/sNV
+
+pNV
+
+value      count
+[1,] 2.337278e-07 0.08726927
+[2,] 4.674555e-07 0.71345865
+[3,] 7.011833e-07 0.19927208
+
+MSHcover <- c("Forest", "Agricolture/Thinning vegetation", "Bare soil")
+
+coverpercentagein1987 <- c(64.26031, 24.30002, 11.43966)
+
+coverpercentagein1996 <- c(71.345865, 19.927208, 8.726927)
+
+increasedpercentages <- data.frame(cover, coverpercentagein1987, coverpercentagein1996)
+
+increasedpercentages
+
+ cover coverpercentagein1987 coverpercentagein1996
+1                          Forest              64.26031             71.345865
+2 Agricolture/Thinning vegetation              24.30002             19.927208
+3                       Bare soil              11.43966              8.726927
+
+ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
+
+ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
+
+pDV <- ggplot(losspercentages, aes(x=MSHcover, y=coverpercentagein1987, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
+
+pNV <- ggplot(losspercentages, aes(x=MSHcover, y=coverpercentagein1996, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
+
+grid.arrange(pDV, pNV, nrow=1)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
