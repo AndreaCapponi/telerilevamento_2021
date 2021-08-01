@@ -243,15 +243,15 @@ newlyvegetationdvi <- newlyvegetation$MSHanalysis_96.1 - newlyvegetation$MSHanal
 
 plot(newlyvegetationdvi)
 
-MSHdcfcsbbcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
+MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
 
-plot(newlyvegetationdvi, col=MSHdcfcsbbcolorspalette , main="DVI of newly vegetation in 1996")
+plot(newlyvegetationdvi, col=MSHDVIcolorspalette , main="DVI of newly vegetation in 1996")
 
 par(mfcol=c(1,2))
 
-plot(disruptedvegetationdvi, col=MSHdcfcsbbcolorspalette, main="DVI of disrupted vegetation in 1987")
+plot(disruptedvegetationdvi, col=MSHDVIcolorspalette, main="DVI of disrupted vegetation in 1987")
 
-plot(newlyvegetationdvi, col=MSHdcfcsbbcolorspalette, main="DVI of newly vegetation in 1996")
+plot(newlyvegetationdvi, col=MSHDVIcolorspalette, main="DVI of newly vegetation in 1996")
 
 multitemporaldvi <- disruptedvegetationdvi - newlyvegetationdvi
 
@@ -270,23 +270,25 @@ plot(multitemporaldvi, col=MSHdcfcsbbcolorspalette)
 
 disruptedvegetationndvi <- (disruptedvegetationdvi) / (disruptedvegetation$MSHanalysis_87.1 + disruptedvegetation$MSHanalysis_87.2)
 
-MSH?colorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
+MSHNDVIcolorspalette <- colorRampPalette(c('darkblue','dodgerblue2','cyan','forestgreen','indianred4','brown','black'))(100) <--- Da modificare
 
-plot(disruptedvegetationndvi, col=MSHdcfcsbbcolorspalette)
+plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette)
 
 newlyvegetationndvi <- (newlyvegetationdvi) / (newlyvegetation$MSHanalysis_96.1 + newlyvegetation$MSHanalysis_96.2)
 
-plot(newlyvegetationndvi, col=MSHdcfcsbbcolorspalette)
+MSHNDVIcolorspalette <- colorRampPalette(c('darkblue','dodgerblue2','cyan','forestgreen','indianred4','brown','black'))(100) <--- Da modificare
+
+plot(newlyvegetationndvi, col=MSHNDVIcolorspalette)
 
 par(mfcol=c(1,2))
 
-plot(disruptedvegetationndvi, col=MSHdcfcsbbcolorspalette, main="NDVI of disrupted vegetation in 1987")
+plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette, main="NDVI of disrupted vegetation in 1987")
 
-plot(newlyvegetationndvi, col=MSHdcfcsbbcolorspalette, main="NDVI of newly vegetation in 1996")
+plot(newlyvegetationndvi, col=MSHNDVIcolorspalette, main="NDVI of newly vegetation in 1996")
 
 multitemporalndvi <- disruptedvegetationndvi - newlyvegetationndvi
 
-plot(multitemporalndvi, col=MSHdcfcsbbcolorspalette)
+plot(multitemporalndvi, col=MSHNDVIcolorspalette)
 
 ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
 
