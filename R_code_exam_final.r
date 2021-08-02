@@ -138,13 +138,17 @@ disruptedvegetationvi <- spectralIndices(disruptedvegetation, green=3, red=2, ni
 
 plot(disruptedvegetationvi)
 
-plot(disruptedvegetationvi, col=MSHcp)
+MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100) <--- Quale per gli indici VI?
+
+plot(disruptedvegetationvi, col=MSHDVIcolorspalette)
 
 newlyvegetationvi <- spectralIndices(newlyvegetation, green=3, red=2, nir=1)
 
 plot(newlyvegetationvi)
 
-plot(newlyvegetationvi, col=MSHcp)
+MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100) <--- Quale per gli indici VI?
+
+plot(newlyvegetationvi, col=MSHDVIcolorspalette)
 
 disruptedvegetation
 
@@ -266,17 +270,17 @@ source     : memory
 names      : layer 
 values     : -108, 80  (min, max)
 
-plot(multitemporaldvi, col=MSHdcfcsbbcolorspalette)
+plot(multitemporaldvi, col=MSHDVIcolorspalette) <--- Da corredare di titolo
 
 disruptedvegetationndvi <- (disruptedvegetationdvi) / (disruptedvegetation$MSHanalysis_87.1 + disruptedvegetation$MSHanalysis_87.2)
 
-MSHNDVIcolorspalette <- colorRampPalette(c('darkblue','dodgerblue2','cyan','forestgreen','indianred4','brown','black'))(100) <--- Da modificare
+MSHNDVIcolorspalette <- colorRampPalette(c('darkblue','dodgerblue2','cyan','forestgreen','indianred4','brown','black'))(100) <--- Non indicata per NDVI
 
 plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette)
 
 newlyvegetationndvi <- (newlyvegetationdvi) / (newlyvegetation$MSHanalysis_96.1 + newlyvegetation$MSHanalysis_96.2)
 
-MSHNDVIcolorspalette <- colorRampPalette(c('darkblue','dodgerblue2','cyan','forestgreen','indianred4','brown','black'))(100) <--- Da modificare
+MSHNDVIcolorspalette <- colorRampPalette(c('darkblue','dodgerblue2','cyan','forestgreen','indianred4','brown','black'))(100) <--- Non indicata per NDVI
 
 plot(newlyvegetationndvi, col=MSHNDVIcolorspalette)
 
@@ -319,6 +323,10 @@ values     : 1, 3  (min, max)
 
 plot(DVc$map)
 
+set.seed(1)
+
+rnorm(1)
+
 NVc <- unsuperClass(newlyvegetation, nClass=3)
 
 NVc
@@ -344,24 +352,24 @@ plot(NVc$map)
 
 freq(DVc$map)
 
-value   count
-[1,]     1 2749366
-[2,]     2 1039672
-[3,]     3  489444
+ value   count
+[1,]     1  482043
+[2,]     2 1029444
+[3,]     3 2766995
 
 freq(NVc$map)
 
 value   count
-[1,]     1  373380
-[2,]     2 3052520
-[3,]     3  852582
+[1,]     1  395390
+[2,]     2  872402
+[3,]     3 3010690
 
-sDV <- 2749366 + 1039672 + 489444
+sDV <- 489444 + 2749366 + 1039672
 
 sDV
 [1] 4278482
 
-sNV <- 373380 + 3052520 + 852582
+sNV <- 3052520 + 373380 +  + 852582
 
 sNV
 [1] 4278482
@@ -370,43 +378,46 @@ pDV <- freq(DVc$map)/sDV
 
 pDV
 
-value     count
-[1,] 2.337278e-07 0.6426031
-[2,] 4.674555e-07 0.2430002
-[3,] 7.011833e-07 0.1143966
+ value     count
+[1,] 2.337278e-07 0.1126668
+[2,] 4.674555e-07 0.2406096
+[3,] 7.011833e-07 0.6467235
 
 pNV <-freq(NVc$map)/sNV
 
 pNV
 
 value      count
-[1,] 2.337278e-07 0.08726927
-[2,] 4.674555e-07 0.71345865
-[3,] 7.011833e-07 0.19927208
+[1,] 2.337278e-07 0.09241362
+[2,] 4.674555e-07 0.20390456
+[3,] 7.011833e-07 0.70368182
 
 MSHcover <- c("Forest", "Agricolture/Thinning vegetation", "Bare soil")
 
-coverpercentagein1987 <- c(64.26031, 24.30002, 11.43966)
+coverpercentagein1987 <- c(64.67235, 24.06096, 11.2668)
 
-coverpercentagein1996 <- c(71.345865, 19.927208, 8.726927)
+coverpercentagein1996 <- c(70.3368182, 20.390456, 9.241362)
 
-increasedpercentages <- data.frame(cover, coverpercentagein1987, coverpercentagein1996)
+increasedpercentages <- data.frame(MSHcover, coverpercentagein1987, coverpercentagein1996)
 
 increasedpercentages
 
- cover coverpercentagein1987 coverpercentagein1996
-1                          Forest              64.26031             71.345865
-2 Agricolture/Thinning vegetation              24.30002             19.927208
-3                       Bare soil              11.43966              8.726927
+ MSHcover coverpercentagein1987 coverpercentagein1996
+1                          Forest              64.67235             70.336818
+2 Agricolture/Thinning vegetation              24.06096             20.390456
+3                       Bare soil              11.26680              9.241362
 
-ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
+ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, color=MSHcover)) + geom_bar(stat="identity", fill="pink")                                       
 
-Error in ggplot(increasedpercentages, aes(x = MSHcover, y = coverpercentagein1987,  : 
-  non trovo la funzione "ggplot"                                       
+scale_fill_manual("legend", values = c("A" = "black", "B" = "orange", "C" = "blue"))
 
 ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
 
+scale_fill_manual("legend", values = c("A" = "black", "B" = "orange", "C" = "blue"))
+
 pDV <- ggplot(losspercentages, aes(x=MSHcover, y=coverpercentagein1987, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
+
+scale_fill_manual("legend", values = c("A" = "black", "B" = "orange", "C" = "blue"))
 
 pNV <- ggplot(losspercentages, aes(x=MSHcover, y=coverpercentagein1996, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
 
