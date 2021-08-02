@@ -192,11 +192,11 @@ disruptedvegetationdvi <- disruptedvegetation$MSHanalysis_87.1 - disruptedvegeta
 
 plot(disruptedvegetationdvi)
 
-MSHdcfcsbbcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
+MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
 
-plot(disruptedvegetationdvi, col=MSHdcfcsbbcolorspalette)
+plot(disruptedvegetationdvi, col=MSHDVIcolorspalette)
 
-plot(disruptedvegetationdvi, col=MSHdcfcsbbcolorspalette, main="DVI of disrupted vegetation in 1987")
+plot(disruptedvegetationdvi, col=MSHDVIcolorspalette, main="DVI of disrupted vegetation in 1987")
 
 newlyvegetation
 
