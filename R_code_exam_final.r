@@ -407,17 +407,17 @@ increasedpercentages
 2 Agricolture/Thinning vegetation              24.06096             20.390456
 3                       Bare soil              11.26680              9.241362
 
-ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, color=MSHcover)) + geom_bar(stat="identity", fill="pink")                                       
+idealgraphicsuccession <- c("Bare soil", "Agricolture/Thinning vegetation", "Forest")
 
-scale_fill_manual("legend", values = c("A" = "black", "B" = "orange", "C" = "blue"))
-
+ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens") 
++ theme(plot.title=element_text(face="bold"))
++ scale_x_discrete(limits = idealgraphicsuccession) 
++ geom_bar(stat="identity") + theme(legend.position="bottom") 
++ scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))
+                                        
 ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
 
-scale_fill_manual("legend", values = c("A" = "black", "B" = "orange", "C" = "blue"))
-
 pDV <- ggplot(losspercentages, aes(x=MSHcover, y=coverpercentagein1987, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
-
-scale_fill_manual("legend", values = c("A" = "black", "B" = "orange", "C" = "blue"))
 
 pNV <- ggplot(losspercentages, aes(x=MSHcover, y=coverpercentagein1996, color=MSHcover)) + geom_bar(stat="identity", fill="pink")
 
