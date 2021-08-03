@@ -314,6 +314,10 @@ grid.arrange(DVe, NVe, nrow=2)
 
 dev.off()
 
+set.seed(1)
+
+rnorm(1)
+
 DVc <- unsuperClass(disruptedvegetation, nClass=3)
 
 DVc
@@ -530,20 +534,6 @@ Median   -27.18045  -0.2387671   0.0387721
 3rd Qu.   37.56423   5.2770685   2.7979118
 Max.     284.08098  50.3404939  32.4775703
 NA's       0.00000   0.0000000   0.0000000
-
-newlyvegetationpca <- rasterPCA(newlyvegetation)
-
-plot(newlyvegetationpca$map)
-
-summary(newlyvegetationpca$map)
-     
-              [,1]        [,2]       [,3]
-Min.    -130.46102 -56.6665605 -37.573796
-1st Qu.  -39.47683  -5.2922778  -3.294960
-Median   -19.46805   0.1555407  -0.274434
-3rd Qu.   18.55625   5.4918368   2.960569
-Max.     291.87846  72.5329310  69.524313
-NA's       0.00000   0.0000000   0.000000
      
 PC1 <- disruptedvegetationpca$map$PC1
      
@@ -567,6 +557,20 @@ scale_fill_viridis(option="plasma")+ggtitle("σ of PC1 by turbo colour scale")
 
 grid.arrange(PC1DV1e, PC1DV2e, PC1DV3e, nrow=1)
 
+newlyvegetationpca <- rasterPCA(newlyvegetation)
+
+plot(newlyvegetationpca$map)
+
+summary(newlyvegetationpca$map)
+     
+              [,1]        [,2]       [,3]
+Min.    -130.46102 -56.6665605 -37.573796
+1st Qu.  -39.47683  -5.2922778  -3.294960
+Median   -19.46805   0.1555407  -0.274434
+3rd Qu.   18.55625   5.4918368   2.960569
+Max.     291.87846  72.5329310  69.524313
+NA's       0.00000   0.0000000   0.000000
+     
 PC1 <- newlyvegetationpca$map$PC1
      
 newlyvegetationPC1 <- focal(PC1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
@@ -588,6 +592,3 @@ geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis(option="plasma")+ggtitle("σ of PC1 by turbo colour scale")
 
 grid.arrange(PC1NV1e, PC1NV2e, PC1NV3e, nrow=1)
-
-
-
