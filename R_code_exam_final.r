@@ -10,6 +10,8 @@ install.packages("RColorBrewer")
 
 install.packages("colorRamps")
 
+install.packages("viridis")
+
 install.packages("ggplot2")
 
 install.packages("gridExtra")
@@ -23,6 +25,8 @@ library(rasterVis)
 library(RColorBrewer)
 
 library(colorRamps)
+
+library(viridis)
 
 library(ggplot2)
 
@@ -547,16 +551,43 @@ disruptedvegetationPC1 <- focal(PC1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
      
 MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
      
-plot(disruptedvegetationPC1, col=MSHMEANcolorspalette)
+plot(disruptedvegetationPC1, col=MSHMEANcolorspalette) 
+
+PC1DV1e <- ggplot() +
+geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
+scale_fill_viridis()+ggtitle("σ of PC1 by viridis colour scale")
      
+PC1DV2e <- ggplot() +
+geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
+scale_fill_viridis(option="inferno")+ggtitle("σ of PC1 by magma colour scale")
+     
+PC1DV3e <- ggplot() +
+geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
+scale_fill_viridis(option="plasma")+ggtitle("σ of PC1 by turbo colour scale")
 
+grid.arrange(PC1DV1e, PC1DV2e, PC1DV3e, nrow=1)
 
+PC1 <- newlyvegetationpca$map$PC1
+     
+newlyvegetationPC1 <- focal(PC1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
+     
+MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+     
+plot(newlyvegetationPC1, col=MSHMEANcolorspalette) 
 
+PC1NV1e <- ggplot() +
+geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
+scale_fill_viridis()+ggtitle("σ of PC1 by viridis colour scale")
+     
+PC1NV2e <- ggplot() +
+geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
+scale_fill_viridis(option="inferno")+ggtitle("σ of PC1 by magma colour scale")
+     
+PC1NV3e <- ggplot() +
+geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
+scale_fill_viridis(option="plasma")+ggtitle("σ of PC1 by turbo colour scale")
 
-
-
-
-
+grid.arrange(PC1NV1e, PC1NV2e, PC1NV3e, nrow=1)
 
 
 
