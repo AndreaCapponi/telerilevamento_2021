@@ -8,8 +8,6 @@ install.packages("rasterVis")
 
 install.packages("RColorBrewer")
 
-install.packages("colorRamps")
-
 install.packages("viridis")
 
 install.packages("ggplot2")
@@ -23,8 +21,6 @@ library(RStoolbox)
 library(rasterVis)
 
 library(RColorBrewer)
-
-library(colorRamps)
 
 library(viridis)
 
@@ -278,29 +274,33 @@ source     : memory
 names      : layer 
 values     : -108, 80  (min, max)
 
-plot(multitemporaldvi, col=MSHDVIcolorspalette) <--- Da corredare di titolo
+plot(multitemporaldvi, col=MSHDVIcolorspalette) 
+
+plot(multitemporaldvi, col=MSHDVIcolorspalette, main="DVI of Mount Saint Helens' vegetation from 1987 to 1996")
 
 disruptedvegetationndvi <- (disruptedvegetationdvi) / (disruptedvegetation$MSHanalysis_87.1 + disruptedvegetation$MSHanalysis_87.2)
 
-MSHNDVIcolorspalette <- colorRampPalette(c('darkblue','dodgerblue2','cyan','forestgreen','indianred4','brown','black'))(100) <--- Non indicata per NDVI
+MSHNDVIcolorspalette <- colorRampPalette(c("darkorchid2","whitesmoke","turquoise1","springgreen4","wheat1","gold"))(100) 
 
 plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette)
 
 newlyvegetationndvi <- (newlyvegetationdvi) / (newlyvegetation$MSHanalysis_96.1 + newlyvegetation$MSHanalysis_96.2)
 
-MSHNDVIcolorspalette <- colorRampPalette(c('darkblue','dodgerblue2','cyan','forestgreen','indianred4','brown','black'))(100) <--- Non indicata per NDVI
+MSHNDVIanothercolorspalette <- colorRampPalette(c("darkorchid2","steelblue1","royalblue1","turquoise1","springgreen4","whitesmoke","wheat1","gold","indianred3","black"))(100)  
 
-plot(newlyvegetationndvi, col=MSHNDVIcolorspalette)
+plot(newlyvegetationndvi, col=MSHNDVIanothercolorspalette)
 
 par(mfcol=c(1,2))
 
 plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette, main="NDVI of disrupted vegetation in 1987")
 
-plot(newlyvegetationndvi, col=MSHNDVIcolorspalette, main="NDVI of newly vegetation in 1996")
+plot(newlyvegetationndvi, col=MSHNDVIanothercolorspalette, main="NDVI of newly vegetation in 1996")
 
 multitemporalndvi <- disruptedvegetationndvi - newlyvegetationndvi
 
 plot(multitemporalndvi, col=MSHNDVIcolorspalette)
+
+plot(multitemporalndvi, col=MSHNDVIcolorspalette, main="NDVI of Mount Saint Helens' vegetation from 1987 to 1996")
 
 ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
 
@@ -365,23 +365,23 @@ plot(NVc$map)
 freq(DVc$map)
 
  value   count
-[1,]     1  482043
-[2,]     2 1029444
-[3,]     3 2766995
+[1,]     1  510198
+[2,]     2 1030579
+[3,]     3 2737705
 
 freq(NVc$map)
 
-value   count
+     value   count
 [1,]     1  395390
 [2,]     2  872402
 [3,]     3 3010690
 
-sDV <- 489444 + 2749366 + 1039672
+sDV <- 510198 + 1030579 + 2737705
 
 sDV
 [1] 4278482
 
-sNV <- 3052520 + 373380 +  + 852582
+sNV <- 395390 + 872402 + 3010690
 
 sNV
 [1] 4278482
@@ -390,34 +390,34 @@ pDV <- freq(DVc$map)/sDV
 
 pDV
 
- value     count
-[1,] 2.337278e-07 0.1126668
-[2,] 4.674555e-07 0.2406096
-[3,] 7.011833e-07 0.6467235
+       value     count
+[1,] 2.337278e-07 0.1192474
+[2,] 4.674555e-07 0.2408749
+[3,] 7.011833e-07 0.6398776
 
 pNV <-freq(NVc$map)/sNV
 
 pNV
 
-value      count
+            value      count
 [1,] 2.337278e-07 0.09241362
 [2,] 4.674555e-07 0.20390456
 [3,] 7.011833e-07 0.70368182
 
 MSHcover <- c("Forest", "Agricolture/Thinning vegetation", "Bare soil")
 
-coverpercentagein1987 <- c(64.67235, 24.06096, 11.2668)
+coverpercentagein1987 <- c(63.98776, 24.08749, 11.92474)
 
-coverpercentagein1996 <- c(70.3368182, 20.390456, 9.241362)
+coverpercentagein1996 <- c(70.368182, 20.390456, 9.241362)
 
 increasedpercentages <- data.frame(MSHcover, coverpercentagein1987, coverpercentagein1996)
 
 increasedpercentages
 
  MSHcover coverpercentagein1987 coverpercentagein1996
-1                          Forest              64.67235             70.336818
-2 Agricolture/Thinning vegetation              24.06096             20.390456
-3                       Bare soil              11.26680              9.241362
+1                          Forest              63.98776             70.368182
+2 Agricolture/Thinning vegetation              24.08749             20.390456
+3                       Bare soil              11.92474              9.241362
 
 idealgraphicsuccession <- c("Bare soil", "Agricolture/Thinning vegetation", "Forest")
 
@@ -471,15 +471,15 @@ plot(newlyvegetationdvistandarddeviation, col=MSHSDcolorspalette)
 
 par(mfcol=c(1,2))
 
-plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of disrupted vegetation in 1987")
+plot(disruptedvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of disrupted vegetation in 1987")
 
-plot(newlyvegetationdvimean, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of newly vegetation in 1996")
+plot(newlyvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of newly vegetation in 1996")
 
 disruptedvegetationndvimean <- focal(disruptedvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 
 plot(disruptedvegetationndvimean)
 
-MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","white","red","yellow"))(100)
 
 plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette)
 
@@ -487,7 +487,7 @@ newlyvegetationndvimean <- focal(newlyvegetationndvi, w=matrix(1/9, nrow=3, ncol
 
 plot(newlyvegetationndvimean)
 
-MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","brown","red","yellow"))(100)
 
 plot(newlyvegetationndvimean, col=MSHMEANcolorspalette)
 
