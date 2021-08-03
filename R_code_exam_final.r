@@ -8,6 +8,8 @@ install.packages("rasterVis")
 
 install.packages("RColorBrewer")
 
+install.packages("colorRamps")
+
 install.packages("ggplot2")
 
 install.packages("gridExtra")
@@ -19,6 +21,8 @@ library(RStoolbox)
 library(rasterVis)
 
 library(RColorBrewer)
+
+library(colorRamps)
 
 library(ggplot2)
 
@@ -419,9 +423,132 @@ pNV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, fil
 
 grid.arrange(pDV, pNV, nrow=1)
 
+disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 
+plot(disruptedvegetationdvimean)
 
+MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 
+plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette)
+
+newlyvegetationdvimean <- focal(newlyvegetationdvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+
+plot(newlyvegetationdvimean)
+
+MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+plot(newlyvegetationdvimean, col=MSHMEANcolorspalette)
+
+par(mfcol=c(1,2))
+
+plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for DVI of disrupted vegetation in 1987")
+
+plot(newlyvegetationdvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for DVI of newly vegetation in 1996")
+
+disruptedvegetationdvistandarddeviation <- focal(disruptedvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+
+plot(disruptedvegetationdvistandarddeviation)
+
+MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+plot(disruptedvegetationdvistandarddeviation, col=MSHSDcolorspalette)
+
+newlyvegetationdvistandarddeviation <- focal(newlyvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+
+plot(newlyvegetationdvistandarddeviation)
+
+MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+plot(newlyvegetationdvistandarddeviation, col=MSHSDcolorspalette)
+
+par(mfcol=c(1,2))
+
+plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of disrupted vegetation in 1987")
+
+plot(newlyvegetationdvimean, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of newly vegetation in 1996")
+
+disruptedvegetationndvimean <- focal(disruptedvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+
+plot(disruptedvegetationndvimean)
+
+MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette)
+
+newlyvegetationndvimean <- focal(newlyvegetationndvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+
+plot(newlyvegetationndvimean)
+
+MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+plot(newlyvegetationndvimean, col=MSHMEANcolorspalette)
+
+par(mfcol=c(1,2))
+
+plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for NDVI of disrupted vegetation in 1987")
+
+plot(newlyvegetationndvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for NDVI of newly vegetation in 1996")
+
+disruptedvegetationndvistandarddeviation <- focal(disruptedvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+
+plot(disruptedvegetationndvistandarddeviation)
+
+MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette)
+
+newlyvegetationndvistandarddeviation <- focal(newlyvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+
+plot(newlyvegetationndvistandarddeviation)
+
+MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+plot((newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette)
+
+par(mfcol=c(1,2))
+
+plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette, main="σ-dependent variability for NDVI of disrupted vegetation in 1987")
+
+plot(newlyvegetationndvimean, col=MSHMEANcolorspalette, main="σ-dependent variability for NDVI of newly vegetation in 1996")
+
+disruptedvegetationpca <- rasterPCA(disruptedvegetation)
+
+plot(disruptedvegetationpca$map)
+
+summary(disruptedvegetationpca$map)
+     
+summary(disruptedvegetationpca$map)
+        
+              [,1]        [,2]        [,3]
+Min.    -137.69615 -56.9227134 -38.3729502
+1st Qu.  -51.38741  -4.7450314  -2.8993405
+Median   -27.18045  -0.2387671   0.0387721
+3rd Qu.   37.56423   5.2770685   2.7979118
+Max.     284.08098  50.3404939  32.4775703
+NA's       0.00000   0.0000000   0.0000000
+
+newlyvegetationpca <- rasterPCA(newlyvegetation)
+
+plot(newlyvegetationpca$map)
+
+summary(newlyvegetationpca$map)
+     
+              [,1]        [,2]       [,3]
+Min.    -130.46102 -56.6665605 -37.573796
+1st Qu.  -39.47683  -5.2922778  -3.294960
+Median   -19.46805   0.1555407  -0.274434
+3rd Qu.   18.55625   5.4918368   2.960569
+Max.     291.87846  72.5329310  69.524313
+NA's       0.00000   0.0000000   0.000000
+     
+PC1 <- disruptedvegetationpca$map$PC1
+     
+disruptedvegetationPC1 <- focal(PC1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
+     
+MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+     
+plot(disruptedvegetationPC1, col=MSHMEANcolorspalette)
+     
 
 
 
