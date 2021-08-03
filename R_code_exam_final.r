@@ -524,16 +524,14 @@ disruptedvegetationpca <- rasterPCA(disruptedvegetation)
 plot(disruptedvegetationpca$map)
 
 summary(disruptedvegetationpca$map)
-     
-summary(disruptedvegetationpca$map)
-        
-              [,1]        [,2]        [,3]
-Min.    -137.69615 -56.9227134 -38.3729502
-1st Qu.  -51.38741  -4.7450314  -2.8993405
-Median   -27.18045  -0.2387671   0.0387721
-3rd Qu.   37.56423   5.2770685   2.7979118
-Max.     284.08098  50.3404939  32.4775703
-NA's       0.00000   0.0000000   0.0000000
+              
+             PC1         PC2          PC3
+Min.    -131.81642 -44.7241898 -22.28081322
+1st Qu.  -51.34004  -4.7453718  -2.87545085
+Median   -27.23346  -0.2292121   0.03662925
+3rd Qu.   37.23258   5.2761769   2.79791188
+Max.     275.80930  39.9837418  23.16283417
+NA's       0.00000   0.0000000   0.00000000
      
 PC1 <- disruptedvegetationpca$map$PC1
      
