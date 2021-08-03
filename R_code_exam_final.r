@@ -559,15 +559,16 @@ newlyvegetationpca <- rasterPCA(newlyvegetation)
 
 plot(newlyvegetationpca$map)
 
-summary(newlyvegetationpca$map)
-     
-              [,1]        [,2]       [,3]
-Min.    -130.46102 -56.6665605 -37.573796
-1st Qu.  -39.47683  -5.2922778  -3.294960
-Median   -19.46805   0.1555407  -0.274434
-3rd Qu.   18.55625   5.4918368   2.960569
-Max.     291.87846  72.5329310  69.524313
-NA's       0.00000   0.0000000   0.000000
+summary(newlyvegetationpca$map)  
+
+            PC1         PC2         PC3
+Min.    -115.81446 -45.9714775 -29.9552517
+1st Qu.  -39.48750  -5.3036152  -3.2929425
+Median   -19.44636   0.1312364  -0.2737613
+3rd Qu.   18.58441   5.4839840   2.9726181
+Max.     290.17538  41.7846222  36.7002831
+NA's       0.00000   0.0000000   0.0000000
+
      
 PC1 <- newlyvegetationpca$map$PC1
      
