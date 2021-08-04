@@ -553,7 +553,7 @@ library(RStoolbox)
 
 setwd("C:/lab/")
 
-##I exploit a function (brick) to import data from lab folder - external - to R - internal* -:
+#I exploit a function (brick) to import data from lab folder - external - to R - internal* -:
 
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
