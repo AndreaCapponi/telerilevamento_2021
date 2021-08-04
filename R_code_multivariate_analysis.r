@@ -44,4 +44,10 @@
 #dev.off()
 #plotRGB(p224r63_2011res_pca$map, r=1, g=2, b=3, stretch="Lin")
 #Nuove bande che diminuiscono la correlazione tra le variabili affinché comunque rappresentino in un numero limitato tramite bande selezionate dall'utente
-#
+
+#Sequence of informatic commands for R_code_multivariate_analysis.r
+
+
+
+
+
