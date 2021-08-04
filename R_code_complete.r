@@ -675,7 +675,7 @@ Standard deviation     1.841357e-03 1.233374e-03 7.595367e-04
 Proportion of Variance 2.330990e-06 1.045814e-06 3.966085e-07
 Cumulative Proportion  9.999986e-01 9.999996e-01 1.000000e+00
 
-#La varianza in percentuale per la banda del blu PC1 rappresenta quasi totalmente quella della varianza in resampledp224r63_2011rpca essendo al 99,84%!
+#The variance in percent for the PC1 blue band almost totally represents that of the variance in resampledp224r63_2011rpca being 99.84%!
 
 #Variance in percent is represented by 99.998% of the first three bands PC1, PC2 and PC3
 
