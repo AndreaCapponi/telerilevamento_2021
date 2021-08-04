@@ -1,4 +1,4 @@
-#
+#Creating elegant data visualisations using the "Grammar of Graphics": the case of ggplot2 📈
 
 #install.packages() is a function which download and install packages from CRAN-like repositories or from local files
 
@@ -10,7 +10,7 @@ install.packages("raster")
 
 install.packages("RStoolbox")
 
-#The third package to install is ggplot2, which isaA system for declaratively creating graphics, based on "The Grammar of Graphics". The user provides the data, tell 'ggplot2' how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details:
+#The third package to install is ggplot2, which is a system for declaratively creating graphics, based on "The Grammar of Graphics". The user provides the data, tell 'ggplot2' how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details:
 
 install.packages(ggplot2)
 
@@ -26,9 +26,6 @@ library(RStoolbox)
 
 library(ggplot2)
 
-library(gridExtra)
-p1 <- ggRGB(p224r63,3,2,1, stretch="lin")
-p2 <- ggRGB(p224r63,4,3,2, stretch="lin")
 #In my computer R must use the folder named simply lab and I exploit a function (setwd) for the association between R and lab folder:
 
 setwd("C:/lab/")
@@ -41,19 +38,21 @@ p224r63 <- brick("p224r63_2011_masked.grd")
 
 #ggRGB() is a function that calculates RGB color composite RasterLayers for plotting with ggplot2. Optional values for clipping and and stretching can be used to enhance the imagery
 
-#The graphical visualization of p224r63_2011 in true colors, being LANDSAT equipped with true colour, thermal and multispectral sensors in a complex acquisition system, will be obtained from the visible spectrum to which I associate B1_sre:blue, B2_sre:green, B3_sre:red spectral bands of the initial object
+#The graphical visualization of p224r63 in true colors, being LANDSAT equipped with true colour, thermal and multispectral sensors in a complex acquisition system, will be obtained from the visible spectrum to which I associate B1_sre:blue, B2_sre:green, B3_sre:red spectral bands of the initial object
 
 ggRGB(p224r63,3,2,1, stretch="lin")
 
 #This graphical visualization in true colors is therefore in RGB and independent from user's selection of a palette of colors through colorRampPalette function because the three levels of interest selected by the user herself/himself from B1_sre to B7_sre are combined such that they represent exclusively the red, green and blue channel in true colour sensors of LANDSAT satellite
 
-#The graphical visualization of p224r63_2011 in false color, not being the human eye thermal and multispectral sensors in a biological complex acquisition system, will be obtained by substituting B1_sre:blue spectral band with B4_sre:near-infrared, B5_sre:mid-infrared, B6_sre:far-infrared or B7_sre:other mid-infrared spectral bands on a case by case basis in remote sensing analysis
+#The graphical visualization of p224r63 in false color, not being the human eye thermal and multispectral sensors in a biological complex acquisition system, will be obtained by substituting B1_sre:blue spectral band with B4_sre:near-infrared, B5_sre:mid-infrared, B6_sre:far-infrared or B7_sre:other mid-infrared spectral bands on a case by case basis in remote sensing analysis
 
 ggRGB(p224r63,4,3,2, stretch="lin")
 
 #This is the graphical visualization of p224r63_2011 in false color for vegetational coverage of the Amazon rainforest through the red channel
 
-#arrangeGrob set up a gtable layout to place multiple grobs on a page. In particular grid.arrange() draw on the current device and is useful to organize ggRGB elements after after giving them a name:
+#The components r, g and b in defining the syntax of the plotRGB () or ggRGB () function can be omitted and replaced by the numbers that identify the bands (B1_sre: blue spectral band with B4_sre: near-infrared, B5_sre: mid-infrared, B6_sre: far-infrared or B7_sre: other mid-infrared spectral bands if the satellite is always Landsat) to be displayed through those channels as a single satellite image!
+
+#arrangeGrob set up a gtable layout to place multiple grobs on a page. In particular grid.arrange() draw on the current device and is useful to organize ggRGB elements after simply renamed them:
 
 p1 <- ggRGB(p224r63,3,2,1, stretch="lin")
 
