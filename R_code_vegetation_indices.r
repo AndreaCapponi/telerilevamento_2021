@@ -34,17 +34,22 @@
 #Syntaxis' function for Windows is: object name ↵ Enter
 #Final syntaxis' function in Windows is: defor1 ↵ Enter
 
-↓
+
+
+
+
+
+
 
 #From the 𝘯𝘢𝘮𝘦𝘴 category in the summary of defor1 information 
-
 #If the user requires R's function plot(defor1) it will graphically display the reflectance values for the previous spectral bands?
 #I exploit a function ($) to extract, from the initial (plot) of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of ''interest''
 #Initial syntaxis' function for Windows: plot(object name$name of the object's level in which the user is interested for graphical visualization)
 #What will be the final syntaxis' function in Windows if my defor1's levels of "interest"² are two set of data which will be graphically visualized in their functional whole being as the spectral bands defor1.1² and defor1.2²?
 #Final syntaxis' function in Windows for red (R) band B1 is: defor1$defor1.1
 #Final syntaxis' function in Windows for near-infrared (NIR) band B2 is: defor1$defor1.2
-#With plot(p224r63_2011$B1_sre) the user graphically will visualize the spectral band B1_sre:blue stand-alone² in its reflectance's values which colorscale is ax expected by default in R itself
+#With plot(defor1$defor1.1) the user graphically will visualize the spectral band B1_sre:red stand-alone² in its reflectance's values which colorscale is ax expected by default in R itself
+#With plot(defor1$defor1.2) the user graphically will visualize the spectral band B2_sre:near-infrared stand-alone² in its reflectance's values which colorscale is ax expected by default in R itself
 #plot(defor1$defor1.1)
 #plot(defor1$defor1.2)
 #For each defor1 pixel I am considering the value in the NIR band and the value in the R band in difference. From this operation we will obtain a map formed by pixels in difference with respect to the previous values!
