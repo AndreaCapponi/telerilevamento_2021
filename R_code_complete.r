@@ -1028,7 +1028,7 @@ GC <- brick("dolansprings_oli_2013088_canyon_lrg.jpg")
 
 #dolansprings_oli_2013088_canyon_lrg.jpg is an image captured by the Landsat satellite and downloaded from the NASA Earth Observatory website https://landsat.visibleearth.nasa.gov/view.php?id=80948
 
-#plotRGB() is a Red-Green-Blue plot based on three layers (in a RasterBrick or RasterStack) combined such that they represent the red, green and blue channel. Through plotRGB () it is possible to graphically visualize SO in the colors of the visible spectrum before its download from the ESA website https://www.esa.int/ESA_Multimedia/Sets/Solar_Orbiter_first_images/(result_type)/images:
+#plotRGB() is a Red-Green-Blue plot based on three layers (in a RasterBrick or RasterStack) combined such that they represent the red, green and blue channel. Through plotRGB () it is possible to graphically visualize GC in the colors of the visible spectrum:
 
 plotRGB(GC, r=1, g=2, b=3, stretch="lin") 
 
