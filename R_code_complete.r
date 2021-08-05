@@ -1,4 +1,4 @@
-#R code complete - Telerilevamento Geo-Ecologico
+#R code complete - Remote sensing
 #-----------------------------------------------
 #Summary:
 #----------------------------------------------
@@ -14,7 +14,7 @@
 #10.R code variability
 #----------------------------------------------
 
-#1. Remote Sensing - first code
+#1. R code remote sensing
 
 #Title for R's developing code
 #My first R code for remote sensing
