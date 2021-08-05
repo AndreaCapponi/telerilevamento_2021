@@ -1,4 +1,4 @@
-#Al di sotto commentare e organizzare la lezione del 19/05/2021
+#
 
 #The third package to install is ggplot2, which is a system for declaratively creating graphics, based on "The Grammar of Graphics". The user provides the data, tell 'ggplot2' how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details:
 
@@ -42,131 +42,235 @@ plotRGB(sentinel)
 
 #plotRGB(sentinel) and plotRGB(sentinel, r=1, g=2, b=3, strecht="Lin") will lead the user to the same result!
 
-#How to calculate variance in sentinel?
-##How to calculate variance in sentinel?
-#The calculation of the variance is to be carried out exclusively on a band selected by the user through the moving window method
-#The moving window method depends on the value of the standard deviation calculated on the values of a grid whose size is 3 x 3 pixels, attributing the final to the central
-#The new map obtained externally has non-values while internally the values for the standard deviations to which to attribute different "colors"
-#How to compact my three bands into one to apply the moving window method?
-#With sentinel the names of the three bands of my interest are identified (the last sentinel.4 is created as an automatically empty slot) and I give them a synthetic and immediate name
-#The calculation of the variance is to be carried out exclusively on a band selected by the user through the moving window method
-#The moving window method depends on the value of the standard deviation calculated on the values of a grid whose size is 3 x 3 pixels, attributing the final to the central
-#The new map obtained externally has non-values while internally the values for the standard deviations to which to attribute different "colors"
-#How to compact my three bands into one to apply the moving window method?
-#With sentinel the names of the three bands of my interest are identified (the last sentinel.4 is created as an automatically empty slot) and I give them a synthetic and immediate name
+#How to calculate variance within a satellite image?
 
-#Come effettuare il calcolo della varianza?
-#Il calcolo della varianza è da effettuarsi esclusivamente su una banda selezionata dall'utente attraverso il metodo della moving window
-#Il metodo della moving window dipende dal valore della deviazione standard calcolata sui valori di una griglia la cui grandezza è di 3 x 3 pixels attribuendo il finale al centrale
-#La nuova mappa ottenuta ha esternamente dei non valori mentre internamente i valori per le deviazioni standard a cui attribuire "colorazioni" differenti
-#Come compattare le mie tre bande in un'unica per applicare il metodo della moving window?
-#Con sentinel si identificano i nomi delle tre bande di mio interesse (l'ultima sentinel.4 è creata come slot vuoto auotmaticamente) e do loro un nome sintetico e immediato
+#The variance is a numerical measure of how the data values is dispersed around the mean
+
+#The calculation of the variance in a satellite image is to be carried out exclusively on one of its bands selected by the user through the moving window method
+
+#The moving window method depends on the value of the standard deviation (σ) calculated on the values of a grid whose size is 3 x 3 pixels
+
+#The final value is associated with the pixel that represents the exact center of the moving window
+
+#The new map obtained externally has non-values while internally the values for the standard deviations to which to attribute different "colors"
+
+#How to merge the three bands of the sentinel satellite image into one so that I can apply the moving window method?
+
+#Name identification for the four sentinel bands is possible from the 𝘯𝘢𝘮𝘦𝘴 category in the information summary clicking Enter ↵ as physical command by keyboard:
+
+sentinel
+
+#The relatively sentinel information is contained within the table:
+
+class      : RasterBrick 
+dimensions : 794, 798, 633612, 4  (nrow, ncol, ncell, nlayers)
+resolution : 1, 1  (x, y)
+extent     : 0, 798, 0, 794  (xmin, xmax, ymin, ymax)
+crs        : NA 
+source     : sentinel.png 
+names      : sentinel.1, sentinel.2, sentinel.3, sentinel.4 
+min values :          0,          0,          0,          0 
+max values :        255,        255,        255,        255
+
+#The satellite bands of interest in sentinel to me are sentinel$sentinel.1 (NIR) and sentinel$sentinel.2 (RED) to which for convenience I gave them a name to facilitate the calculation of NDVI in the following code string:
 
 nir <- sentinel$sentinel.1
 
 red <- sentinel$sentinel.2
 
-#Io sfrutto l'indice di vegetazione NDVI (R_code_vegetation_indices.R) per compattare secondo la formula ndvi <- (nir-red) / (nir+red) ed effettuo il plot
+#I calculate the NDVI vegetation index as R_code_vegetation_indices.r according to the NDVI formula (NIR-RED) / (NIR + RED):
+
+ndvi <- (nir-red) / (nir+red)
+
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:
 
 plot(ndvi)
 
-#Per una migliore interpretazione dell'immagine ottenuta, perchè non creare un'altra palette di colori che la facilitino?
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:
 
-cl <- colorRampPalette(c('black','white','red','magenta','green'))(100) 
+vcp <- colorRampPalette(c('black','white','red','magenta','green'))(100) 
 
-plot(ndvi,col=cl)
+#plot(ndvi) must be reformulated by incorporating new palette of colors vcp: plot(ndvi,col=vcp) will display graphically reflectance's values in a black, white, red, magenta and green colour scale:
 
-#Calcolare la variabilità dell'immagine è ora possibile andando a calcolare la deviazione standard con il metodo della moving window attraverso la funzione focal
-#focal: Focal values -> Calculate focal ("moving window") values for the neighborhood of focal cells using a matrix of weights, perhaps in combination with a function.
+plot(ndvi,col=vcp)
+
+#The functions described so far enable the user to calculate the variability of the sentinel satellite image with the moving window method computationally expressed by the focal () function:
+
+#focal() is a function that calculates focal ("moving window") values for the neighborhood of focal cells using a matrix of weights, perhaps in combination with a function:
+
+#The variance has been defined as a numerical measure of how the data values is dispersed around the mean. If instead I considered it as dispersed around the standard deviation (σ)?
 
 ndvisd3 <- focal(ndvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
 
-#La moving window è quadrata per evitare l'anisotropia andando a compromettere il calcolo dei valori per assi X e Y che distorcerebbero l'interpretazione dei dati
+#Attention: The moving window has a square shape in order to avoid the anisotropy, which would compromise the calculation of values for the cartesian axes X and Y by giving an incorrect interpretation by the user!
+
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:
 
 plot(ndvisd3)
 
-#La colorRampPalette non facilita l'interpretazione dei dati nel grafico recentemente ottenuto
+#I exploit a function (colorRampPalette) to create an other palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
 
-plot(ndvisd3, col=clsd)
+#plot(ndvisd3) must be reformulated by incorporating new palette of colors sdcp: plot(ndvisd3, col=sdcp) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:
 
-#La media invece quali informazioni da rispetto a quello che abbiamo visualizzato finora?
+plot(ndvisd3, col=sdcp)
+
+#The variance has been defined as a numerical measure of how the data values is dispersed around the mean. If instead I considered it according to this definition what would be the difference or what would be the differences in comparison to the standard deviation (σ)?
 
 ndvimean3 <- focal(ndvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:
+
 plot(ndvimean3)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
+#I exploit a function (colorRampPalette) to create an other palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:
 
-plot(ndvimean3, col=clsd)
+mncp <- colorRampPalette(c('cyan','green','pink','violet','orange','brown','red','golden'))(100) 
+
+#plot(ndvimean3) must be reformulated by incorporating new palette of colors mncp: plot(ndvimean3, col=mncp) will display graphically reflectance's values in a cyan, green, pink, violet, orange, brown, red and golden colour scale:
+
+plot(ndvimean3, col=mncp)
+
+#With the function par() there is the possibility of combining multiple object's level of "interest" into one graphical visualization of their called multiframe:
      
 par(mfrow=c(1,2))
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
 
-plot(ndvimean3, col=clsd)
+mncp <- colorRampPalette(c('cyan','green','pink','violet','orange','brown','red','golden'))(100) 
 
-plot(ndvisd3, col=clsd)
+plot(ndvisd3, col=sdcp)
 
-#A questo punto è possibile cambiare la grandezza della finestra a mio piacimento. Attenzione il numero dei pixels deve essere dispari per avere ogni qualvolta un pixel centrale singolo per calcolare il valore della deviazione standard
+plot(ndvimean3, col=mncp)
 
-ndvimsd7 <- focal(ndvi,w=matrix(1/49, nrow=7, ncol=7), fun=sd)
+#After applying the moving window method to the sentinel satellite image, why not change the window size according to the need I might have in statistical analysis?
 
-plot(ndvisd7)
+#Attention! The number of pixels must be an odd number to have in each analysis a single central pixel in the moving window through which to calculate the standard deviation (σ)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
-
-plot(ndvisd7, col=clsd)
-
-#La risoluzione dell'immagine originale non viene modificata, è il calcolo che l'utente effettua è responsabile di variazioni nella visualizzazione grafica della variabilità (da valori minimi per un'indagine locale a valori espansivi per un'indagine globale)
+#focal() is a function that calculates focal ("moving window") values for the neighborhood of focal cells using a matrix of weights, perhaps in combination with a function:
 
 ndvisd5 <- focal(ndvi, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) # 
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:
 
-plot(ndvisd5, col=clsd)
+plot(ndvisd5)
 
-#E' possibile sfruttare anche un'analisi multivariata andando a considerare esclusivamente la componente PC1 sulla quale far scorrere la moving window ottenendone una mappa per la variabilità secondo valori della deviazione standard
+#I exploit a function (colorRampPalette) to create an other palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:
 
-#La funzione a cui mi appoggio è rasterPCA che è contenuto nel pacchetto RSToolbox che abbiamo già richiamato all'inizio del codice
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
+
+#plot(ndvisd5) must be reformulated by incorporating new palette of colors sdcp: plot(ndvisd5, col=sdcp) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:
+
+plot(ndvisd5, col=sdcp)
+
+#focal() is a function that calculates focal ("moving window") values for the neighborhood of focal cells using a matrix of weights, perhaps in combination with a function:
+
+ndvimsd7 <- focal(ndvi,w=matrix(1/49, nrow=7, ncol=7), fun=sd)
+
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:
+
+plot(ndvisd7)
+
+#I exploit a function (colorRampPalette) to create an other palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:
+
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
+
+#plotplot(ndvisd7) must be reformulated by incorporating new palette of colors sdcp: plot(ndvisd7, col=clsd) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:
+
+plot(ndvisd7, col=clsd)
+
+#It is also possible to exploit a multivariate analysis by considering exclusively the PC1 component on which to scroll the moving window, obtaining a map for the variability according to the values of the standard deviation (σ)
+
+#I can conduct the principal component analysis or PCA on the sentinel RasterBrick, exploiting the rasterPCA() function which calculates R-mode PCA for RasterBricks or RasterStacks and returns a RasterBrick with multiple layers of PCA scores:
 
 sentinelpca <- rasterPCA(sentinel)
 
-plot(sentinelpca$map)
-
-#Attenzione! E' da legare la mappa successivamente all'analisi sennò Error in xy.coords(x, y, xlabel, ylabel, log) : 
-  'x' is a list, but does not have components 'x' and 'y'
+#In R, to visualize information of resampledp224r63_2011rpca, name of it followed by Enter ↵ as physical command by keyboard:
 
 sentinelpca
 
-#Quanta variabilità iniziale spiegano le singole componenti?
+#The relatively sentinelpca information is contained within the $map:
 
-#summary(sentinelpca$map)
+$call
+rasterPCA(img = sentinel)
 
-#Il PC1 spiega il 67,368% dell'informazione contenuta nell'immagine originale!
+$model
+Call:
+princomp(cor = spca, covmat = covMat[[1]])
 
-#Su quale banda vogliamo agire?
+Standard deviations:
+  Comp.1   Comp.2   Comp.3   Comp.4 
+77.33628 53.51455  5.76560  0.00000 
 
-#Com'è fatta la sua mappa?
+ 4  variables and  633612 observations.
 
-#La prima componente si chiama PC1. Come usare eslusivamente la prima componente?
+$map
+class      : RasterBrick 
+dimensions : 794, 798, 633612, 4  (nrow, ncol, ncell, nlayers)
+resolution : 1, 1  (x, y)
+extent     : 0, 798, 0, 794  (xmin, xmax, ymin, ymax)
+crs        : NA 
+source     : memory
+names      :       PC1,       PC2,       PC3,       PC4 
+min values : -227.1124, -106.4863,  -74.6048,    0.0000 
+max values : 133.48720, 155.87991,  51.56744,   0.00000 
+
+
+attr(,"class")
+[1] "rasterPCA" "RStoolbox"
+
+#$call, $model and $map refer to respectively: the function selected by the user and applied to the image on which the statistical analysis is conducted, the result (s) of the previous statistical analysis and a general information framework for the initial image as an R object
+
+#summary() is a generic function used to produce result summaries of the results of various model fitting functions
+
+#$ is a basic extraction operator which extract, from the initial plot() of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of "interest"
+
+summary(sentinelpca$model)
+
+#The combination of the summary () function and the basic $ extraction operator allows me to view only the information contained in $model. The importance of the components is analyzed through the standard deviation, the variance proportion and the cumulative proportion:
+
+Importance of components:
+                           Comp.1     Comp.2      Comp.3 Comp.4
+Standard deviation     77.3362848 53.5145531 5.765599616      0
+Proportion of Variance  0.6736804  0.3225753 0.003744348      0
+Cumulative Proportion   0.6736804  0.9962557 1.000000000      1
+
+#The variance in percent for the PC1 blue band represents that of the variance in sentinelpca being around 67,38%!
+
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral PCA bands:
+
+plot(sentinelpca$map)
+
+#To conduct the multivariate analysis according to the moving window method exclusively considering the PC1 component in sentinelpca$map, I have to give it a name of my choice:
 
 PC1 <-sentinelpca$map$PC1
 
-#Qualsiasi funzione in R è da rinominare in oggetti che sono maggiormente gestibili rispetto a stringhe di codice
+#Before proposing an iterative cycle of functions for the purpose illustrated in the 245th code string, it is essential in R to rename objects by abbreviation so that they are more manageable than entire strings of code!
+
+#focal() is a function that calculates focal ("moving window") values for the neighborhood of focal cells using a matrix of weights, perhaps in combination with a function:
 
 PC1sd5 <- focal(PC1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+#I exploit a function (colorRampPalette) to create an other palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:
 
-plot(PC1sd5, col=clsd)
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+#plot(PC1sd5) must be reformulated by incorporating new palette of colors sdcp: plot(PC1sd5, col=sdcp) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:
+
+plot(PC1sd5, col=sdcp)
+
+#focal() is a function that calculates focal ("moving window") values for the neighborhood of focal cells using a matrix of weights, perhaps in combination with a function:
 
 PC1sd13 <- focal(PC1, w=matrix(1/169, nrow=13, ncol=13), fun=sd)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+#I exploit a function (colorRampPalette) to create an other palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:
 
-plot(PC1sd13, col=clsd)
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+#plot(PC1sd13) must be reformulated by incorporating new palette of colors sdcp: plot(PC1sd13, col=sdcp) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:
+
+plot(PC1sd13, col=sdcp)
 
 #Forte variabilità geo-morfologica imputabile alla presenza di creste, crepacci, ...
 
@@ -282,89 +386,83 @@ sentinel <- brick("sentinel.png")
 
 plotRGB(sentinel)
 
+sentinel
+
 nir <- sentinel$sentinel.1
 
 red <- sentinel$sentinel.2
 
+ndvi <- (nir-red) / (nir+red)
+
 plot(ndvi)
 
-cl <- colorRampPalette(c('black','white','red','magenta','green'))(100) 
+vcp <- colorRampPalette(c('black','white','red','magenta','green'))(100) 
 
-plot(ndvi,col=cl)
+plot(ndvi,col=vcp)
 
 ndvisd3 <- focal(ndvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
 
 plot(ndvisd3)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
 
-plot(ndvisd3, col=clsd)
-
-ndvimean3 <- focal(ndvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
-
-plot(ndvimean3)
-
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
-
-plot(ndvimean3, col=clsd)
-     
-par(mfrow=c(1,2))
-
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
-
-plot(ndvimean3, col=clsd)
-
-plot(ndvisd3, col=clsd)
+plot(ndvisd3, col=sdcp)
 
 ndvimean3 <- focal(ndvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 
 plot(ndvimean3)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
+mncp <- colorRampPalette(c('cyan','green','pink','violet','orange','brown','red','golden'))(100) 
 
-plot(ndvimean3, col=clsd)
-     
+plot(ndvimean3, col=mncp)
+
 par(mfrow=c(1,2))
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
 
-plot(ndvimean3, col=clsd)
+mncp <- colorRampPalette(c('cyan','green','pink','violet','orange','brown','red','golden'))(100) 
 
-plot(ndvisd3, col=clsd)
+plot(ndvisd3, col=sdcp)
+
+plot(ndvimean3, col=mncp)
+
+ndvisd5 <- focal(ndvi, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
+
+plot(ndvisd5)
+
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
+
+plot(ndvisd5, col=sdcp)
 
 ndvimsd7 <- focal(ndvi,w=matrix(1/49, nrow=7, ncol=7), fun=sd)
 
 plot(ndvisd7)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
 
 plot(ndvisd7, col=clsd)
 
-ndvisd5 <- focal(ndvi, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
-
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) # 
-
-plot(ndvisd5, col=clsd)
-
 sentinelpca <- rasterPCA(sentinel)
 
-plot(sentinelpca$map)
-
 sentinelpca
+
+summary(sentinelpca$model)
+
+plot(sentinelpca$map)
 
 PC1 <-sentinelpca$map$PC1
 
 PC1sd5 <- focal(PC1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 
-plot(PC1sd5, col=clsd)
+plot(PC1sd5, col=sdcp)
 
 PC1sd13 <- focal(PC1, w=matrix(1/169, nrow=13, ncol=13), fun=sd)
 
-clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 
-plot(PC1sd13, col=clsd)
+plot(PC1sd13, col=sdcp)
 
 source("source_test_lezione.r")
 
