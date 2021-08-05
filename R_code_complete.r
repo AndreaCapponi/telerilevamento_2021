@@ -588,7 +588,7 @@ plot(snowcover2021)
 
 sc21gbwcp <- colorRampPalette(c('green','brown','white'))(1000)
 
-#plot(plot(snowcover2021) must be reformulated by incorporating new palette of colors sc21gbwcp: plot(snowcover2021, col=sc21gbwcp) will display graphically reflectance's values in a green, brown and black colour scale:
+#(plot(snowcover2021) must be reformulated by incorporating new palette of colors sc21gbwcp: plot(snowcover2021, col=sc21gbwcp) will display graphically reflectance's values in a green, brown and black colour scale:
 
 plot(snowcover2021, col=sc21gbwcp)
 
