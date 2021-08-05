@@ -1,4 +1,4 @@
-#deforestation in the dry tropical forests of Mato Grosso (NT0140)
+#The deforestation in the dry tropical forests of Mato Grosso (NT0140) and the correlation with the increase in coverage to an agricultural one in Brazil 🏞️↪️🌾
 
 #install.packages() is a function which download and install packages from CRAN-like repositories or from local files
 
@@ -135,7 +135,7 @@ r.norm(1)
 
 D2c <- unsuperClass(defor2, nClass=2)
 
-#In the above classification, being interested in the phenomenon of deforestation, I created the two same classes of defor1 in the unsuperClass () function using the nClasses argument: the first for the Amazon forest (near-infrared or NIR band displayed through the red channel R) and the second for agricultural land (other bands displayed through the G and B channels)
+#In the above classification, being interested in the phenomenon of deforestation, I created the two same classes of defor1 in the unsuperClass () function using the nClasses argument: the first for the 𝘈𝘮𝘢𝘻𝘰𝘯 𝘍𝘰𝘳𝘦𝘴𝘵 (near-infrared or NIR band displayed through the red channel R) and the second for agricultural land (other bands displayed through the G and B channels)
 
 #In R, to visualize information of D2c, name of it followed by Enter ↵ as physical command by keyboard:
 
@@ -172,7 +172,7 @@ D2c3 <- unsuperClass(defor2, nClass=3)
 
 plot(D2c3$map)
 
-#
+#To estimate the coverage of dry forests in the state of Mato Grosso and the coverage of agriculture land and how their progress/regression ratio has evolved, I use the freq() function to get the number of pixels that belong to the previous classes selected in the unsuperClass() function at the 101st and 136th code strings: D1c <- unsuperClass (defor1, nClass=2) and D2c <- unsuperClass (defor2, nClass =2) respectively
 
 #freq() is a function that generates and formats frequency tables from a variable or a table, with percentages and formatting options:
 
@@ -194,39 +194,103 @@ freq(D2c$map)
 [1,]     1 178490
 [2,]     2 164236
 
+#The total number of pixels in Dc1$map is obtained as the sum of the number of pixels for each previously identified class, which in this code are 𝘈𝘮𝘢𝘻𝘰𝘯 𝘍𝘰𝘳𝘦𝘴𝘵 and 𝘈𝘨𝘳𝘪𝘤𝘶𝘭𝘵𝘶𝘳𝘦/𝘖𝘵𝘩𝘦𝘳:
 
-#Qual è la proporzione per avere la percentuale?
-#La somma dei pixels è s1 <-306610 + 34682, poi s1 o dc1 con informazione sul numero totale dei pixels [1] 341292
-#prop1 <-freq(d1c$map)/ s1
-#prop1 
-#            value     count
-[1,] 2.930042e-06 0.8983803 Foresta Amazzonica
-[2,] 5.860085e-06 0.1016197 Suolo ad uso agricolo
-#s2 <- 163860 + 178866 = [1] 342726
-#prop2 <-freq(d2c$map)/ s2
-#prop2
-#            value     count
-[1,] 2.917783e-06 0.4781079 Suolo ad uso agricolo
-[2,] 5.835565e-06 0.5218921 Foresta Amazzonica
-#Per la percentuale, semplice moltiplicazione * 100 da numeri ottenuti per le prop1 prop2
-#Generazione di un dataframe a partire dai dati ottenuti!
-#Fattori delle variabili categoriche: prima colonna con Forest and Agriculture sotto il nome Cover
-#La struttura consiste in colonne per percentuale iniziale di pixel con 99 e percentuale finale di pixel 2006
-#cover <- c("Forest", "Agriculture")
-#percent_1992 <- c(89.83, 10.16)
-#percent_2016 <- c(52.18, 47.81)
-#losspercentages <- data.frame(cover, percent_1992, percent_2016)
-#losspercentages
-#   cover percent_1992 percent_2016
-1      Forest        89.83        52.18
-2 Agriculture        10.16        47.81
-#Come plottare questi dati?
-#ggplot(losspercentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="pink")
-#ggplot(losspercentages, aes(x=cover, y=percent_2016 , color=cover)) + geom_bar(stat="identity", fill="pink")
-#p1 <- ggplot(losspercentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="pink")
-#p2 <- ggplot(losspercentages, aes(x=cover, y=percent_2016 , color=cover)) + geom_bar(stat="identity", fill="pink")
-#grid.arrange(p1, p2, nrow=1)
-#
+s1 <- 306374 + 34918
+
+#In R, to visualize information of s1, name of it followed by Enter ↵ as physical command by keyboard:
+
+s1
+
+#The relatively s1 information is contained within the string:
+
+[1] 341292
+
+#The total number of pixels in Dc2$map is obtained as the sum of the number of pixels for each previously identified class, which in this code are 𝘈𝘮𝘢𝘻𝘰𝘯 𝘍𝘰𝘳𝘦𝘴𝘵 and 𝘈𝘨𝘳𝘪𝘤𝘶𝘭𝘵𝘶𝘳𝘦/𝘖𝘵𝘩𝘦𝘳:
+
+s2 <- 178490 + 164236
+
+#In R, to visualize information of s2, name of it followed by Enter ↵ as physical command by keyboard:
+
+s2
+
+#The relatively s2 information is contained within the string:
+
+[1] 342726
+
+#From the number of pixels that belong to the 𝘈𝘮𝘢𝘻𝘰𝘯 𝘍𝘰𝘳𝘦𝘴𝘵 and 𝘈𝘨𝘳𝘪𝘤𝘶𝘭𝘵𝘶𝘳𝘦/𝘖𝘵𝘩𝘦𝘳 classes respectively, how is it possible to have a percentage of the actual coverage in the state of Mato Grosso?
+
+#Initially, the ratio between freq (D1c $ map) and s1 is to be calculated as shown in the string below:
+
+prop1 <-freq(D1c$map)/ s1
+
+#In R, to visualize information of prop1, name of it followed by Enter ↵ as physical command by keyboard:
+
+prop1 
+
+#The relatively prop1 information is contained within the table:
+
+           value     count
+[1,] 5.860085e-06 0.8965314  𝘈𝘮𝘢𝘻𝘰𝘯 𝘍𝘰𝘳𝘦𝘴𝘵 
+[2,] 2.930042e-06 0.1034686 𝘈𝘨𝘳𝘪𝘤𝘶𝘭𝘵𝘶𝘳𝘦/𝘖𝘵𝘩𝘦𝘳
+
+#Initially, the ratio between freq (D1c $ map) and s1 is to be calculated as shown in the string below:
+
+prop2 <-freq(D2c$map)/ s2
+
+#In R, to visualize information of prop2, name of it followed by Enter ↵ as physical command by keyboard:
+
+prop2
+
+#The relatively prop2 information is contained within the table:
+
+         value    count
+[1,] 2.917783e-06 0.520795  𝘈𝘮𝘢𝘻𝘰𝘯 𝘍𝘰𝘳𝘦𝘴𝘵
+[2,] 5.835565e-06 0.479205 𝘈𝘨𝘳𝘪𝘤𝘶𝘭𝘵𝘶𝘳𝘦/𝘖𝘵𝘩𝘦𝘳
+
+#The previous series of commands had the purpose of obtaining prop1 and prop2 and verify their values which, with a simple multiplication * 100, will give the user the effective coverage of the 𝘈𝘮𝘢𝘻𝘰𝘯 𝘍𝘰𝘳𝘦𝘴𝘵 and 𝘈𝘨𝘳𝘪𝘤𝘶𝘭𝘵𝘶𝘳𝘦/𝘖𝘵𝘩𝘦𝘳 respectively:
+
+percent_1992 <- c(89.65, 10.34)
+
+percent_2016 <- c(52.07, 47.92)
+
+#The percentage values for the 𝘈𝘮𝘢𝘻𝘰𝘯 𝘍𝘰𝘳𝘦𝘴𝘵 and 𝘈𝘨𝘳𝘪𝘤𝘶𝘭𝘵𝘶𝘳𝘦/𝘖𝘵𝘩𝘦𝘳 classes can be organized with the cover () function as categorical variables in the first column of a dataframe that will be constructed progressively:
+
+cover <- c("Forest", "Agriculture")
+
+#The dataframe, in addition to the column previously created with the name of cover, will consist of two other columns percent_1992 and percent_2016. In these the percentages of 89.83 and 52.18 for the 𝘈𝘮𝘢𝘻𝘰𝘯 𝘍𝘰𝘳𝘦𝘴𝘵 class and 10.16 and 47.81 for the 𝘈𝘨𝘳𝘪𝘤𝘶𝘭𝘵𝘶𝘳𝘦/𝘖𝘵𝘩𝘦𝘳 class will be visible and the final structure of the dataframe
+
+#The function data.frame() creates data frames, tightly coupled collections of variables which share many of the properties of matrices and of lists, used as the fundamental data structure by most of R's modeling software:
+
+losspercentages <- data.frame(cover, percent_1992, percent_2016)
+
+#In R, to visualize the dataframe of losspercentages, name of it followed by Enter ↵ as physical command by keyboard:
+
+losspercentages
+
+#The relatively losspercentages information is contained within the dataframe:
+
+cover percent_1992 percent_2016
+1      Forest        89.65        52.07
+2 Agriculture        10.34        47.92
+
+#Which is the basic syntax of ggplot() function?
+
+#The basic syntax of ggplot() function is: ggplot(data = specifies the dataframe you want to plot, aes(x= , y= how we are mapping variables from data to visual elements)) + geom_point(specifies what we want to draw)
+
+#The graph that I have selected is a bar graph through the function geom_bar () and ggplot () which function allows me to graphically display the data that I have so far analyzed in the code:
+
+ggplot(losspercentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="pink")
+
+ggplot(losspercentages, aes(x=cover, y=percent_2016 , color=cover)) + geom_bar(stat="identity", fill="pink")
+
+#arrangeGrob set up a gtable layout to place multiple grobs on a page. In particular grid.arrange() draw on the current device and is useful to organize ggRGB elements after simply renamed them:
+
+ggD1 <- ggplot(losspercentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="pink")
+
+ggD2 <- ggplot(losspercentages, aes(x=cover, y=percent_2016 , color=cover)) + geom_bar(stat="identity", fill="pink")
+
+grid.arrange(ggD1, ggD2, nrow=1)
 
 #Sequence of informatic commands for R_code_knitr.r
 
@@ -296,15 +360,44 @@ D2c3 <- unsuperClass(defor2, nClass=3)
 
 plot(D2c3$map)
 
+freq(D1c$map)
 
+freq(D2c$map)
 
+s1 <- 306374 + 34918
 
+s1
 
+s2 <- 178490 + 164236
 
+s2
 
+prop1 <-freq(D1c$map)/ s1
 
+prop1 
 
+prop2 <-freq(D2c$map)/ s2
 
+prop2
 
+percent_1992 <- c(89.65, 10.34)
+
+percent_2016 <- c(52.07, 47.92)
+
+cover <- c("Forest", "Agriculture")
+
+losspercentages <- data.frame(cover, percent_1992, percent_2016)
+
+losspercentages
+
+ggplot(losspercentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="pink")
+
+ggplot(losspercentages, aes(x=cover, y=percent_2016 , color=cover)) + geom_bar(stat="identity", fill="pink")
+
+ggD1 <- ggplot(losspercentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="pink")
+
+ggD2 <- ggplot(losspercentages, aes(x=cover, y=percent_2016 , color=cover)) + geom_bar(stat="identity", fill="pink")
+
+grid.arrange(ggD1, ggD2, nrow=1)
 
 
