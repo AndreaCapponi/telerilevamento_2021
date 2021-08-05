@@ -1,4 +1,4 @@
-#
+#How to calculate the variability within a satellite image? 🕵🏿‍♂️🗺️
 
 #The third package to install is ggplot2, which is a system for declaratively creating graphics, based on "The Grammar of Graphics". The user provides the data, tell 'ggplot2' how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details:
 
@@ -317,6 +317,7 @@ scale_fill_viridis(option="turbo")+ggtitle("Standard deviation of PC1 by turbo c
 ggplot() + geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+ scale_fill_viridis()
 
 #I have three maps available depending on the scale_fill_viridis () block for PC1sd5 (viridis, magma and turbo), I associate names to them to create a multigraphic display through the grid.arrange () function:
+
 p1 <- ggplot() +
 geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis()+ggtitle("Standard deviation of PC1 by viridis colour scale")
