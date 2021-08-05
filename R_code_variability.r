@@ -272,63 +272,29 @@ sdcp <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red
 
 plot(PC1sd13, col=sdcp)
 
-#Forte variabilità geo-morfologica imputabile alla presenza di creste, crepacci, ...
+#plot (PC1sd13, col = sdcp) allows you to view a strong geo-morphological variability attributable to the geomorphological alteration of the soil surface due to the presence of cracks, crevasses, etc...
 
-#La vegetazione rappresentata dal colore blu è omogenea e va a rappresentare una o più praterie mentre l'aumento di variabilità è osservabile nella transazione tra praterie e rocce
+#The vegetation, on the other hand, appears to have low bio-ecosystemic variability as it is a set of grasslands; 
 
-#La funzione source richiama un pezzo di codice che si è creato
+#The variability, calculated in sentinel through the moving window method with centering on the standard deviation, is at its maximum value in the transition between bare soil and prairie!
 
-#source: Read R Code from a File, a Connection or Expressions
-
-#source causes R to accept its input from the named file or URL or connection or expressions directly. Input is read and parsed from that file until the end of the file is reached, then the parsed expressions are evaluated sequentially in the chosen environment.
-
-#Nella cartella lab io ho source_test_lezione.rFile
+#source causes R to accept its input from the named file or URL or connection or expressions directly. Input is read and parsed from that file until the end of the file is reached, then the parsed expressions are evaluated sequentially in the chosen environmen
 
 source("source_test_lezione.r")
 
-#Error in eval(ei, envir) : oggetto "sentpca" non trovato
-
-#La mia pca si chiama sentinelpca, è da modificare il file che il professore ha caricato su Virtuale
-
-#library(viridis) for ggplot2 coloring
+#source causes R to accept its input from the named file or URL or connection or expressions directly. Input is read and parsed from that file until the end of the file is reached, then the parsed expressions are evaluated sequentially in the chosen environmen
 
 source("source_ggplot.r")
 
-#La correzione dei nomi fa agire la funzione indipendentemente dal creatore di questa stringa di codice!
+#To visualize the data of the multivariate analysis so far conducted on an R object (my choice between PC1sd5 and PC1sd13), the user can build the ggplot () function starting from the latter which represents the work area with Cartesian references and completely empty
 
-#Inizialmente si deve creare una finestra all'interno della funzione ggplot come ggplot() (creazione di un'area di lavoro completamente vuota)
+ggplot() + geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))
 
-#L'aggiunta di elementi in ggplot2 avviene per blocchi, quindi dopo ggplot() segue la somma come operazione +
+#The addition of statistical and aesthetic elements in ggplot2 occurs in blocks: in the syntax of the function after ggplot () follows their sum to be understood as an operation (+)
 
-#Poi è da definirsi la geometria dipendentemente dal grafico che voglio creare tramite questa funzione. Essendo pixels io sfrutto la funzione è geom_raster()
+#In the ggplot () function, the geometry that is selected by the user depending on the graph he wants to display is fundamental. Being a satellite image in pixels, the reference function is geom_raster ()
 
-#La sintassi della funzione finora è ggplot() +
-geom_raster(PC1sd5, ...)
-
-#L'estetiche sono definite attraverso il 
-
-#La sintassi aggiornata è:ggplot() +
-geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))
-
-#Questo è il metodo migliore per indentificare a livello geografico delle discontinuita, in ambito geologico qualsiasi variabilità mentre in ecologia l'ecotonia
-#Qual è il punto con la maggiore variabilità? Maggiore variabilità geo-morfologica in alto a sinistra
-
-#https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
-
-# The package contains eight color scales: “viridis”, the primary choice, and five alternatives with similar properties - “magma”, “plasma”, “inferno”, “civids”, “mako”, and “rocket” -, and a rainbow color map - “turbo”
-
-#Come si chiama la funzione per creare le legende per ciascun grafico in ggplot?
-
-ggplot() +
-geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))
-
-#Come aggiungere la legenda di default per il pacchetto viridis?
-
-ggplot() +
-geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+
-scale_fill_viridis()
-
-#Come aggiungere un titolo? L'argomento non è più main ma ggtitle
+#The title in the ggplot () function syntax must be added as an additional block in the form ggtitle ("title of the statistical graph")
 
 ggplot() +
 geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+
@@ -338,8 +304,6 @@ ggplot() +
 geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis(option="magma")+ggtitle("Standard deviation of PC1 by magma colour scale")
 
-#scale_fill_viridis, search on Google because is an option for another legend
-
 ggplot() +
 geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis(option="inferno")+ggtitle("Standard deviation of PC1 by inferno colour scale")
@@ -348,8 +312,11 @@ ggplot() +
 geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis(option="turbo")+ggtitle("Standard deviation of PC1 by turbo colour scale")
 
-#Tre mappe disponibili: viridis, magma e turbo a cui associo loro dei nomi per creare successivamente un grid arrange
+#viridis package contains 'ggplot2' bindings for discrete and continuous color and fill scales represented by the scale_fill_viridis () argument below:
 
+ggplot() + geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+ scale_fill_viridis()
+
+#I have three maps available depending on the scale_fill_viridis () block for PC1sd5 (viridis, magma and turbo), I associate names to them to create a multigraphic display through the grid.arrange () function:
 p1 <- ggplot() +
 geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis()+ggtitle("Standard deviation of PC1 by viridis colour scale")
@@ -362,13 +329,9 @@ p3 <- ggplot() +
 geom_raster(PC1sd5, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis(option="turbo")+ggtitle("Standard deviation of PC1 by turbo colour scale")
 
+#arrangeGrob set up a gtable layout to place multiple grobs on a page. In particular grid.arrange() draw on the current device and is useful to organize ggRGB elements after simply renamed them:
+
 grid.arrange(p1, p2, p3, nrow=1)
-
-#La variabilità è studiabile attraverso la funzione focal
-
-#E' possibile esportare stringhe di codice per proseguire nella creazione o nello studio attraverso la funzione source
-
-#Con ggplot2 è possibile andare a graficare la variabilità citata precedentemente
 
 #Sequence of informatic commands for R_code_variability.r
 
