@@ -392,7 +392,7 @@ plot(disruptedvegetationdvi)
 
 MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
 
-#plot(disruptedvegetationdvi) must be reformulated by incorporating new palette of colors vcp: plot(disruptedvegetationdvi, col=MSHDVIcolorspalette) will display graphically reflectance's values in a darkblue, cyan, forestgreen, chartreuse2, saddlebrown, brown and black colour scale:
+#plot(disruptedvegetationdvi) must be reformulated by incorporating new palette of colors MSHDVIcolorspalette: plot(disruptedvegetationdvi, col=MSHDVIcolorspalette) will display graphically reflectance's values in a darkblue, cyan, forestgreen, chartreuse2, saddlebrown, brown and black colour scale:
 
 plot(disruptedvegetationdvi, col=MSHDVIcolorspalette)
 
@@ -422,11 +422,23 @@ names      : MSHanalysis_96.1, MSHanalysis_96.2, MSHanalysis_96.3
 min values :                0,                0,                0 
 max values :              255,              255,              255 
 
-#
+#The satellite bands of interest in disruptedvegetation to me are MSHanalysis_96.1 and MSHanalysis_96.2 as red (R) band B1 and near-infrared (NIR) band B2 respectively
+
+#If the user requires R's function plot(newlyvegetation) it will graphically display the reflectance values for the previous spectral bands?
+
+#I exploit a function ($) to extract, from the initial (plot) of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of ''interest''
+
+#Initial syntaxis' function for Windows: plot(object name$name of the object's level in which the user is interested for graphical visualization)
+
+#What will be the final syntaxis' function in Windows if my defor1's levels of "interest" are two set of data which will be graphically visualized in their functional whole being as the spectral bands MSHanalysis_87.1 and MSHanalysis_87.2?
+
+#Final syntaxis' function in Windows for red (R) band B1 is: newlyvegetation$MSHanalysis_96.1
+
+#In R, visualizing informations of defor1$defor1.1, name of it followed by Enter as physical command by keyboard ↵:
 
 newlyvegetation$MSHanalysis_96.1
 
-#
+#The relatively newlyvegetation$MSHanalysis_96.1 information is contained within the table:
 
 class      : RasterLayer 
 band       : 1  (of  3  bands)
@@ -438,11 +450,13 @@ source     : MSHanalysis_96.jpg
 names      : MSHanalysis_96.1 
 values     : 0, 255  (min, max)
 
-#
+#Final syntaxis' function in Windows for near-infrared (NIR) band B2 is: newlyvegetation$MSHanalysis_96.2
+
+#In R, visualizing informations of newlyvegetation$MSHanalysis_96.2, name of it followed by Enter as physical command by keyboard ↵:
 
 newlyvegetation$MSHanalysis_96.2
 
-#
+#The relatively newlyvegetation$MSHanalysis_96.2 information is contained within the table:
 
 class      : RasterLayer 
 band       : 2  (of  3  bands)
@@ -454,28 +468,47 @@ source     : MSHanalysis_96.jpg
 names      : MSHanalysis_96.2 
 values     : 0, 255  (min, max)
 
-#
+#With plot(newlyvegetation$MSHanalysis_96.1) the user graphically will visualize the spectral band B1_sre:red stand-alone in its reflectance's values which colorscale is ax expected by default in R itself
 
 plot(newlyvegetation$MSHanalysis_96.1)
 
+#With plot(newlyvegetation$MSHanalysis_96.2) the user graphically will visualize the spectral band B2_sre:near-infrared stand-alone in its reflectance's values which colorscale is ax expected by default in R itself
+
 plot(newlyvegetation$MSHanalysis_96.2)
 
-#
+#I exploit a function dev.off() to end a graphical display depending on the R's (plot) function and if it is syntactically correct, the user will see this message appears: null device 1
+
+dev.off()
+
+#For each newlyvegetation pixel I am considering the value in the NIR band and the value in the R band in difference. From this operation we will obtain a map formed by pixels in difference with respect to the previous values!
+
+#The calculation of the DVI index is according to the formula a difference between newlyvegetation$MSHanalysis_96.1 and newlyvegetation$MSHanalysis_96.2 to represent for each pixel - which constitutes the original image - the reflectance value as the difference between those associated with the NIR and R bands!
 
 newlyvegetationdvi <- newlyvegetation$MSHanalysis_96.1 - newlyvegetation$MSHanalysis_96.2
 
-#
+#How to graphically visualize the state of health for the vegetation on the volcano landslide of Mount Saint Helens from raster multi-layer raster object newlyvegetation? 
+
+#I exploit a function (plot) to obtain visually the vegetation's state of health
+
 plot(newlyvegetationdvi)
 
-#
+#In R function plot(newlyvegetationdvi) lead me to a window with the state of health of the vegetation on the volcano landslide of Mount Saint Helens through the concept of reflectance
+
+#Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1/newlyvegetation$MSHanalysis_96.1 to B2/newlyvegetation$MSHanalysis_96.2 representing each spectral bands
+
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
+
+#with what has been described so far, I create a futher new palette of colors MSHDVIcolorspalette in which first, second, third and last color will be darkblue, cyan, forestgreen, chartreuse2, saddlebrown, brown and black respectively with number's value of depth levels taken to 100!
 
 MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
 
-#
+#plotplot(newlyvegetationdvi) must be reformulated by incorporating new palette of colors MSHDVIcolorspalette: plot(newlyvegetationdvi, col=MSHDVIcolorspalette will display graphically reflectance's values in a darkblue, cyan, forestgreen, chartreuse2, saddlebrown, brown and black colour scale:
+
+#plot(disruptedvegetationdvi) must be reformulated by incorporating also the main argument to contextualize the graphical visualization with the title of DVI of newly vegetation in 1996:
 
 plot(newlyvegetationdvi, col=MSHDVIcolorspalette , main="DVI of newly vegetation in 1996")
 
-#
+#With the function (par) there is the possibility of combining in this case multiple levels of "interest" belonging to different objects in their series into one graphical visualization of their called multiframe
 
 par(mfcol=c(1,2))
 
@@ -483,15 +516,17 @@ plot(disruptedvegetationdvi, col=MSHDVIcolorspalette, main="DVI of disrupted veg
 
 plot(newlyvegetationdvi, col=MSHDVIcolorspalette, main="DVI of newly vegetation in 1996")
 
-#
+#The plot of disruptedvegetationdvi and newlyvegetationdvi through the par () function shows the evolution in the state of health in the vegetation cover on the volcanic landslide of Mount Saint Helens according to the initial interpretation in this code
+
+#This evolution in the state of health in the vegetation cover on the volcanic landslide of Mount Saint Helens can be graphically displayed in the time difference between disruptedvegetationdvi and newlyvegetationdvi using the plot () function:
 
 multitemporaldvi <- disruptedvegetationdvi - newlyvegetationdvi
 
-#
+#In R, visualizing informations of multitemporaldvi, name of it followed by Enter as physical command by keyboard ↵:
 
 multitemporaldvi
 
-#
+#The relatively multitemporaldvi information is contained within the table:
 
 class      : RasterLayer 
 dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
@@ -502,6 +537,17 @@ source     : memory
 names      : layer 
 values     : -108, 80  (min, max)
 
+#How to graphically visualize evolution in the state of health of the vegetation of the dry forests of Mato Grosso from raster multi-layer raster object multitemporaldvi? 
+
+#I exploit a function (plot) to obtain visually the evolution in vegetation's state of health
+
+plot(multitemporaldvi)
+
+#In R function plot (multitemporaldvi) lead me to a window with the state of health of the vegetation of the dry forests of Mato Grosso through the concept of reflectance
+
+#Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1/defor2.1 to B2/defor2.2 representing each spectral bands
+
+
 #
 
 plot(multitemporaldvi, col=MSHDVIcolorspalette) 
@@ -510,31 +556,35 @@ plot(multitemporaldvi, col=MSHDVIcolorspalette)
 
 plot(multitemporaldvi, col=MSHDVIcolorspalette, main="DVI of Mount Saint Helens' vegetation from 1987 to 1996")
 
-#
+#NDVI (N͟ormalized D͟ifference V͟egetation I͟ndex) is another vegetation index calculated as the ratio between the difference (-) and the sum (+) of the near-infrared and red values respectively to the numerator and denominators: #Attention: some software works sequentially without performing a calculation according to a mathematical logic. Hint, round, square and curly brackets!
+
+#NDVI values range from -1 to 1
+
+#The application of the formula for the calculation of NDVI in defor1 strictly depends on the values in the bands disruptedvegetation$MSHanalysis_87.1 for the red (RED) and disruptedvegetation$MSHanalysis_87.2 for the near-infrared (NIR):
 
 disruptedvegetationndvi <- (disruptedvegetationdvi) / (disruptedvegetation$MSHanalysis_87.1 + disruptedvegetation$MSHanalysis_87.2)
 
-#
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth:
 
 MSHNDVIcolorspalette <- colorRampPalette(c("darkorchid2","whitesmoke","turquoise1","springgreen4","wheat1","gold"))(100) 
 
-#
+#plot(disruptedvegetationndvi) is reformulated by incorporating the previous colors palette of colors MSHNDVIcolorspalette: plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette) will display graphically reflectance's values in a darkorchid2, whitesmoke, turquoise1, springgreen4, wheat1, gold colour scale:
 
 plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette)
 
-#
+#Also the application of the formula for the calculation of NDVI in newlyvegetation strictly depends on the values in the bands newlyvegetation$MSHanalysis_96.1 for the red (RED) and newlyvegetation$MSHanalysis_96.2 for the near-infrared (NIR):
 
 newlyvegetationndvi <- (newlyvegetationdvi) / (newlyvegetation$MSHanalysis_96.1 + newlyvegetation$MSHanalysis_96.2)
 
-#
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth:
 
 MSHNDVIanothercolorspalette <- colorRampPalette(c("darkorchid2","steelblue1","royalblue1","turquoise1","springgreen4","whitesmoke","wheat1","gold","indianred3","black"))(100)
 
-#
+#plot(newlyvegetationndvi) is reformulated by incorporating the previous colors palette of colors MSHNDVIcolorspalette: plot(newlyvegetationndvi, col=MSHNDVIcolorspalette) will display graphically reflectance's values in a darkorchid2, steelblue1, royalblue1, turquoise1, springgreen4, whitesmoke, wheat1, gold, indianred3, black colour scale:
 
 plot(newlyvegetationndvi, col=MSHNDVIanothercolorspalette)
 
-#
+#With the function (par) there is the possibility of combining in this case multiple levels of "interest" belonging to different objects in their series into one graphical visualization of their called multiframe:
 
 par(mfcol=c(1,2))
 
@@ -542,11 +592,29 @@ plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette, main="NDVI of disrupted 
 
 plot(newlyvegetationndvi, col=MSHNDVIanothercolorspalette, main="NDVI of newly vegetation in 1996")
 
-#
+#The plot of disruptedvegetationndvi and newlyvegetationndvi through the par () function shows the evolution in the state of health in the vegetation cover on the volcanic landslide of Mount Saint Helens according to the initial interpretation in this code
+
+#This evolution in the state of health in the vegetation cover on the volcanic landslide of Mount Saint Helens can be graphically displayed in the time difference between disruptedvegetationndvi and newlyvegetationndvi using the plot () function:
 
 multitemporalndvi <- disruptedvegetationndvi - newlyvegetationndvi
 
-#
+#In R, visualizing informations of multitemporalndvi, name of it followed by Enter as physical command by keyboard ↵:
+
+multitemporalndvi
+
+#The relatively multitemporaldvi information is contained within the table:
+
+
+
+#How to graphically visualize evolution in the state of health of the vegetation of the dry forests of Mato Grosso from raster multi-layer raster object difdvi? 
+
+#I exploit a function (plot) to obtain visually the evolution in vegetation's state of health
+
+#Syntaxis' function for Windows is: plot(difdvi)
+
+#In R function plot (dvi2) lead me to a window with the state of health of the vegetation of the dry forests of Mato Grosso through the concept of reflectance
+
+#Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1/defor2.1 to B2/defor2.2 representing each spectral bands
 
 plot(multitemporalndvi, col=MSHNDVIcolorspalette)
 
@@ -554,7 +622,7 @@ plot(multitemporalndvi, col=MSHNDVIcolorspalette)
 
 plot(multitemporalndvi, col=MSHNDVIcolorspalette, main="NDVI of Mount Saint Helens' vegetation from 1987 to 1996")
 
-#
+
 
 ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
 
@@ -891,53 +959,6 @@ mountsainthelensimportedr <- lapply(mountsainthelenssubfolderlist,raster)
 
 mountsainthelensimportedr
 
-[[1]]
-class      : RasterLayer 
-band       : 1  (of  3  bands)
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : MSHanalysis_87.jpg 
-names      : MSHanalysis_87 
-values     : 0, 255  (min, max)
-
-
-[[2]]
-class      : RasterLayer 
-band       : 1  (of  3  bands)
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : MSHanalysis_90.jpg 
-names      : MSHanalysis_90 
-values     : 0, 255  (min, max)
-
-
-[[3]]
-class      : RasterLayer 
-band       : 1  (of  3  bands)
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : MSHanalysis_93.jpg 
-names      : MSHanalysis_93 
-values     : 0, 255  (min, max)
-
-
-[[4]]
-class      : RasterLayer 
-band       : 1  (of  3  bands)
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : MSHanalysis_96.jpg 
-names      : MSHanalysis_96 
-values     : 0, 255  (min, max)
-
 TCSMSH <- stack(mountsainthelensimportedr)
 
 plot(TCSMSH)
@@ -1010,39 +1031,9 @@ plot(newlyvegetationvi, col=MSHDVIcolorspalette)
 
 disruptedvegetation
 
-class      : RasterBrick 
-dimensions : 2083, 2054, 4278482, 3  (nrow, ncol, ncell, nlayers)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : MSHanalysis_87.jpg 
-names      : MSHanalysis_87.1, MSHanalysis_87.2, MSHanalysis_87.3 
-min values :                0,                0,                0 
-max values :              255,              255,              255
-
 disruptedvegetation$MSHanalysis_87.1
 
-class      : RasterLayer 
-band       : 1  (of  3  bands)
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : MSHanalysis_87.jpg 
-names      : MSHanalysis_87.1 
-values     : 0, 255  (min, max)
-
 disruptedvegetation$MSHanalysis_87.2
-
-class      : RasterLayer 
-band       : 2  (of  3  bands)
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : MSHanalysis_87.jpg 
-names      : MSHanalysis_87.2 
-values     : 0, 255  (min, max)
 
 plot(disruptedvegetation$MSHanalysis_87.1)
 
@@ -1062,40 +1053,9 @@ plot(disruptedvegetationdvi, col=MSHDVIcolorspalette, main="DVI of disrupted veg
 
 newlyvegetation
 
-class      : RasterBrick 
-dimensions : 2083, 2054, 4278482, 3  (nrow, ncol, ncell, nlayers)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : MSHanalysis_96.jpg 
-names      : MSHanalysis_96.1, MSHanalysis_96.2, MSHanalysis_96.3 
-min values :                0,                0,                0 
-max values :              255,              255,              255 
-
-
 newlyvegetation$MSHanalysis_96.1
 
-class      : RasterLayer 
-band       : 1  (of  3  bands)
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : MSHanalysis_96.jpg 
-names      : MSHanalysis_96.1 
-values     : 0, 255  (min, max)
-
 newlyvegetation$MSHanalysis_96.2
-
-class      : RasterLayer 
-band       : 2  (of  3  bands)
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : MSHanalysis_96.jpg 
-names      : MSHanalysis_96.2 
-values     : 0, 255  (min, max)
 
 plot(newlyvegetation$MSHanalysis_96.1)
 
@@ -1118,16 +1078,9 @@ plot(newlyvegetationdvi, col=MSHDVIcolorspalette, main="DVI of newly vegetation 
 multitemporaldvi <- disruptedvegetationdvi - newlyvegetationdvi
 
 multitemporaldvi
-
-class      : RasterLayer 
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : memory
-names      : layer 
-values     : -108, 80  (min, max)
-
+     
+plot(multitemporaldvi)
+     
 plot(multitemporaldvi, col=MSHDVIcolorspalette) 
 
 plot(multitemporaldvi, col=MSHDVIcolorspalette, main="DVI of Mount Saint Helens' vegetation from 1987 to 1996")
@@ -1151,10 +1104,13 @@ plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette, main="NDVI of disrupted 
 plot(newlyvegetationndvi, col=MSHNDVIanothercolorspalette, main="NDVI of newly vegetation in 1996")
 
 multitemporalndvi <- disruptedvegetationndvi - newlyvegetationndvi
+     
+multitemporalndvi
 
 plot(multitemporalndvi, col=MSHNDVIcolorspalette)
 
 plot(multitemporalndvi, col=MSHNDVIcolorspalette, main="NDVI of Mount Saint Helens' vegetation from 1987 to 1996")
+     
 
 ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
 
