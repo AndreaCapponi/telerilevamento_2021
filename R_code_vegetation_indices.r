@@ -318,7 +318,7 @@ difdvi <- dvi1 - dvi2
 
 #A further consideration for upper syntaxis' function: array is indicated by c letter and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
 
-#with what has been described so far, I create a futher new palette of colors calleddbyrb in which first, second, third and last color will be darkblue, yellow, red and black respectively with number's value of depth levels taken to 100!
+#With what has been described so far, I create a futher new palette of colors calleddbyrb in which first, second, third and last color will be darkblue, yellow, red and black respectively with number's value of depth levels taken to 100!
 
 #Final syntaxis' function in Windows is: dbyrb <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
 
@@ -328,29 +328,37 @@ bwrcp <- colorRampPalette(c('blue','white','red'))(100)
 
 plot(difdvi, col=bwrcp)
 
-#NDVI (N͟ormalized D͟ifference V͟egetation I͟ndex) is another vegetation index calculated as the ratio between the difference (-) and the sum (+) of the near-infrared and red values respectively to the numerator and denominators: NDVI = (NIR – R)/(NIR + R)
+#NDVI (N͟ormalized D͟ifference V͟egetation I͟ndex) is another vegetation index calculated as the ratio between the difference (-) and the sum (+) of the near-infrared and red values respectively to the numerator and denominators: #Attention: some software works sequentially without performing a calculation according to a mathematical logic. Hint, round, square and curly brackets!
 
 #NDVI values range from -1 to 1
 
-
-
-#Nel cambiare il numero di bit, per esempio uguale a 16, i valori varieranno da 0 65535!
-#DVI della seconda immagine sarà quel valore ma le immagini non sono paragonabili avendo differente risoluzione radiometriche.
-#Il massimo valore assumibile in NDVI è 1! Differenza su somma, 65535 - 0 e 65535 + 0
-
-#Attenzione: alcuni software lavorano in maniera sequienzale senza effettuare un calcolo secondo una logica matematica. Suggerimento, parentesi tonde, quadre e graffe!
+#The application of the formula for the calculation of NDVI in defor1 strictly depends on the values in the bands defor1$defor1.1 for the near-infrared (NIR) and defor1$1.2 for the red (RED):
 
 ndvi1 <- (defor1$defor1.1 - defor1$defor1.2) / (defor1$defor1.1 + defor1$defor1.2)
 
-plot(ndvi1, col=cl)
-
-#Una mia collega ha suggerito semplicemente di sostituire (defor1$defor1.1 - defor1$defor1.2) con dvi1 perchè già è stato calcolato. Una sintassi accettabile e funzionale
+#The above formula can be simplified by having described in the 141st string of code the difference between the values of defor1 $ defor1.1 and defor1 $ defor1.2 as dvi1 index:
 
 ndvi1 <- dvi1 / (defor1$defor1.1 + defor1$defor1.2)
 
+#Attention: some software works sequentially without performing a calculation according to a mathematical logic. Hint, round, square and curly brackets!
+
+#plot(ndvi1) must be reformulated by incorporating the previous colors palette of colors dbyrb: plot(ndvi1, col=dbyrb) will display graphically reflectance's values in a darkblue, yellow, red and black colour scale:
+
+plot(ndvi1, col=dbyrb)
+
+#Also the application of the formula for the calculation of NDVI in defor2 strictly depends on the values in the bands defor1$defor1.1 for the near-infrared (NIR) and defor1$1.2 for the red (RED):
+
 ndvi2 <- (defor2$defor2.1 - defor2$defor2.2) / (defor2$defor2.1 + defor2$defor2.2)
 
+#The above formula can be simplified according to the 259thcode string as index dvi2 <- defor2 $ defor2.1 - defor2 $ defor2.2:
+
+ndvi2 <- dvi2 / (defor2$defor2.1 + defor2$defor2.2)
+
+#plot(ndvi2) must be reformulated by incorporating the previous colors palette of colors dbyrb: plot(ndvi1, col=dbyrb) will display graphically reflectance's values in a darkblue, yellow, red and black colour scale:
+
 plot(ndvi2, col=cl)
+
+#With the function par() there is the possibility of combining multiple object's level of "interest" into one graphical visualization of their called multiframe:
 
 par(mfcol=c(1,2))
 
@@ -358,19 +366,58 @@ plot(ndvi1, col=cl, main="NDVI at time 1")
 
 plot(ndvi2, col=cl, main="NDVI at time 2 ")
 
+#In addition to the DVI and NDVI vegetational indices there are other spectral indices for which a preview is available through the spectralIndices () function applicable to both defor1 and defor2:
 
-#RSToolbox Spectral Indices
-#spectralIndices: Spectral Indices
-#Calculate a suite of multispectral indices such as NDVI, SAVI etc. in an efficient way.
-#library(RStoolbox)
-#vi1 <- spectralIndices(defor1, green=3, red=2, nir=1)
-#plot(vi1, col=cl)
-#vi2 <- spectralIndices(defor2, green=3, red=2, nir=1)
-#plot(vi2, col=cl)
-#Firma spettrale, RED NIR valori che oscillano per stato di salute della vegetazione up and down, malata down and up sana
-#difndvi <- ndvi1 - ndvi2
-#plot(difndvi, col=cl)
-#Risultato corretto?
+vi1 <- spectralIndices(defor1, green=3, red=2, nir=1)
+
+vi2 <- spectralIndices(defor2, green=3, red=2, nir=1)
+
+#spectralIndices() function calculates all indices in one go in C++, which is more efficient than calculating each index separately. By default all indices which can be calculated given the specified indices will be calculated. If you don't want all indices, use the indices argument to specify exactly which indices are to be calculated!
+
+#The following table is for reference for the user should he choose the analysis to be conducted on a satellite image having the names of the main indices, a brief description, the creator and the year of publication, the required bands and the formula to be to apply:
+
+𝙄𝙣𝙙𝙚𝙭 	              𝘿𝙚𝙨𝙘𝙧𝙞𝙥𝙩𝙞𝙤𝙣                	               𝙎𝙤𝙪𝙧𝙘𝙚	               𝘽𝙖𝙣𝙙𝙨	                                  𝙁𝙤𝙧𝙢𝙪𝙡𝙖
+
+CLG	       Green-band Chlorophyll Index	                     Gitelson2003	          redEdge3, green	                  \(redEdge3/green - 1\)
+CLRE	       Red-edge-band Chlorophyll Index	                  Gitelson2003	          redEdge3, redEdge1	               \(redEdge3/redEdge1 - 1\)
+CTVI	       Corrected Transformed Vegetation Index	         Perry1984	             red, nir	                        \((NDVI + 0.5)/sqrt(abs(NDVI + 0.5))\)
+DVI	       Difference Vegetation Index	                     Richardson1977	          red, nir	                        \(s * nir - red\)
+EVI	       Enhanced Vegetation Index	                        Huete1999	             red, nir, blue	                  \(G * ((nir - red)/(nir + C1 * red - C2 * blue + L_evi))\)
+EVI2	       Two-band Enhanced Vegetation Index	               Jiang 2008	             red, nir	                        \(G * (nir - red)/(nir + 2.4 * red + 1)\)
+GEMI	       Global Environmental Monitoring Index	            Pinty1992	             red, nir	                        \((((nir^2 - red^2) * 2 + (nir * 1.5) + (red * 0.5))/(nir + red + 0.5)) * (1 - ((((nir^2 - red^2) * 2 + (nir * 1.5) + (red * 0.5))/(nir + red + 0.5)) * 0.25)) - ((red - 0.125)/(1 - red))\)
+GNDVI	       Green Normalised Difference Vegetation Index	   Gitelson1998	          green, nir	                        \((nir - green)/(nir + green)\)
+MCARI	       Modified Chlorophyll Absorption Ratio Index	      Daughtery2000	          green, red, redEdge1	            \(((redEdge1 - red) - (redEdge1 - green)) * (redEdge1/red)\)
+MNDWI	       Modified Normalised Difference Water Index	      Xu2006	                green, swir2	                     \((green - swir2)/(green + swir2)\)
+MSAVI	       Modified Soil Adjusted Vegetation Index	         Qi1994	                red, nir	                        \(nir + 0.5 - (0.5 * sqrt((2 * nir + 1)^2 - 8 * (nir - (2 * red))))\)
+MSAVI2       Modified Soil Adjusted Vegetation Index 2	      Qi1994	                red, nir	                        \((2 * (nir + 1) - sqrt((2 * nir + 1)^2 - 8 * (nir - red)))/2\)
+MTCIMERIS    Terrestrial Chlorophyll Index	                  DashAndCurran2004	       red, redEdge1, redEdge2	         \((redEdge2 - redEdge1)/(redEdge1 - red)\)
+NBRI	       Normalised Burn Ratio Index	                     Garcia1991	             nir, swir3	                        \((nir - swir3)/(nir + swir3)\)
+NDREI1	    Normalised Difference Red Edge Index 1	         GitelsonAndMerzlyak1994  redEdge2, redEdge1	               \((redEdge2 - redEdge1)/(redEdge2 + redEdge1)\)
+NDREI2	    Normalised Difference Red Edge Index 2	         Barnes2000	             redEdge3, redEdge1	               \((redEdge3 - redEdge1)/(redEdge3 + redEdge1)\)
+NDVI	       Normalised Difference Vegetation Index	         Rouse1974	             red, nir	                        \((nir - red)/(nir + red)\)
+NDVIC	       Corrected Normalised Difference Vegetation Index	Nemani1993	             red, nir, swir2	                  \((nir - red)/(nir + red) * (1 - ((swir2 - swir2ccc)/(swir2coc - swir2ccc)))\)
+NDWI	       Normalised Difference Water Index	               McFeeters1996	          green, nir	                        \((green - nir)/(green + nir)\)
+NDWI2	       Normalised Difference Water Index	               Gao1996	                nir, swir2	                        \((nir - swir2)/(nir + swir2)\)
+NRVI	       Normalised Ratio Vegetation Index	               Baret1991	             red, nir	                        \((red/nir - 1)/(red/nir + 1)\)
+REIP	       Red Edge Inflection Point	                        GuyotAndBarnet1988	    red, redEdge1, redEdge2, redEdge3	\(0.705 + 0.35 * ((red + redEdge3)/(2 - redEdge1))/(redEdge2 - redEdge1)\)
+RVI	       Ratio Vegetation Index		                                                 red, nir	                        \(red/nir\)
+SATVI	       Soil Adjusted Total Vegetation Index	             Marsett2006	          red, swir2, swir3	               \((swir2 - red)/(swir2 + red + L) * (1 + L) - (swir3/2)\)
+SAVI	       Soil Adjusted Vegetation Index	                   Huete1988	             red, nir	                        \((nir - red) * (1 + L)/(nir + red + L)\)
+SLAVI	       Specific Leaf Area Vegetation Index	             Lymburger2000	          red, nir, swir2	                  \(nir/(red + swir2)\)
+SR	          Simple Ratio Vegetation Index	                   Birth1968	             red, nir	                        \(nir/red\)
+TTVI	       Thiam's Transformed Vegetation Index	             Thiam1997	             red, nir	                        \(sqrt(abs((nir - red)/(nir + red) + 0.5))\)
+TVI	       Transformed Vegetation Index	                      Deering1975	          red, nir	                        \(sqrt((nir - red)/(nir + red) + 0.5)\)
+
+#plot(vi1) e plot(vi2) are reformulated by incorporating the previous colors palette of colors dbyrb: plot(ndvi1, col=dbyrb) will display graphically reflectance's values in a darkblue, yellow, red and black colour scale:
+
+plot(vi1, col=cl)
+
+plot(vi2, col=cl)
+
+
+difndvi <- ndvi1 - ndvi2
+
+plot(difndvi, col=cl)
 
 ##Al di sotto di questo commento studiare e organizzare la lezione del 05/05/2021
 #Indice di vegetazione su scala globale (worldwide NDVI)
@@ -390,7 +437,21 @@ plot(ndvi2, col=cl, main="NDVI at time 2 ")
 
 #Sequence of informatic commands for R_code_vegetation_indices.r
 
+install.packages("raster")
+
+install.packages("RStoolbox")
+
+install.packages("rasterVis")
+
+install.packages("rasterdiv")
+
 library(raster) / require(raster)
+
+library(RStoolbox)
+
+library(rasterVis)
+
+library(rasterdiv)
 
 setwd("C:/lab/")
 
@@ -458,37 +519,35 @@ plot(difdvi, col=bwrcp)
 
 ndvi1 <- (defor1$defor1.1 - defor1$defor1.2) / (defor1$defor1.1 + defor1$defor1.2)
 
-plot(ndvi1, col=cl)
+plot(ndvi1, col=dbyrb)
 
 ndvi1 <- dvi1 / (defor1$defor1.1 + defor1$defor1.2)
 
 ndvi2 <- (defor2$defor2.1 - defor2$defor2.2) / (defor2$defor2.1 + defor2$defor2.2)
 
-plot(ndvi2, col=cl)
+ndvi2 <- dvi2 / (defor2$defor2.1 + defor2$defor2.2)
+
+plot(ndvi2, col=dbyrb)
 
 par(mfcol=c(1,2))
 
-plot(ndvi1, col=cl, main="NDVI at time 1")
+plot(ndvi1, col=dbyrb, main="NDVI at time 1")
 
-plot(ndvi2, col=cl, main="NDVI at time 2 ")
+plot(ndvi2, col=dbyrb, main="NDVI at time 2 ")
 
 library(RStoolbox)
 
 vi1 <- spectralIndices(defor1, green=3, red=2, nir=1)
 
-plot(vi1, col=cl)
+plot(vi1, col=dbyrb)
 
 vi2 <- spectralIndices(defor2, green=3, red=2, nir=1)
 
-plot(vi2, col=cl)
+plot(vi2, col=dbyrb)
 
 difndvi <- ndvi1 - ndvi2
 
 plot(difndvi, col=cl)
-
-install.packages("rasterdiv")
-
-library(rasterdiv)
 
 plot(copNDVI)
 
