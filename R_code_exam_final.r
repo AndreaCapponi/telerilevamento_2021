@@ -543,16 +543,13 @@ values     : -108, 80  (min, max)
 
 plot(multitemporaldvi)
 
-#In R function plot (multitemporaldvi) lead me to a window with the state of health of the vegetation of the dry forests of Mato Grosso through the concept of reflectance
+#In R function plot (multitemporaldvi) lead me to a window with the state of health in the vegetation cover on the volcanic landslide of Mount Saint Helens through the concept of reflectance
 
-#Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1/defor2.1 to B2/defor2.2 representing each spectral bands
-
-
-#
+#Unsatisfactory colors may be changed to foster a clear interpretation in plot(multitemporaldvi) by incorporating new palette of colors vcp: plot (dvi1, col = dbyrb) will display graphically reflectance's values in a black, white, red, magenta and green colour scale:
 
 plot(multitemporaldvi, col=MSHDVIcolorspalette) 
 
-#
+#plot(multitemporaldvi, col=MSHDVIcolorspalette) must be reformulated by incorporating also the main argument to contextualize the graphical visualization with the title of "DVI of Mount Saint Helens' vegetation from 1987 to 1996":
 
 plot(multitemporaldvi, col=MSHDVIcolorspalette, main="DVI of Mount Saint Helens' vegetation from 1987 to 1996")
 
@@ -604,7 +601,14 @@ multitemporalndvi
 
 #The relatively multitemporaldvi information is contained within the table:
 
-
+class      : RasterLayer 
+dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
+resolution : 1, 1  (x, y)
+extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
+crs        : NA 
+source     : memory
+names      : layer 
+values     : -1.555556, 0.987013  (min, max)
 
 #How to graphically visualize evolution in the state of health of the vegetation of the dry forests of Mato Grosso from raster multi-layer raster object difdvi? 
 
@@ -612,13 +616,13 @@ multitemporalndvi
 
 #Syntaxis' function for Windows is: plot(difdvi)
 
-#In R function plot (dvi2) lead me to a window with the state of health of the vegetation of the dry forests of Mato Grosso through the concept of reflectance
+#In R function plot(multitemporalndvi) lead me to a window with the state of health in the vegetation cover on the volcanic landslide of Mount Saint Helens through the concept of reflectance
 
-#Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1/defor2.1 to B2/defor2.2 representing each spectral bands
+#Unsatisfactory colors may be changed to foster a clear interpretation in plot(multitemporaldvi) by incorporating new palette of colors MSHNDVIcolorspalette: plot(multitemporalndvi, col=MSHNDVIcolorspalette) will display graphically reflectance's values in a black, white, red, magenta and green colour scale:
 
 plot(multitemporalndvi, col=MSHNDVIcolorspalette)
 
-#
+#plot(multitemporalndvi, col=MSHNDVIcolorspalette) must be reformulated by incorporating also the main argument to contextualize the graphical visualization with the title of "NDVI of Mount Saint Helens' vegetation from 1987 to 1996":
 
 plot(multitemporalndvi, col=MSHNDVIcolorspalette, main="NDVI of Mount Saint Helens' vegetation from 1987 to 1996")
 
@@ -962,6 +966,8 @@ mountsainthelensimportedr
 TCSMSH <- stack(mountsainthelensimportedr)
 
 plot(TCSMSH)
+     
+levelplot(TCSMSH)     
 
 levelplot(TCSMSH$MSHanalysis_87)
 
@@ -970,8 +976,6 @@ levelplot(TCSMSH$MSHanalysis_90)
 levelplot(TCSMSH$MSHanalysis_93)
 
 levelplot(TCSMSH$MSHanalysis_96)
-
-levelplot(TCSMSH)
 
 levelplot(TCSMSH, names.attr=c("1987","1990", "1993","1996"))
 
