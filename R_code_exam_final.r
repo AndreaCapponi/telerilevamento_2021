@@ -1,8 +1,4 @@
-#
-
-#
-
-#
+#The evolution of vegetation on lahars and debris flows: the case of Mount Saint Helens' eruption in 1980 🌋🌱
 
 #install.packages() is a function which download and install packages from CRAN-like repositories or from local files
 
