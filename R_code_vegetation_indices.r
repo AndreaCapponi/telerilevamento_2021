@@ -414,26 +414,59 @@ plot(vi1, col=cl)
 
 plot(vi2, col=cl)
 
+#The evolution in the state of health of the vegetation of the dry forests of Mato Grosso can be graphically displayed in the time difference between ndvi1 and ndvi2 using the plot () function:
 
-difndvi <- ndvi1 - ndvi2
+difndvi <- dvi1 - dvi2
 
-plot(difndvi, col=cl)
+#How to graphically visualize evolution in the state of health of the vegetation of the dry forests of Mato Grosso from raster multi-layer raster object difndvi? 
 
-##Al di sotto di questo commento studiare e organizzare la lezione del 05/05/2021
-#Indice di vegetazione su scala globale (worldwide NDVI)
-#Il pacchetto da installare è rasterdiv (raster diversity)
-#La sintassi per l'installazione è: install.packages("rasterdiv")
-#Per caricare tale pacchetto la sintassi su cui basarsi è: library(rasterdiv)
-#Come effettuare il plot di copNDVI?
-#La sintassi è semplicemente: plot(copNDVI)
-#Come eliminare l'acqua?
-#I valori che identificano l'acqua (253, 254 e 255) sono da trasformare in non valori NA's attraverso l'argometo cbind della funzione reclassify
-#La sintassi definitiva è: copNDVI <- reclassify(copNDVI, cbind(253:255, NA))
-#I due punti definiscono il range di valori da trasformare. Il risultato ottenuto tramite plot(copNDVI) è in sfondo bianco e non più blu!
-#library(rasterVis)
-#levelplot(copNDVI)
-#Come la Terra ha respirato dal 1997 al 2020. I valori più alti sono osservabili in corrispondenza delle foreste come l'Amazzonica (i valori medi tra pixels riga/colonna hanno bit di informazione elevati in opposizione a quelli rappresentanti i pixels riga/colonna per i deserti alla latitudine 23,7 Tropico del Cancro)
+#I exploit a function (plot) to obtain visually the evolution in vegetation's state of health
 
+#Syntaxis' function for Windows is: plot(difndvi)
+
+#In R function plot plot(difndvi) lead me to a window with the state of health of the vegetation of the dry forests of Mato Grosso through the concept of reflectance
+
+#Unsatisfactory colors may be changed to foster a clear interpretation of reflectance's values from B1/defor2.1 to B2/defor2.2 representing each spectral bands
+
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
+
+#Syntaxis' function for Windows is: name of new palette of colors <- colorRampPalette(array('first color','second color',third color','last color')) (number of depth levels for selected colors)
+
+#A further consideration for upper syntaxis' function: array is indicated by c letter and represents the belonging of new palette's colors to a single object whereas number of depth levels for selected colors is a value freely chosen by the user
+
+#With what has been described so far, I create a futher new palette of colors calleddbyrb in which first, second, third and last color will be darkblue, yellow, red and black respectively with number's value of depth levels taken to 100!
+
+#Final syntaxis' function in Windows is: dbyrb <- colorRampPalette(c('darkblue','yellow','red','black'))(100)
+
+bwrcp <- colorRampPalette(c('blue','white','red'))(100) 
+
+#plot(dvi2) must be reformulated by incorporating new palette of colors vcp: plot (dvi1, col = dbyrb) will display graphically reflectance's values in a black, white, red, magenta and green colour scale:
+
+plot(ndifdvi, col=bwrcp)
+
+# The last vegetation index that I consider besides those applied to the dry forests of Mato Grosso in Brazil is for the vigor of the vegetation cover on a global scale (worldwide NDVI)
+
+#copNDVI function () creates a RasterLayer (EPSG: 4326) of the global average NDVI value per pixel for the 21st of June over the period 1999-2017 with an overview of 5 KM
+
+# Being a worldwide NDVI, the lack of a satellite image such as defor1 / defor2 is not limiting for the user. The plot () function must be applied directly to copNDVI:
+
+plot (copNDVI)
+
+#In plot (copNDVI), in addition to vegetation cover, I can distinguish the main oceans, seas and other hydrographic basins. Since this analysis is on the vegetational vigor on a global scale, how is it possible not to visualize the water?
+
+#The values that identify water (253, 254 and 255) in copNDVI are to be transformed into NA's through the cbind argument of the reclassify () function:
+
+copNDVI <- reclassify (copNDVI, cbind (253: 255, NA))
+
+#With the previous code string, in the plot (copNDVI) and in the future levelplot (copNDVI) the color of the catchment areas will be transparent so as not to impact on the analysis I am carrying out in R_code_vegetation_indices
+
+#I exploit a function (levelplot) to draw level plots and contour plots
+
+levelplot (copNDVI)
+
+#Important: the above function is operative if and only if the user with the library function loads the previously installed rasterVis package
+
+#Through levelplot (copNDVI) it is possible to observe the "breath" of the Earth from 1997 to 2020. The highest values ​​in the graph are observable in correspondence of the forests-lungs such as the Amazon!
 
 #Sequence of informatic commands for R_code_vegetation_indices.r
 
@@ -547,12 +580,10 @@ plot(vi2, col=dbyrb)
 
 difndvi <- ndvi1 - ndvi2
 
-plot(difndvi, col=cl)
+plot(difndvi, col=dbyrb)
 
 plot(copNDVI)
 
 copNDVI <- reclassify(copNDVI, cbind(253:255, NA))
-
-library(rasterVis)
 
 levelplot(copNDVI)
