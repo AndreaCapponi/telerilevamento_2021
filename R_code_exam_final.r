@@ -956,9 +956,6 @@ mountsainthelenssubfolderlist <- list.files(pattern="MSHanalysis_")
 
 mountsainthelenssubfolderlist
 
-[1] "MSHanalysis_87.jpg" "MSHanalysis_90.jpg" "MSHanalysis_93.jpg"
-[4] "MSHanalysis_96.jpg"
-
 mountsainthelensimportedr <- lapply(mountsainthelenssubfolderlist,raster)
 
 mountsainthelensimportedr
