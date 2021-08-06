@@ -848,6 +848,8 @@ plot(snowcover2021reclassified)
 
 sc21ra <- aggregate(snowcover2021reclassified, fact=100) 
 
+#----------------------------------------------
+
 #4. R code knitr
 
 #install.packages() is a function which download and install packages from CRAN-like repositories or from local files
@@ -1135,7 +1137,7 @@ SO <- brick("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 
 SO
 
-##The relatively SO information is contained within the table:
+#The relatively SO information is contained within the table:
 
 class      : RasterBrick 
 dimensions : 1157, 1920, 2221440, 3  (nrow, ncol, ncell, nlayers)
@@ -1216,7 +1218,7 @@ sunc <- unsuperClass(sun, nClasses=3)
 
 plot(sunc$map)
 
-#I exploit  a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth:
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth:
 
 suncl <- colorRampPalette(c('yellow','black','red'))(100)
 
@@ -1865,7 +1867,7 @@ plot(ndifdvi, col=bwrcp)
 
 # The last vegetation index that I consider besides those applied to the dry forests of Mato Grosso in Brazil is for the vigor of the vegetation cover on a global scale (worldwide NDVI)
 
-#copNDVI function () creates a RasterLayer (EPSG: 4326) of the global average NDVI value per pixel for the 21st of June over the period 1999-2017 with an overview of 5 KM
+#copNDVIfunction() creates a RasterLayer (EPSG: 4326) of the global average NDVI value per pixel for the 21st of June over the period 1999-2017 with an overview of 5 KM
 
 # Being a worldwide NDVI, the lack of a satellite image such as defor1 / defor2 is not limiting for the user. The plot () function must be applied directly to copNDVI:
 
@@ -1873,7 +1875,7 @@ plot (copNDVI)
 
 #In plot (copNDVI), in addition to vegetation cover, I can distinguish the main oceans, seas and other hydrographic basins. Since this analysis is on the vegetational vigor on a global scale, how is it possible not to visualize the water?
 
-#The values that identify water (253, 254 and 255) in copNDVI are to be transformed into NA's through the cbind argument of the reclassify () function:
+#The values that identify water (253, 254 and 255) in copNDVI are to be transformed into N̲ot A̲ssigned values' through the cbind argument of the reclassify () function:
 
 copNDVI <- reclassify (copNDVI, cbind (253: 255, NA))
 
@@ -1885,7 +1887,7 @@ levelplot (copNDVI)
 
 #Important: the above function is operative if and only if the user with the library function loads the previously installed rasterVis package
 
-#Through levelplot (copNDVI) it is possible to observe the "breath" of the Earth from 1997 to 2020. The highest values ​​in the graph are observable in correspondence of the forests-lungs such as the Amazon!
+#Through levelplot (copNDVI) it is possible to observe the "breath" of the Earth from 1997 to 2020. The highest values in the graph are observable in correspondence of the forests-lungs such as the Amazon!
 
 #Sequence of informatic commands for R_code_vegetation_indices.r
 
@@ -2885,4 +2887,6 @@ scale_fill_viridis(option="turbo")+ggtitle("Standard deviation of PC1 by turbo c
 
 grid.arrange(p1, p2, p3, nrow=1)
 
-
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------
+# END FILE
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------
