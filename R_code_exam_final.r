@@ -402,9 +402,15 @@ plot(disruptedvegetationdvi, col=MSHDVIcolorspalette, main="DVI of disrupted veg
 
 #The iterative cycle of functions started in the 305th string of code for the study by remote sensing of the vegetation covering on the volcanic landslide of Mount Saint Helens over time after its eruption based on D͟ifference V͟egetation I͟ndex (DVI) is also to be applied to newlyvegetation:
 
+#The name/s attributed to the spectral band/s is to be found in the summary of its informations under the 𝘯𝘢𝘮𝘦𝘴 category
+
+#How to visualize informations of newlyvegetation in R? 
+
+#In R, to visualize information of newlyvegetation, name of it followed by Enter ↵ as physical command by keyboard:
+
 newlyvegetation
 
-#
+#The relatively newlyvegetation information is contained within the table:
 
 class      : RasterBrick 
 dimensions : 2083, 2054, 4278482, 3  (nrow, ncol, ncell, nlayers)
