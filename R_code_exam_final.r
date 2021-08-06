@@ -60,13 +60,13 @@ setwd("C:/lab/mountsainthelens")
 
 mountsainthelenssubfolderlist <- list.files(pattern="MSHanalysis_")
 
-#Since the number of my objects is limited, I could have the tif format as a pattern in the rlist function. This user choice is not recommended because the tif format is common and widespread so my choice will be the lst pattern indicating in each raster what represents in particular (land surface temperature)
+#Since the number of my objects is limited, I could have the jpeg format as a pattern in the rlist function. This user choice is not recommended because the jpeg format is common and widespread so my choice will be the MSHanalysis_ pattern indicating in each raster what represents in particular (Mount Saint Helens analysis)
 
 #In R, to visualize information of mountsainthelenssubfolderlist, name of it followed by Enter ↵ as physical command by keyboard:
 
 mountsainthelenssubfolderlist
 
-#The relatively snowcover2021 information is contained within the table:
+#The relatively mountsainthelenssubfolderlist information is contained within the table:
 
 [1] "MSHanalysis_87.jpg" "MSHanalysis_90.jpg" "MSHanalysis_93.jpg"
 [4] "MSHanalysis_96.jpg"
@@ -180,7 +180,7 @@ levelplot(TCSMSH,col.regions=gray(0:100/100), names.attr=c("1987","1990", "1993"
 
 levelplot(TCSMSH,col.regions=gray(0:100/100), main="Variation of the vegetation cover on the volcanic landslide of Mount Saint Helens over time", names.attr=c("1987","1990", "1993","1996"))
 
-# Subsequently, a color palette must be selected - always for the correct interpretation of the reflectance values in levelplot (TCSMSH) - among those contained in the RColorBrewer package and viewable with the simple command of the underlying code string or at the website https: // www.r-graph-gallery.com/38-rcolorbrewers-palettes.html:
+#Subsequently, a color palette must be selected - always for the correct interpretation of the reflectance values in levelplot (TCSMSH) - among those contained in the RColorBrewer package and viewable with the simple command of the underlying code string or at the website https: // www.r-graph-gallery.com/38-rcolorbrewers-palettes.html:
 
 display.brewer.all()
 
@@ -190,7 +190,7 @@ MSHYlOrBrcolorspalette <- brewer.pal(9, "YlOrBr")
 
 #I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed: numbered pixel as virtual box matches numbered color as bit depth
 
-# Subsequently, a color palette must be selected - always for the correct interpretation of the reflectance values in levelplot (TCSMSH) - among those contained in the RColorBrewer package and viewable with the simple command of the underlying code string or at the website https: // www.r-graph-gallery.com/38-rcolorbrewers-palettes.html:
+#Subsequently, a color palette must be selected - always for the correct interpretation of the reflectance values in levelplot (TCSMSH) - among those contained in the RColorBrewer package and viewable with the simple command of the underlying code string or at the website https: // www.r-graph-gallery.com/38-rcolorbrewers-palettes.html:
 
 #MSHYlOrBrcolorspalette from ColorBrewer is available as R palette for the power relationships between the brewer.pal () and colorRampPalette () functions:
 
@@ -212,7 +212,7 @@ levelplot(TCSMSH,col.regions=pal, main="Variation of the vegetation cover on the
 
 dev.off()
 
-#The study by remote sensing of the vegetation covering on the volcanic landslide of Mount Saint Helens over time after its eruption is based on vegetation indices (VIs)
+#The study by remote sensing of the vegetation covering on the volcanic lahars and debris flows of Mount Saint Helens over time after its eruption is based on vegetation indices (VIs)
 
 #What is a vegetation index (VI)?
 
@@ -537,13 +537,13 @@ source     : memory
 names      : layer 
 values     : -108, 80  (min, max)
 
-#How to graphically visualize evolution in the state of health of the vegetation of the dry forests of Mato Grosso from raster multi-layer raster object multitemporaldvi? 
+#How to graphically visualize evolution in the state of health in the vegetation cover on the volcanic lahars and debris flows of Mount Saint Helens from raster multi-layer raster object multitemporaldvi? 
 
 #I exploit a function (plot) to obtain visually the evolution in vegetation's state of health
 
 plot(multitemporaldvi)
 
-#In R function plot (multitemporaldvi) lead me to a window with the state of health in the vegetation cover on the volcanic landslide of Mount Saint Helens through the concept of reflectance
+#In R function plot (multitemporaldvi) lead me to a window with the state of health in the vegetation cover on the volcanic lahars and debris flows of Mount Saint Helens through the concept of reflectance
 
 #Unsatisfactory colors may be changed to foster a clear interpretation in plot(multitemporaldvi) by incorporating new palette of colors vcp: plot (dvi1, col = dbyrb) will display graphically reflectance's values in a black, white, red, magenta and green colour scale:
 
