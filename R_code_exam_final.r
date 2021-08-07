@@ -7,7 +7,7 @@
 #1. An analysis of the 1984-1996 time series on the slopes of Mount Saint Helens: from the destruction of vegetation caused by the 1980 eruption to its recolonization of the lethal lahars and debris flows 🗻🛰️
 #2. Vegetation sprout again from the lethal lahars and debris flows that annihilated it: vegetation indices (VIs) for pioneer communities on the western slope of Mount Saint Helens ☠️🌱       
 #3. An unprecedented vegetational progression begins to erase the traces of the eruption in 1980: new relations in the extent of forest, agricultural and bare soil areas in the Mount St. Helens National Volcanic Monument 🖩🗺️           
-#4.
+#4. Interpreting the variability in the Mount St. Helens National Volcanic Monument by remote sensing: the transition from bare soil in the lahars and debris flows to the forest of the Cascades ecoregion is a splendid play of colors 👨‍💻🎨    
 
 #----------------------------------------------
 
@@ -888,7 +888,7 @@ grid.arrange(pDV, pNV, nrow=1)
 
 #----------------------------------------------
 
-#
+#4. Interpreting the variability in the Mount St. Helens National Volcanic Monument by remote sensing: the transition from bare soil in the lahars and debris flows to the forest of the Cascades ecoregion is a splendid play of colors 👨‍💻🎨
 
 #How to calculate variance within a satellite image?
 
@@ -1428,8 +1428,7 @@ pDV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, fil
 
 pNV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1996") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))
 
-grid.arrange(pDV, pNV, nrow=1)
-                                
+grid.arrange(pDV, pNV, nrow=1)                    
      
 disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=mean)
 
@@ -1453,7 +1452,6 @@ plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette, main="Mean-dependent 
 
 plot(newlyvegetationdvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for DVI of newly vegetation in 1996")
                                 
-
 disruptedvegetationdvistandarddeviation <- focal(disruptedvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=sd)
 
 plot(disruptedvegetationdvistandarddeviation)
@@ -1476,8 +1474,7 @@ plot(disruptedvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ
 
 plot(newlyvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of newly vegetation in 1996")
                                 
-
-disruptedvegetationndvimean <- focal(disruptedvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+disruptedvegetationndvimean <- focal(disruptedvegetationndvi,w=matrix(1/169, nrow=13, ncol=13), fun=mean)
 
 plot(disruptedvegetationndvimean)
 
@@ -1485,7 +1482,7 @@ MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","oran
 
 plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette)
 
-newlyvegetationndvimean <- focal(newlyvegetationndvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+newlyvegetationndvimean <- focal(newlyvegetationndvi, w=matrix(1/169, nrow=13, ncol=13), fun=mean)
 
 plot(newlyvegetationndvimean)
 
@@ -1499,7 +1496,7 @@ plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette, main="Mean-dependent
 
 plot(newlyvegetationndvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for NDVI of newly vegetation in 1996")
 
-disruptedvegetationndvistandarddeviation <- focal(disruptedvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+disruptedvegetationndvistandarddeviation <- focal(disruptedvegetationndvi,w=matrix(1/169, nrow=13, ncol=13), fun=sd)
 
 plot(disruptedvegetationndvistandarddeviation)
 
@@ -1507,7 +1504,7 @@ MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange
 
 plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette)
 
-newlyvegetationndvistandarddeviation <- focal(newlyvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+newlyvegetationndvistandarddeviation <- focal(newlyvegetationndvi,w=matrix(1/169, nrow=13, ncol=13), fun=sd)
 
 plot(newlyvegetationndvistandarddeviation)
 
@@ -1517,9 +1514,11 @@ plot((newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette)
 
 par(mfcol=c(1,2))
 
-plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette, main="σ-dependent variability for NDVI of disrupted vegetation in 1987")
+plot(disruptedvegetationndvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for NDVI of disrupted vegetation in 1987")
 
-plot(newlyvegetationndvimean, col=MSHMEANcolorspalette, main="σ-dependent variability for NDVI of newly vegetation in 1996")
+plot(newlyvegetationndvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for NDVI of newly vegetation in 1996")
+     
+
 
 disruptedvegetationpca <- rasterPCA(disruptedvegetation)
 
