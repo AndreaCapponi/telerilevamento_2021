@@ -6,7 +6,7 @@
 
 #1. An analysis of the 1984-1996 time series on the slopes of Mount Saint Helens: from the destruction of vegetation caused by the 1980 eruption to its recolonization of the lethal lahars and debris flows 🗻🛰️
 #2. Vegetation sprout again from the lethal lahars and debris flows that annihilated it: vegetation indices (VIs) for pioneer communities on the western slope of Mount Saint Helens ☠️🌱       
-#3.
+#3. An unprecedented vegetational progression begins to erase the traces of the eruption in 1980: new relations in the extent of forest, agricultural and bare soil areas in the Mount St. Helens National Volcanic Monument 🖩🗺️           
 #4.
 
 #----------------------------------------------
@@ -647,7 +647,7 @@ plot(multitemporalndvi, col=MSHNDVIcolorspalette, main="NDVI of Mount Saint Hele
 
 #----------------------------------------------
 
-#
+#3. An unprecedented vegetational progression begins to erase the traces of the eruption in 1980: new relations in the extent of forest, agricultural and bare soil areas in the Mount St. Helens National Volcanic Monument 🖩🗺️ 
 
 #ggRGB() is a function that calculates RGB color composite RasterLayers for plotting with ggplot2. Optional values for clipping and and stretching can be used to enhance the imagery:
 
