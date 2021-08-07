@@ -1,5 +1,18 @@
 #The evolution of vegetation on lahars and debris flows: the case of Mount Saint Helens' eruption in 1980 🌋🌱
 
+#-----------------------------------------------
+
+#Summary:
+
+#1.
+#2. 
+#3.
+#4.
+
+#----------------------------------------------
+
+#
+
 #install.packages() is a function which download and install packages from CRAN-like repositories or from local files
 
 #The first package to install is raster through which is possible reading, writing, manipulating, analyzing and modeling of spatial data. The package implements basic and high-level functions for raster data and for vector data operations such as intersections:
@@ -51,6 +64,8 @@ library(viridis)
 library(ggplot2)
 
 library(gridExtra)
+
+#
 
 #In my computer R must use the folder named simply lab and I exploit a function (setwd) for the association between R and lab folder:
 
@@ -211,6 +226,10 @@ levelplot(TCSMSH,col.regions=pal, main="Variation of the vegetation cover on the
 #I exploit a function dev.off() to end a graphical display depending on the R's (plot) function and if it is syntactically correct, the user will see this message appears: null device 1
 
 dev.off()
+
+#----------------------------------------------
+
+#
 
 #The study by remote sensing of the vegetation covering on the volcanic lahars and debris flows of Mount Saint Helens over time after its eruption is based on vegetation indices (VIs)
 
@@ -610,13 +629,13 @@ source     : memory
 names      : layer 
 values     : -1.555556, 0.987013  (min, max)
 
-#How to graphically visualize evolution in the state of health of the vegetation of the dry forests of Mato Grosso from raster multi-layer raster object difdvi? 
+#How to graphically visualize the evolution of the state of health in the vegetation cover on the lahars and debris flows of Mount Saint Helens from raster multi-layer raster object difdvi? 
 
 #I exploit a function (plot) to obtain visually the evolution in vegetation's state of health
 
 #Syntaxis' function for Windows is: plot(difdvi)
 
-#In R function plot(multitemporalndvi) lead me to a window with the state of health in the vegetation cover on the volcanic landslide of Mount Saint Helens through the concept of reflectance
+#In R function plot(multitemporalndvi) lead me to a window with the state of health in the vegetation cover on the lahars and debris flows of Mount Saint Helens through the concept of reflectance
 
 #Unsatisfactory colors may be changed to foster a clear interpretation in plot(multitemporaldvi) by incorporating new palette of colors MSHNDVIcolorspalette: plot(multitemporalndvi, col=MSHNDVIcolorspalette) will display graphically reflectance's values in a black, white, red, magenta and green colour scale:
 
@@ -626,19 +645,41 @@ plot(multitemporalndvi, col=MSHNDVIcolorspalette)
 
 plot(multitemporalndvi, col=MSHNDVIcolorspalette, main="NDVI of Mount Saint Helens' vegetation from 1987 to 1996")
 
+#----------------------------------------------
 
+#
+
+#ggRGB() is a function that calculates RGB color composite RasterLayers for plotting with ggplot2. Optional values for clipping and and stretching can be used to enhance the imagery:
 
 ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
 
 ggRGB(newlyvegetation, r=1, g=2, b=3, stretch="lin")
 
+#The initial comparison in the vegetation cover on the lahars and debris flows of Mount Saint Helens between disruptedvegetation and newlyvegetation can also be graphically displayed through the ggRGB() function; unlike the previous function, images can be organized in a multiframe through the function grid.arrange () not before giving them a name!
+
 DVe <- ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
 
 NVe <- ggRGB(newlyvegetation, r=1, g=2, b=3, stretch="lin")
 
+#arrangeGrob set up a gtable layout to place multiple grobs on a page. In particular grid.arrange() draw on the current device and is useful to organize ggRGB elements after simply renamed them:
+
 grid.arrange(DVe, NVe, nrow=2)
 
+#I exploit a function dev.off() to end a graphical display depending on the R's (plot) function and if it is syntactically correct, the user will see this message appears: null device 1
+
 dev.off()
+
+#The classification of a satellite image depends on the reflectance values attributed to each pixel
+
+#The values for reflectance vary in the red, green and blue (RGB) bands and two or more pixels will be "merged" to form a class if and only if they have a superimposable value
+
+#These pixels will be placed in a multispectral region as a point cloud which, together with others in a three-dimensional reference system, define the spectrum through which the satellite image is displayed
+
+#The above classification can be effectuated with a training set consisting of: 1) a reference satellite image and 2) the model with which there should be a classification of the pixels depending on their reflectance values or with the unsuperClass () function, where the classification of pixels depending on their reflectance values, on the other hand, occurs randomly!
+
+#The unsupervised Classification () function randomly classifies the sampled pixels (whose number can be indicated in the nSamples argument) depending on their reflectance values, according to the number of classes selected by the user via the nClasses argument:
+
+#The sequence of the set.seed () and r.norm () functions is functional to set the seed of R's random number generator. The seed will always be the chosen one to reproduce the same classification (nClasses and / or nSamples) in a series of plot () for satellite images to which R_code_classification.r is being applied:
 
 set.seed(1)
 
@@ -646,7 +687,15 @@ rnorm(1)
 
 DVc <- unsuperClass(disruptedvegetation, nClass=3)
 
+#In the above classification, being interested in the phenomenon of vegetational progression, I created three classes using the nClasses argument: the first for the forest on the slopes of Mount Saint Helens, the second for the vegetation disturbed by the 1980 eruption and agricultural land played and the third for bare soil
+
+#In R, to visualize information of DVc, name of it followed by Enter ↵ as physical command by keyboard:
+
 DVc
+
+#The relatively DVc information is contained within the table:
+
+unsuperClass results
 
 *************** Map ******************
 $map
@@ -659,15 +708,27 @@ source     : r_tmp_2021-07-31_171720_15220_28543.grd
 names      : layer 
 values     : 1, 3  (min, max)
 
+#plot is a common function for plotting of R object and in this case is based on the basic extraction operator $: from the initial plot () of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of "interest" which is for the user the classification of the satellite image in the 107th code string. This is viewable through the map () function that transform its input by applying a function to each element and returning a vector the same length as the input:
+
 plot(DVc$map)
+
+#The sequence of the set.seed () and r.norm () functions is functional to set the seed of R's random number generator. The seed will always be the chosen one to reproduce the same classification (nClasses and / or nSamples) in a series of plot () for satellite images to which R_code_classification.r is being applied:
 
 set.seed(1)
 
 rnorm(1)
 
+#The unsupervised Classification () function randomly classifies the sampled pixels (whose number can be indicated in the nSamples argument) depending on their reflectance values, according to the number of classes selected by the user via the nClasses argument:
+
 NVc <- unsuperClass(newlyvegetation, nClass=3)
 
+#In R, to visualize information of NVc, name of it followed by Enter ↵ as physical command by keyboard:
+
 NVc
+
+#The relatively DVc information is contained within the table:
+
+unsuperClass results
 
 *************** Map ******************
 $map
@@ -680,7 +741,11 @@ source     : r_tmp_2021-07-31_171833_15220_95861.grd
 names      : layer 
 values     : 1, 3  (min, max)
 
+#plot is a common function for plotting of R object and in this case is based on the basic extraction operator $: from the initial plot () of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of "interest" which is for the user the classification of the satellite image in the 107th code string. This is viewable through the map () function that transform its input by applying a function to each element and returning a vector the same length as the input:
+
 plot(NVc$map)
+
+#With the function (par) there is the possibility of combining in this case multiple levels of "interest" belonging to different objects in their series into one graphical visualization of their called multiframe:
 
 par(mfrow=c(1,2))
 
@@ -688,74 +753,136 @@ plot(DVc$map)
 
 plot(NVc$map)
 
+#With the plot of DVc $ map and NVc $ map through the par () function, it is possible to visualize an initial difference between the 𝘍𝘰𝘳𝘦𝘴𝘵, 𝘈𝘨𝘳𝘪𝘤𝘰𝘭𝘵𝘶𝘳𝘦/𝘛𝘩𝘪𝘯𝘯𝘪𝘯𝘨 𝘷𝘦𝘨𝘦𝘵𝘢𝘵𝘪𝘰𝘯 and 𝘉𝘢𝘳𝘦 𝘴𝘰𝘪𝘭 classes for the green, yellow and white masks associated with them
+
+#To estimate the reformed coverage on lahars and debris flows for the forest on the slopes of Mount Saint Helens, the coverage of the vegetation thinned for its 1980 eruption but also of agriculture land and bare soil and how their progress / regression ratio has evolved, I use the freq () function to get the number of pixels that belong to the previous classes selected in the unsuperClass () function at the 688sth and 723sth code strings: DVc <- unsuperClass (disruptedvegetation, nClass = 3) and NVc <- unsuperClass (newlyvegetation, nClass = 3) respectively
+
+#freq() is a function that generates and formats frequency tables from a variable or a table, with percentages and formatting options:
+
 freq(DVc$map)
 
+#The relatively freq(DVc$map) information is contained within the table:
+
  value   count
-[1,]     1  510198
+[1,]     1 2737705
 [2,]     2 1030579
-[3,]     3 2737705
+[3,]     3 510198 
+
+#freq() is a function that generates and formats frequency tables from a variable or a table, with percentages and formatting options:
 
 freq(NVc$map)
 
+#The relatively freq(DVc$map) information is contained within the table:
+
      value   count
-[1,]     1  395390
-[2,]     2  872402
-[3,]     3 3010690
+[1,]     1 3010690
+[2,]     2 872402
+[3,]     3 395390
+
+#The total number of pixels in DVc$map is obtained as the sum of the number of pixels for each previously identified class, which in this code are 𝘍𝘰𝘳𝘦𝘴𝘵, 𝘈𝘨𝘳𝘪𝘤𝘰𝘭𝘵𝘶𝘳𝘦/𝘛𝘩𝘪𝘯𝘯𝘪𝘯𝘨 𝘷𝘦𝘨𝘦𝘵𝘢𝘵𝘪𝘰𝘯 and 𝘉𝘢𝘳𝘦 𝘴𝘰𝘪𝘭:
 
 sDV <- 510198 + 1030579 + 2737705
 
+#In R, to visualize information of sDV, name of it followed by Enter ↵ as physical command by keyboard:
+
 sDV
+
+#The relatively s1 information is contained within the string:
+
 [1] 4278482
+
+#The total number of pixels in NVc$map is obtained as the sum of the number of pixels for each previously identified class, which in this code are 𝘍𝘰𝘳𝘦𝘴𝘵, 𝘈𝘨𝘳𝘪𝘤𝘰𝘭𝘵𝘶𝘳𝘦/𝘛𝘩𝘪𝘯𝘯𝘪𝘯𝘨 𝘷𝘦𝘨𝘦𝘵𝘢𝘵𝘪𝘰𝘯 and 𝘉𝘢𝘳𝘦 𝘴𝘰𝘪𝘭:
 
 sNV <- 395390 + 872402 + 3010690
 
+#In R, to visualize information of sNV, name of it followed by Enter ↵ as physical command by keyboard:
+
 sNV
+
+#The relatively s1 information is contained within the string:
+
 [1] 4278482
+
+#From the number of pixels that belong to the 𝘍𝘰𝘳𝘦𝘴𝘵, 𝘈𝘨𝘳𝘪𝘤𝘰𝘭𝘵𝘶𝘳𝘦/𝘛𝘩𝘪𝘯𝘯𝘪𝘯𝘨 𝘷𝘦𝘨𝘦𝘵𝘢𝘵𝘪𝘰𝘯 and 𝘉𝘢𝘳𝘦 𝘴𝘰𝘪𝘭 classes respectively, how is it possible to have a percentage of the actual coverage of northern lahars and debris flows on Mount Saint Helens?
+
+#Initially, the ratio between freq(DVc$map) and sDV is to be calculated as shown in the string below:
 
 pDV <- freq(DVc$map)/sDV
 
+#
+
 pDV
+
+#
 
        value     count
 [1,] 2.337278e-07 0.1192474
 [2,] 4.674555e-07 0.2408749
 [3,] 7.011833e-07 0.6398776
 
+#
+
 pNV <-freq(NVc$map)/sNV
 
+#
+
 pNV
+
+#
 
             value      count
 [1,] 2.337278e-07 0.09241362
 [2,] 4.674555e-07 0.20390456
 [3,] 7.011833e-07 0.70368182
 
+#
+
 MSHcover <- c("Forest", "Agricolture/Thinning vegetation", "Bare soil")
+
+#
 
 coverpercentagein1987 <- c(63.98776, 24.08749, 11.92474)
 
+#
+
 coverpercentagein1996 <- c(70.368182, 20.390456, 9.241362)
+
+#
 
 increasedpercentages <- data.frame(MSHcover, coverpercentagein1987, coverpercentagein1996)
 
+#
+
 increasedpercentages
+
+#
 
  MSHcover coverpercentagein1987 coverpercentagein1996
 1                          Forest              63.98776             70.368182
 2 Agricolture/Thinning vegetation              24.08749             20.390456
 3                       Bare soil              11.92474              9.241362
 
+#
+
 idealgraphicsuccession <- c("Bare soil", "Agricolture/Thinning vegetation", "Forest")
+
+#
 
 ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1987") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))                    
                      
 ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1996") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))                  
-                     
+  
+#
+
 pDV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1987") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))
 
 pNV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1996") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))
 
+#
+
 grid.arrange(pDV, pNV, nrow=1)
+
+#
 
 disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 
@@ -1133,17 +1260,6 @@ DVc <- unsuperClass(disruptedvegetation, nClass=3)
 
 DVc
 
-*************** Map ******************
-$map
-class      : RasterLayer 
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : r_tmp_2021-07-31_171720_15220_28543.grd 
-names      : layer 
-values     : 1, 3  (min, max)
-
 plot(DVc$map)
 
 set.seed(1)
@@ -1153,18 +1269,7 @@ rnorm(1)
 NVc <- unsuperClass(newlyvegetation, nClass=3)
 
 NVc
-
-*************** Map ******************
-$map
-class      : RasterLayer 
-dimensions : 2083, 2054, 4278482  (nrow, ncol, ncell)
-resolution : 1, 1  (x, y)
-extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
-crs        : NA 
-source     : r_tmp_2021-07-31_171833_15220_95861.grd 
-names      : layer 
-values     : 1, 3  (min, max)
-
+     
 plot(NVc$map)
 
 par(mfrow=c(1,2))
@@ -1175,45 +1280,23 @@ plot(NVc$map)
 
 freq(DVc$map)
 
- value   count
-[1,]     1  510198
-[2,]     2 1030579
-[3,]     3 2737705
-
 freq(NVc$map)
-
-     value   count
-[1,]     1  395390
-[2,]     2  872402
-[3,]     3 3010690
 
 sDV <- 510198 + 1030579 + 2737705
 
 sDV
-[1] 4278482
 
 sNV <- 395390 + 872402 + 3010690
 
 sNV
-[1] 4278482
 
 pDV <- freq(DVc$map)/sDV
 
 pDV
 
-       value     count
-[1,] 2.337278e-07 0.1192474
-[2,] 4.674555e-07 0.2408749
-[3,] 7.011833e-07 0.6398776
-
 pNV <-freq(NVc$map)/sNV
 
 pNV
-
-            value      count
-[1,] 2.337278e-07 0.09241362
-[2,] 4.674555e-07 0.20390456
-[3,] 7.011833e-07 0.70368182
 
 MSHcover <- c("Forest", "Agricolture/Thinning vegetation", "Bare soil")
 
@@ -1224,11 +1307,6 @@ coverpercentagein1996 <- c(70.368182, 20.390456, 9.241362)
 increasedpercentages <- data.frame(MSHcover, coverpercentagein1987, coverpercentagein1996)
 
 increasedpercentages
-
- MSHcover coverpercentagein1987 coverpercentagein1996
-1                          Forest              63.98776             70.368182
-2 Agricolture/Thinning vegetation              24.08749             20.390456
-3                       Bare soil              11.92474              9.241362
 
 idealgraphicsuccession <- c("Bare soil", "Agricolture/Thinning vegetation", "Forest")
 
@@ -1241,6 +1319,8 @@ pDV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, fil
 pNV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1996") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))
 
 grid.arrange(pDV, pNV, nrow=1)
+     
+     
 
 disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 
