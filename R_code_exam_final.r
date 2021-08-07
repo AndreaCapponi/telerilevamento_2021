@@ -5,7 +5,7 @@
 #Summary:
 
 #1. An analysis of the 1984-1996 time series on the slopes of Mount Saint Helens: from the destruction of vegetation caused by the 1980 eruption to its recolonization of the lethal lahars and debris flows 🗻🛰️
-#2. Vegetation sprout again from the lethal lhars and debris flows that annihilated it: vegetation indices (VIs) for pioneer communities on the western slope of Mount Saint Helens ☠️🌱       
+#2. Vegetation sprout again from the lethal lahars and debris flows that annihilated it: vegetation indices (VIs) for pioneer communities on the western slope of Mount Saint Helens ☠️🌱       
 #3.
 #4.
 
@@ -229,7 +229,7 @@ dev.off()
 
 #----------------------------------------------
 
-#2. Vegetation sprout again from the lethal lhars and debris flows that annihilated it: vegetation indices (VIs) for pioneer communities on the western slope of Mount Saint Helens ☠️🌱
+#2. Vegetation sprout again from the lethal lahars and debris flows that annihilated it: vegetation indices (VIs) for pioneer communities on the western slope of Mount Saint Helens ☠️🌱
 
 #The study by remote sensing of the vegetation covering on the volcanic lahars and debris flows of Mount Saint Helens over time after its eruption is based on vegetation indices (VIs)
 
