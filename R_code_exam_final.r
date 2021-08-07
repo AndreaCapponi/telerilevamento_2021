@@ -1081,13 +1081,76 @@ plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette, main="σ-depe
 #In this code, the purpose of the previous par() function is to graphically display where it occurred - with the method of the moving window - around the greater variability in mean values assigned to the pixels that constitute globally disruptedvegetationdvimean and newlyvegetationdvimean with the assignment colors through plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette, main="σ-dependent variability for NDVI of disrupted vegetation in 1987") and plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette, main="σ-dependent variability for NDVI of newly vegetation in 1996")
                                                            
 #----------------------------------------------------------
+                        
+#
                                 
-
+#P̲rincipal C̲omponents A̲nalysis (PCA) is a technique applied to multispectral and hyperspectral remotely sensed data
+                                
+#PCA transforms an original correlated dataset into a substantially smaller set of uncorrelated variables that represents most of the information present in the original dataset
+                                
+#Instead of throwing away the redundant data, PCA condenses the information in intercorrelated variables into a few variables, called principal components
+                                
+#The first P̲rincipal C̲component (PC) accounts for maximum proportion of variance from the original dataset
+                                
+#All subsequent orthogonal components account for the maximum proportion of the remaining variance
+                                
+#Usually, PC 1, PC 2, and PC 3 account for the vast majority of the variance found within the dataset  
+                                
+#If, for example, components 1, 2, and 3 account for the majority of the variance found within the dataset, it can be possible to set the original bands aside, and the remainder of the image enhancement or classification process can be performed using just these three PC images 
+                                
+#Additionally, researchers can utilize PCs along with original bands to produce the desired combination for analysis
+                                
+#I can conduct the principal component analysis or PCA on the sentinel RasterBrick, exploiting the rasterPCA() function which calculates R-mode PCA for RasterBricks or RasterStacks and returns a RasterBrick with multiple layers of PCA scores:                               
+                                
 disruptedvegetationpca <- rasterPCA(disruptedvegetation)
+                                
+#In R, to visualize information of resampledp224r63_2011rpca, name of it followed by Enter ↵ as physical command by keyboard: 
+                                
+disruptedvegetationpca    
+                                
+#The relatively disruptedvegetationpca information is contained within the $map:
+                                
+ $call
+rasterPCA(img = disruptedvegetation)
 
+$model
+Call:
+princomp(cor = spca, covmat = covMat[[1]])
+
+Standard deviations:
+   Comp.1    Comp.2    Comp.3 
+72.341923  8.375813  4.557500 
+
+ 3  variables and  4278482 observations.
+
+$map
+class      : RasterBrick 
+dimensions : 2083, 2054, 4278482, 3  (nrow, ncol, ncell, nlayers)
+resolution : 1, 1  (x, y)
+extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
+crs        : NA 
+source     : r_tmp_2021-08-07_181811_7584_33595.grd 
+names      :        PC1,        PC2,        PC3 
+min values : -137.69615,  -56.92272,  -38.37295 
+max values :  284.08098,   50.34049,   32.47757 
+
+
+attr(,"class")
+[1] "rasterPCA" "RStoolbox" 
+ 
+#$call, $model and $map refer to respectively: the function selected by the user and applied to the image on which the statistical analysis is conducted, the result (s) of the previous statistical analysis and a general information framework for the initial image as an R object                                
+                                
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral PCA bands:
+                                
 plot(disruptedvegetationpca$map)
+                                
+#summary() is a generic function used to produce result summaries of the results of various model fitting functions
+
+#$ is a basic extraction operator which extract, from the initial plot() of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of "interest"
 
 summary(disruptedvegetationpca$map)
+                                
+#The combination of the summary () function and the basic $ extraction operator allows me to view only the information contained in $model. The importance of the components is analyzed through the standard deviation, the variance proportion and the cumulative proportion:                                
               
              PC1         PC2          PC3
 Min.    -131.81642 -44.7241898 -22.28081322
@@ -1095,16 +1158,36 @@ Min.    -131.81642 -44.7241898 -22.28081322
 Median   -27.23346  -0.2292121   0.03662925
 3rd Qu.   37.23258   5.2761769   2.79791188
 Max.     275.80930  39.9837418  23.16283417
-NA's       0.00000   0.0000000   0.00000000
+#NA's       0.00000   0.0000000   0.00000000
+
+#To conduct the multivariate analysis according to the moving window method exclusively considering the PC1 component in disruptedvegetationpca$map, I have to give it a name of my choice:
      
 PC1 <- disruptedvegetationpca$map$PC1
+
+#Before proposing an iterative cycle of functions for the purpose illustrated in the previous section, it is essential in R to rename objects by abbreviation so that they are more manageable than entire strings of code!
+
+#focal() is a function that calculates focal ("moving window") values for the neighborhood of focal cells using a matrix of weights, perhaps in combination with a function:
      
 disruptedvegetationPC1 <- focal(PC1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
+                                
+#I exploit a function (colorRampPalette) to create an other palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:
+                             
+dvPC1colorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+                                
+#plot(disruptedvegetationPC1) must be reformulated by incorporating new palette of colors dvPC1colorspalette: plot(disruptedvegetationPC1, dvPC1colorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:                                
      
-MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
-     
-plot(disruptedvegetationPC1, col=MSHMEANcolorspalette) 
+plot(disruptedvegetationPC1, dvPC1colorspalette) 
+                                
+#To visualize the data of the multivariate analysis so far conducted on an R object (my choice between disruptedvegetationPC1 and  future newlyvegetationPC1), the user can build the ggplot () function starting from the latter which represents the work area with cartesian references and completely empty                                #The addition of statistical and aesthetic elements in ggplot2 occurs in blocks: in the syntax of the function after ggplot () follows their sum to be understood as an operation (+)
 
+#In the ggplot () function, the geometry that is selected by the user depending on the graph he wants to display is fundamental. Being a satellite image in pixels, the reference function is geom_raster ()
+
+#The title in the ggplot () function syntax must be added as an additional block in the form ggtitle ("title of the statistical graph")                               
+
+#viridis package contains 'ggplot2' bindings for discrete and continuous color and fill scales represented by the scale_fill_viridis () argument below
+                                
+#I have three maps available depending on the scale_fill_viridis () block for PC1sd5 (viridis, magma and turbo), I associate names to them to create a multigraphic display through the grid.arrange () function:                                
+                                
 PC1DV1e <- ggplot() +
 geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis()+ggtitle("σ of PC1 by viridis colour scale")
@@ -1117,13 +1200,61 @@ PC1DV3e <- ggplot() +
 geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis(option="plasma")+ggtitle("σ of PC1 by turbo colour scale")
 
+#arrangeGrob set up a gtable layout to place multiple grobs on a page. In particular grid.arrange() draw on the current device and is useful to organize ggRGB elements after simply renamed them:                                
+                                
 grid.arrange(PC1DV1e, PC1DV2e, PC1DV3e, nrow=1)
+                                
+#I can conduct the principal component analysis or PCA on the sentinel RasterBrick, exploiting the rasterPCA() function which calculates R-mode PCA for RasterBricks or RasterStacks and returns a RasterBrick with multiple layers of PCA scores:                                                               
 
 newlyvegetationpca <- rasterPCA(newlyvegetation)
+                                
+#In R, to visualize information of resampledp224r63_2011rpca, name of it followed by Enter ↵ as physical command by keyboard:  
+                                
+newlyvegetationpca
+                                
+#The relatively disruptedvegetationpca information is contained within the $map:
+                
+$call
+rasterPCA(img = newlyvegetation)
+
+$model
+Call:
+princomp(cor = spca, covmat = covMat[[1]])
+
+Standard deviations:
+   Comp.1    Comp.2    Comp.3 
+61.410715  8.317465  5.008395 
+
+ 3  variables and  4278482 observations.
+
+$map
+class      : RasterBrick 
+dimensions : 2083, 2054, 4278482, 3  (nrow, ncol, ncell, nlayers)
+resolution : 1, 1  (x, y)
+extent     : 0, 2054, 0, 2083  (xmin, xmax, ymin, ymax)
+crs        : NA 
+source     : r_tmp_2021-08-07_182957_7584_18933.grd 
+names      :        PC1,        PC2,        PC3 
+min values : -130.46102,  -56.66656,  -37.57380 
+max values :  291.87846,   72.53293,   69.52431 
+
+
+attr(,"class")
+[1] "rasterPCA" "RStoolbox"
+                                
+#$call, $model and $map refer to respectively: the function selected by the user and applied to the image on which the statistical analysis is conducted, the result (s) of the previous statistical analysis and a general information framework for the initial image as an R object                                                                
+                                
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral PCA bands:
 
 plot(newlyvegetationpca$map)
+                                
+#summary() is a generic function used to produce result summaries of the results of various model fitting functions
+
+#$ is a basic extraction operator which extract, from the initial plot() of an object represented by a matrix of data, a set of them that will allow the user to visualize graphically the level of "interest"                                
 
 summary(newlyvegetationpca$map)  
+                                
+#The combination of the summary () function and the basic $ extraction operator allows me to view only the information contained in $model. The importance of the components is analyzed through the standard deviation, the variance proportion and the cumulative proportion:                                                                
 
             PC1         PC2         PC3
 Min.    -115.81446 -45.9714775 -29.9552517
@@ -1131,16 +1262,35 @@ Min.    -115.81446 -45.9714775 -29.9552517
 Median   -19.44636   0.1312364  -0.2737613
 3rd Qu.   18.58441   5.4839840   2.9726181
 Max.     290.17538  41.7846222  36.7002831
-NA's       0.00000   0.0000000   0.0000000
+#NA's       0.00000   0.0000000   0.0000000
 
-     
+#To conduct the multivariate analysis according to the moving window method exclusively considering the PC1 component in disruptedvegetationpca$map, I have to give it a name of my choice:
+                                
 PC1 <- newlyvegetationpca$map$PC1
+                                
+#Before proposing an iterative cycle of functions for the purpose illustrated in the previous section, it is essential in R to rename objects by abbreviation so that they are more manageable than entire strings of code!
+
+#focal() is a function that calculates focal ("moving window") values for the neighborhood of focal cells using a matrix of weights, perhaps in combination with a function:                                
      
 newlyvegetationPC1 <- focal(PC1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
+ 
+#I exploit a function (colorRampPalette) to create an other palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                
      
-MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+nvPC1colorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+                                
+#plot(newlyvegetationPC1) must be reformulated by incorporating new palette of colors nvPC1colorspalette: plot(newlyvegetationPC1, col=nvPC1colorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:                                                   
      
-plot(newlyvegetationPC1, col=MSHMEANcolorspalette) 
+plot(newlyvegetationPC1, col=nvPC1colorspalette) 
+                                
+#To visualize the data of the multivariate analysis so far conducted on an R object (my choice between disruptedvegetationPC1 and  future newlyvegetationPC1), the user can build the ggplot () function starting from the latter which represents the work area with cartesian references and completely empty                                #The addition of statistical and aesthetic elements in ggplot2 occurs in blocks: in the syntax of the function after ggplot () follows their sum to be understood as an operation (+)
+
+#In the ggplot () function, the geometry that is selected by the user depending on the graph he wants to display is fundamental. Being a satellite image in pixels, the reference function is geom_raster ()
+
+#The title in the ggplot () function syntax must be added as an additional block in the form ggtitle ("title of the statistical graph")                               
+
+#viridis package contains 'ggplot2' bindings for discrete and continuous color and fill scales represented by the scale_fill_viridis () argument below
+                                
+#I have three maps available depending on the scale_fill_viridis () block for PC1sd5 (viridis, magma and turbo), I associate names to them to create a multigraphic display through the grid.arrange () function:                                
 
 PC1NV1e <- ggplot() +
 geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
@@ -1153,6 +1303,8 @@ scale_fill_viridis(option="inferno")+ggtitle("σ of PC1 by magma colour scale")
 PC1NV3e <- ggplot() +
 geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
 scale_fill_viridis(option="plasma")+ggtitle("σ of PC1 by turbo colour scale")
+                                
+#arrangeGrob set up a gtable layout to place multiple grobs on a page. In particular grid.arrange() draw on the current device and is useful to organize ggRGB elements after simply renamed them:                                                                
 
 grid.arrange(PC1NV1e, PC1NV2e, PC1NV3e, nrow=1)
      
@@ -1518,21 +1670,13 @@ plot(disruptedvegetationndvistandarddeviation, col=MSHMEANcolorspalette, main="�
 
 plot(newlyvegetationndvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for NDVI of newly vegetation in 1996")
      
-
-
 disruptedvegetationpca <- rasterPCA(disruptedvegetation)
+     
+disruptedvegetationpca      
 
 plot(disruptedvegetationpca$map)
 
 summary(disruptedvegetationpca$map)
-              
-             PC1         PC2          PC3
-Min.    -131.81642 -44.7241898 -22.28081322
-1st Qu.  -51.34004  -4.7453718  -2.87545085
-Median   -27.23346  -0.2292121   0.03662925
-3rd Qu.   37.23258   5.2761769   2.79791188
-Max.     275.80930  39.9837418  23.16283417
-NA's       0.00000   0.0000000   0.00000000
      
 PC1 <- disruptedvegetationpca$map$PC1
      
@@ -1557,27 +1701,20 @@ scale_fill_viridis(option="plasma")+ggtitle("σ of PC1 by turbo colour scale")
 grid.arrange(PC1DV1e, PC1DV2e, PC1DV3e, nrow=1)
 
 newlyvegetationpca <- rasterPCA(newlyvegetation)
-
+     
+newlyvegetationpca
+     
 plot(newlyvegetationpca$map)
 
 summary(newlyvegetationpca$map)  
-
-            PC1         PC2         PC3
-Min.    -115.81446 -45.9714775 -29.9552517
-1st Qu.  -39.48750  -5.3036152  -3.2929425
-Median   -19.44636   0.1312364  -0.2737613
-3rd Qu.   18.58441   5.4839840   2.9726181
-Max.     290.17538  41.7846222  36.7002831
-NA's       0.00000   0.0000000   0.0000000
-
      
 PC1 <- newlyvegetationpca$map$PC1
      
 newlyvegetationPC1 <- focal(PC1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
      
-MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+dvPC1colorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
      
-plot(newlyvegetationPC1, col=MSHMEANcolorspalette) 
+plot(disruptedvegetationPC1, dvPC1colorspalette)                                  
 
 PC1NV1e <- ggplot() +
 geom_raster(disruptedvegetationPC1, mapping = aes( x = x, y = y, fill = layer))+
