@@ -2603,6 +2603,22 @@ plot(ndvisd7, col=clsd)
 
 #It is also possible to exploit a multivariate analysis by considering exclusively the PC1 component on which to scroll the moving window, obtaining a map for the variability according to the values of the standard deviation (σ)
 
+#P̲rincipal C̲omponents A̲nalysis (PCA) is a technique applied to multispectral and hyperspectral remotely sensed data
+                                
+#PCA transforms an original correlated dataset into a substantially smaller set of uncorrelated variables that represents most of the information present in the original dataset
+                                
+#Instead of throwing away the redundant data, PCA condenses the information in intercorrelated variables into a few variables, called principal components
+                                
+#The first P̲rincipal C̲component (PC) accounts for maximum proportion of variance from the original dataset
+                                
+#All subsequent orthogonal components account for the maximum proportion of the remaining variance
+                                
+#Usually, PC 1, PC 2, and PC 3 account for the vast majority of the variance found within the dataset  
+                                
+#If, for example, components 1, 2, and 3 account for the majority of the variance found within the dataset, it can be possible to set the original bands aside, and the remainder of the image enhancement or classification process can be performed using just these three PC images 
+                                
+#Additionally, researchers can utilize PCs along with original bands to produce the desired combination for analysis
+
 #I can conduct the principal component analysis or PCA on the sentinel RasterBrick, exploiting the rasterPCA() function which calculates R-mode PCA for RasterBricks or RasterStacks and returns a RasterBrick with multiple layers of PCA scores:
 
 sentinelpca <- rasterPCA(sentinel)
