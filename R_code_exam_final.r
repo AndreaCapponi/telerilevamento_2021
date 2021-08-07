@@ -809,78 +809,84 @@ sNV
 
 pDV <- freq(DVc$map)/sDV
 
-#
+#In R, to visualize information of pDV, name of it followed by Enter ↵ as physical command by keyboard:
 
 pDV
 
-#
+#The relatively pDV information is contained within the table:
 
        value     count
 [1,] 2.337278e-07 0.1192474
 [2,] 4.674555e-07 0.2408749
 [3,] 7.011833e-07 0.6398776
 
-#
+#The other ratio between freq(NVc$map) and sNV is to be calculated as shown in the string below:
 
 pNV <-freq(NVc$map)/sNV
 
-#
+#In R, to visualize information of pNV, name of it followed by Enter ↵ as physical command by keyboard:
 
 pNV
 
-#
+#The relatively pNV information is contained within the table:
 
             value      count
 [1,] 2.337278e-07 0.09241362
 [2,] 4.674555e-07 0.20390456
 [3,] 7.011833e-07 0.70368182
 
-#
+#The percentage values for the 𝘍𝘰𝘳𝘦𝘴𝘵, 𝘈𝘨𝘳𝘪𝘤𝘰𝘭𝘵𝘶𝘳𝘦/𝘛𝘩𝘪𝘯𝘯𝘪𝘯𝘨 𝘷𝘦𝘨𝘦𝘵𝘢𝘵𝘪𝘰𝘯 and 𝘉𝘢𝘳𝘦 𝘴𝘰𝘪𝘭 classes can be organized with the cover () function as categorical variables in the first column of a dataframe that will be constructed progressively:
 
 MSHcover <- c("Forest", "Agricolture/Thinning vegetation", "Bare soil")
 
-#
+#The previous series of commands had the purpose of obtaining pDV and pNV and verify their values which, with a simple multiplication * 100, will give the user the effective coverage of the 𝘍𝘰𝘳𝘦𝘴𝘵, 𝘈𝘨𝘳𝘪𝘤𝘰𝘭𝘵𝘶𝘳𝘦/𝘛𝘩𝘪𝘯𝘯𝘪𝘯𝘨 𝘷𝘦𝘨𝘦𝘵𝘢𝘵𝘪𝘰𝘯 and 𝘉𝘢𝘳𝘦 𝘴𝘰𝘪𝘭 respectively:
 
 coverpercentagein1987 <- c(63.98776, 24.08749, 11.92474)
 
-#
-
 coverpercentagein1996 <- c(70.368182, 20.390456, 9.241362)
 
-#
+#The dataframe, in addition to the column previously created with the name of cover, will consist of two other columns coverpercentagein1987 and coverpercentagein1996. In these the percentages of 70,4 and 63,98 for the 𝘍𝘰𝘳𝘦𝘴𝘵 class, 20,4 and 24,1 for the 𝘈𝘨𝘳𝘪𝘤𝘰𝘭𝘵𝘶𝘳𝘦/𝘛𝘩𝘪𝘯𝘯𝘪𝘯𝘨 class and 9,24 and 11,92 for the 𝘉𝘢𝘳𝘦 𝘴𝘰𝘪𝘭 class will be visible and the final structure of the dataframe
+
+#The function data.frame() creates data frames, tightly coupled collections of variables which share many of the properties of matrices and of lists, used as the fundamental data structure by most of R's modeling software:
 
 increasedpercentages <- data.frame(MSHcover, coverpercentagein1987, coverpercentagein1996)
 
-#
+#In R, to visualize the dataframe of increasedpercentages, name of it followed by Enter ↵ as physical command by keyboard:
 
 increasedpercentages
 
-#
+#The relatively losspercentages information is contained within the dataframe:
 
  MSHcover coverpercentagein1987 coverpercentagein1996
 1                          Forest              63.98776             70.368182
 2 Agricolture/Thinning vegetation              24.08749             20.390456
 3                       Bare soil              11.92474              9.241362
 
-#
+#The data for the classes 𝘍𝘰𝘳𝘦𝘴𝘵, 𝘈𝘨𝘳𝘪𝘤𝘰𝘭𝘵𝘶𝘳𝘦/𝘛𝘩𝘪𝘯𝘯𝘪𝘯𝘨 𝘷𝘦𝘨𝘦𝘵𝘢𝘵𝘪𝘰𝘯 and 𝘉𝘢𝘳𝘦 𝘴𝘰𝘪𝘭 organized with the data.frame() function will be displayed in that order in the future ggplot() if and only if they are organized in a vector like idealgraphicsuccession via the previously introduced function c ():
+
+#c() is a function that combines values into a vector or list
 
 idealgraphicsuccession <- c("Bare soil", "Agricolture/Thinning vegetation", "Forest")
 
-#
+#Which is the basic syntax of ggplot() function?
+
+#The basic syntax of ggplot() function is: ggplot(data = specifies the dataframe you want to plot, aes(x= , y= how we are mapping variables from data to visual elements)) + geom_point(specifies what we want to draw)
+
+#Instead, I implement the basic syntax of ggplot () function with the syntax of: ggtitle("Title of the graph") and theme (plot.title = element_text(face="Title style") to insert a bold title (which for the analysis carried out is "Cover percentage on the volcanic slopes of Mount Saint Helens in 1987"and "Cover percentage on the volcanic slopes of Mount Saint Helens in 1996" depending on the year considered), theme (legend.position = "Position of the legend") to place the legend where it is more appropriate, scale_x_discrete(limits = idealgraphicsuccession) so that the order of the classes in the same legend for my chart and of the bars that constitute it is that indicated by me with the function c()in idealgraphicsuccession, geom_bar(stat = "identity") for a scale geometry in bars, scale_y_continuous(limits c(min(Minimum value for the Y axis), max(Maximum value for the Y axis))) to have the same scales of values in the Y axis for both graphs and finally scale_fill_manual (values= c ("Selected colors scale")) to select the colors that increase interpretability
 
 ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1987") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))                    
                      
 ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1996") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))                  
   
-#
+#arrangeGrob set up a gtable layout to place multiple grobs on a page. In particular grid.arrange() draw on the current device and is useful to organize ggRGB elements after simply renamed them:
 
 pDV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1987") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))
 
 pNV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1996") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))
 
-#
-
 grid.arrange(pDV, pNV, nrow=1)
+
+#----------------------------------------------
 
 #
 
