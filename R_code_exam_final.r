@@ -890,93 +890,187 @@ grid.arrange(pDV, pNV, nrow=1)
 
 #
 
-#
+#How to calculate variance within a satellite image?
+
+#The variance is a numerical measure of how the data values is dispersed around the mean
+
+#The calculation of the variance in a satellite image is to be carried out exclusively on one of its bands selected by the user through the moving window method
+
+#The moving window method depends on the value of the standard deviation (σ) calculated on the values of a grid whose size is 3 x 3 pixels
+
+#The final value is associated with the pixel that represents the exact center of the moving window
+
+#The new map obtained externally has non-values while internally the values for the standard deviations to which to attribute different "colors"
+
+#The VIs described so far enable the user to calculate the variability of MSHanalysis_ images with the moving window method computationally expressed by the focal () function
+
+#focal() is a function that calculates focal ("moving window") values for the neighborhood of focal cells using a matrix of weights, perhaps in combination with a function
+
+#The variance has been defined as a numerical measure of how the data values is dispersed around the mean:
 
 disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 
+#Attention! The first iterative cycle of functions from the above up to the 994th code string is to be referred to the DVI ((D͟ifference V͟egetation I͟ndex)
+
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:
+
 plot(disruptedvegetationdvimean)
 
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:
+
 MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+
+#plot(disruptedvegetationdvimean) must be reformulated by incorporating new palette of colors MSHMEANcolorspalette: plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:
 
 plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette)
 
-newlyvegetationdvimean <- focal(newlyvegetationdvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+#The variance has been defined as a numerical measure of how the data values is dispersed around the mean:
 
+newlyvegetationdvimean <- focal(newlyvegetationdvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean
+                                
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:
+                               
 plot(newlyvegetationdvimean)
+                                
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                
 
 MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 
+#plot(disruptedvegetationdvimean) must be reformulated by incorporating new palette of colors MSHMEANcolorspalette: plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:                               
+                                
 plot(newlyvegetationdvimean, col=MSHMEANcolorspalette)
+                                
+#With the function par() there is the possibility of combining multiple object's level of "interest" into one graphical visualization of their called multiframe:
 
 par(mfcol=c(1,2))
 
 plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for DVI of disrupted vegetation in 1987")
 
 plot(newlyvegetationdvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for DVI of newly vegetation in 1996")
+                                
+#In this code, the purpose of the previous par() function is to graphically display where it occurred - with the method of the moving window - around the greater variability in mean values assigned to the pixels that constitute globally disruptedvegetationdvimean and newlyvegetationdvimean with the assignment colors through plot(disruptedvegetationdvimean, col = MSHMEANcolorspalette, main = "Mean-dependent variability for DVI of disrupted vegetation in 1987") and plot(newlyvegetationdvimean, col = MSHMEANcolorspalette, main = "Mean-dependent variability for DVI of newly vegetation in 1996 ")                          
+                                
+#The variance has been defined as a numerical measure of how the data values is dispersed around the mean. If instead I considered it according to this definition what would be the difference or what would be the differences in comparison to the standard deviation (σ)?
 
-disruptedvegetationdvistandarddeviation <- focal(disruptedvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+disruptedvegetationdvistandarddeviation <- focal(disruptedvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=sd)
+
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:                             
 
 plot(disruptedvegetationdvistandarddeviation)
-
+                                
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                
+                               
 MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+                                
+#plot(disruptedvegetationdvistandarddeviation) must be reformulated by incorporating new palette of colors MSHSDcolorspalette: plot(disruptedvegetationdvistandarddeviation, col=MSHSDcolorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:                                                               
 
 plot(disruptedvegetationdvistandarddeviation, col=MSHSDcolorspalette)
-
-newlyvegetationdvistandarddeviation <- focal(newlyvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+                                
+#The variance has been defined as a numerical measure of how the data values is dispersed around the mean. If instead I considered it according to this definition what would be the difference or what would be the differences in comparison to the standard deviation (σ)?
+                                
+newlyvegetationdvistandarddeviation <- focal(newlyvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=sd)
+                                
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:                             
 
 plot(newlyvegetationdvistandarddeviation)
+                                
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                                                
 
 MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
-
+                                
+#plot(newlyvegetationdvistandarddeviation) must be reformulated by incorporating new palette of colors MSHSDcolorspalette: plot(newlyvegetationdvistandarddeviation, col=MSHSDcolorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:                                                               
+                               
 plot(newlyvegetationdvistandarddeviation, col=MSHSDcolorspalette)
 
+#With the function par() there is the possibility of combining multiple object's level of "interest" into one graphical visualization of their called multiframe:
+                                
 par(mfcol=c(1,2))
 
 plot(disruptedvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of disrupted vegetation in 1987")
 
 plot(newlyvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of newly vegetation in 1996")
+                                
+#In this code, the purpose of the previous par() function is to graphically display where it occurred - with the method of the moving window - around the greater variability in mean values assigned to the pixels that constitute globally disruptedvegetationdvimean and newlyvegetationdvimean with the assignment colors through plot(disruptedvegetationdvimean, col = MSHMEANcolorspalette, main = "σ-dependent variability for DVI of disrupted vegetation in 1987") and plot(newlyvegetationdvimean, col = MSHMEANcolorspalette, main = "σ-dependent variability for DVI of newly vegetation in 1996 ")
 
+#Attention! The second iterative cycle of functions, to be referred to the NDVI ((N̲ormalized D͟ifference V͟egetation I͟ndex), starts at the 999th and ends at the bottom of the section
+                                
+#The variance has been defined as a numerical measure of how the data values is dispersed around the mean:                                
+                                
+disruptedvegetationndvimean <- focal(disruptedvegetationndvi,w=matrix(1/169, nrow=13, ncol=13), fun=mean)
 
-
-disruptedvegetationndvimean <- focal(disruptedvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:                             
 
 plot(disruptedvegetationndvimean)
 
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                
+
 MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","white","red","yellow"))(100)
+                                
+#plot(disruptedvegetationndvimean) must be reformulated by incorporating new palette of colors MSHMEANcolorspalette: plot(newlyvegetationdvistandarddeviation, col=MSHSDcolorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:                                                               
 
 plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette)
+                                
+#The variance has been defined as a numerical measure of how the data values is dispersed around the mean:                                
 
-newlyvegetationndvimean <- focal(newlyvegetationndvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+newlyvegetationndvimean <- focal(newlyvegetationndvi, w=matrix(1/169, nrow=13, ncol=13), fun=mean)
+                                
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:                             
 
 plot(newlyvegetationndvimean)
+                                
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                
 
 MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","white","red","yellow"))(100)
+                                
+#plot(newlyvegetationndvimean) must be reformulated by incorporating new palette of colors MSHMEANcolorspalette: plot(newlyvegetationndvimean, col=MSHMEANcolorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:                                                               
 
 plot(newlyvegetationndvimean, col=MSHMEANcolorspalette)
-
+                                
+#With the function par() there is the possibility of combining multiple object's level of "interest" into one graphical visualization of their called multiframe:
+                                
 par(mfcol=c(1,2))
 
 plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for NDVI of disrupted vegetation in 1987")
 
 plot(newlyvegetationndvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for NDVI of newly vegetation in 1996")
 
+#In this code, the purpose of the previous par() function is to graphically display where it occurred - with the method of the moving window - around the greater variability in mean values assigned to the pixels that constitute globally disruptedvegetationdvimean and newlyvegetationdvimean with the assignment colors through plot(disruptedvegetationdvimean, col = MSHMEANcolorspalette, main = "Mean-dependent variability for NDVI of disrupted vegetation in 1987") and plot(newlyvegetationdvimean, col = MSHMEANcolorspalette, main = "Mean-dependent variability for NDVI of newly vegetation in 1996 ")                                
+                                
+#focal() is a function that calculates focal ("moving window") values for the neighborhood of focal cells using a matrix of weights, perhaps in combination with a function:
 
+#The variance has been defined as a numerical measure of how the data values is dispersed around the mean. If instead I considered it as dispersed around the standard deviation (σ)?
 
-disruptedvegetationndvistandarddeviation <- focal(disruptedvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+disruptedvegetationndvistandarddeviation <- focal(disruptedvegetationndvi,w=matrix(1/169, nrow=13, ncol=13), fun=sd)
+                                
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:
 
 plot(disruptedvegetationndvistandarddeviation)
+                                
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                
 
 MSHSDcolorspalette <- colorRampPalette(c('blue','yellow','green','pink','magenta','orange','brown','red','black'))(100)
+                                
+#plot(disruptedvegetationndvistandarddeviation) must be reformulated by incorporating new palette of colors plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette) will display graphically reflectance's values in a blue, yellow, green, pink, magenta, orange, brown, red, black scale:                                                               
 
 plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette)
 
-newlyvegetationndvistandarddeviation <- focal(newlyvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+#The variance has been defined as a numerical measure of how the data values is dispersed around the mean. If instead I considered it as dispersed around the standard deviation (σ)?
+
+newlyvegetationndvistandarddeviation <- focal(newlyvegetationndvi,w=matrix(1/169, nrow=13, ncol=13), fun=sd)
+                                
+#plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:
 
 plot(newlyvegetationndvistandarddeviation)
+                                
+#I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                                              
 
 MSHSDcolorspalette <- colorRampPalette(c('blue','yellow','green','pink','magenta','orange','brown','red','black'))(100)
+                                
+#plot(newlyvegetationndvistandarddeviation must be reformulated by incorporating new palette of colors MSHMEANcolorspalette: plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette) will display graphically reflectance's values in a blue, yellow, green, pink, magenta, orange, brown, red, black colour scale:                                                               
 
 plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette)
+                                
+#With the function par() there is the possibility of combining multiple object's level of "interest" into one graphical visualization of their called multiframe:
 
 par(mfcol=c(1,2))
 
@@ -984,7 +1078,10 @@ plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette, main="σ-
 
 plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette, main="σ-dependent variability for NDVI of newly vegetation in 1996")
      
-#
+#In this code, the purpose of the previous par() function is to graphically display where it occurred - with the method of the moving window - around the greater variability in mean values assigned to the pixels that constitute globally disruptedvegetationdvimean and newlyvegetationdvimean with the assignment colors through plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette, main="σ-dependent variability for NDVI of disrupted vegetation in 1987") and plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette, main="σ-dependent variability for NDVI of newly vegetation in 1996")
+                                                           
+#----------------------------------------------------------
+                                
 
 disruptedvegetationpca <- rasterPCA(disruptedvegetation)
 
@@ -1332,10 +1429,9 @@ pDV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1987, fil
 pNV <- ggplot(increasedpercentages, aes(x=MSHcover, y=coverpercentagein1996, fill=MSHcover)) + ggtitle("Cover percentage on the volcanic slopes of Mount Saint Helens in 1996") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "burlywood3", "darkolivegreen4"))
 
 grid.arrange(pDV, pNV, nrow=1)
+                                
      
-     
-
-disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=mean)
 
 plot(disruptedvegetationdvimean)
 
@@ -1343,7 +1439,7 @@ MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','oran
 
 plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette)
 
-newlyvegetationdvimean <- focal(newlyvegetationdvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+newlyvegetationdvimean <- focal(newlyvegetationdvi, w=matrix(1/49, nrow=7, ncol=7), fun=mean)
 
 plot(newlyvegetationdvimean)
 
@@ -1356,8 +1452,9 @@ par(mfcol=c(1,2))
 plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for DVI of disrupted vegetation in 1987")
 
 plot(newlyvegetationdvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for DVI of newly vegetation in 1996")
+                                
 
-disruptedvegetationdvistandarddeviation <- focal(disruptedvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+disruptedvegetationdvistandarddeviation <- focal(disruptedvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=sd)
 
 plot(disruptedvegetationdvistandarddeviation)
 
@@ -1365,7 +1462,7 @@ MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange
 
 plot(disruptedvegetationdvistandarddeviation, col=MSHSDcolorspalette)
 
-newlyvegetationdvistandarddeviation <- focal(newlyvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+newlyvegetationdvistandarddeviation <- focal(newlyvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=sd)
 
 plot(newlyvegetationdvistandarddeviation)
 
@@ -1378,6 +1475,7 @@ par(mfcol=c(1,2))
 plot(disruptedvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of disrupted vegetation in 1987")
 
 plot(newlyvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of newly vegetation in 1996")
+                                
 
 disruptedvegetationndvimean <- focal(disruptedvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 
