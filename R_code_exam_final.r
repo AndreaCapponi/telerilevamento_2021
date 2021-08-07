@@ -8,6 +8,7 @@
 #2. Vegetation sprout again from the lethal lahars and debris flows that annihilated it: vegetation indices (VIs) for pioneer communities on the western slope of Mount Saint Helens ☠️🌱       
 #3. An unprecedented vegetational progression begins to erase the traces of the eruption in 1980: new relations in the extent of forest, agricultural and bare soil areas in the Mount St. Helens National Volcanic Monument 🖩🗺️           
 #4. Interpreting the variability in the Mount St. Helens National Volcanic Monument by remote sensing: the transition from bare soil in the lahars and debris flows to the forest of the Cascades ecoregion is a splendid play of colors 👨‍💻🎨    
+#5. Additional section to describe the P̲rincipal C̲omponents A̲nalysis or PCA in "𝘛𝘩𝘦 𝘦𝘷𝘰𝘭𝘶𝘵𝘪𝘰𝘯 𝘰𝘧 𝘷𝘦𝘨𝘦𝘵𝘢𝘵𝘪𝘰𝘯 𝘰𝘯 𝘭𝘢𝘩𝘢𝘳𝘴 𝘢𝘯𝘥 𝘥𝘦𝘣𝘳𝘪𝘴 𝘧𝘭𝘰𝘸𝘴: 𝘵𝘩𝘦 𝘤𝘢𝘴𝘦 𝘰𝘧 𝘔𝘰𝘶𝘯𝘵 𝘚𝘢𝘪𝘯𝘵 𝘏𝘦𝘭𝘦𝘯𝘴 '𝘦𝘳𝘶𝘱𝘵𝘪𝘰𝘯 𝘪𝘯 1980 🌋🌱": a methodology to reduce the dataset in size and remove the redundancy from the analysis? 🔢🤔 
 
 #----------------------------------------------
 
@@ -1082,7 +1083,7 @@ plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette, main="σ-depe
                                                            
 #----------------------------------------------------------
                         
-#
+#5. Additional section to describe the P̲rincipal C̲omponents A̲nalysis or PCA in "𝘛𝘩𝘦 𝘦𝘷𝘰𝘭𝘶𝘵𝘪𝘰𝘯 𝘰𝘧 𝘷𝘦𝘨𝘦𝘵𝘢𝘵𝘪𝘰𝘯 𝘰𝘯 𝘭𝘢𝘩𝘢𝘳𝘴 𝘢𝘯𝘥 𝘥𝘦𝘣𝘳𝘪𝘴 𝘧𝘭𝘰𝘸𝘴: 𝘵𝘩𝘦 𝘤𝘢𝘴𝘦 𝘰𝘧 𝘔𝘰𝘶𝘯𝘵 𝘚𝘢𝘪𝘯𝘵 𝘏𝘦𝘭𝘦𝘯𝘴 '𝘦𝘳𝘶𝘱𝘵𝘪𝘰𝘯 𝘪𝘯 1980 🌋🌱": a methodology to reduce the dataset in size and remove the redundancy from the analysis? 🔢🤔 
                                 
 #P̲rincipal C̲omponents A̲nalysis (PCA) is a technique applied to multispectral and hyperspectral remotely sensed data
                                 
