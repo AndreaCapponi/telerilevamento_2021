@@ -65,8 +65,6 @@ library(ggplot2)
 
 library(gridExtra)
 
-#
-
 #In my computer R must use the folder named simply lab and I exploit a function (setwd) for the association between R and lab folder:
 
 setwd("C:/lab/mountsainthelens")
