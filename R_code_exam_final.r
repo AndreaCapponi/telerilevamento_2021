@@ -894,7 +894,7 @@ grid.arrange(pDV, pNV, nrow=1)
 
 #The calculation of the variance in a satellite image is to be carried out exclusively on one of its bands selected by the user through the moving window method
 
-#The moving window method depends on the value of the standard deviation (σ) calculated on the values of a grid whose size is 3 x 3 pixels
+#The moving window method depends on the value of the standard deviation (σ) calculated on the values of a grid whose size is 3 x 3 pixels predefined
 
 #The final value is associated with the pixel that represents the exact center of the moving window
 
@@ -906,7 +906,7 @@ grid.arrange(pDV, pNV, nrow=1)
 
 #The variance has been defined as a numerical measure of how the data values is dispersed around the mean:
 
-disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=mean)
 
 #Attention! The first iterative cycle of functions from the above up to the 994th code string is to be referred to the DVI ((D͟ifference V͟egetation I͟ndex)
 
@@ -916,7 +916,7 @@ plot(disruptedvegetationdvimean)
 
 #I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:
 
-MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","brown","red","yellow"))(100)
 
 #plot(disruptedvegetationdvimean) must be reformulated by incorporating new palette of colors MSHMEANcolorspalette: plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:
 
@@ -924,7 +924,7 @@ plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette)
 
 #The variance has been defined as a numerical measure of how the data values is dispersed around the mean:
 
-newlyvegetationdvimean <- focal(newlyvegetationdvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean
+newlyvegetationdvimean <- focal(newlyvegetationdvi, w=matrix(1/49, nrow=7, ncol=7), fun=mean
                                 
 #plot is a common function for plotting of R object and in this case I exploit the previous to visualize spectral bands:
                                
@@ -932,7 +932,7 @@ plot(newlyvegetationdvimean)
                                 
 #I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                
 
-MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","brown","red","yellow"))(100)
 
 #plot(disruptedvegetationdvimean) must be reformulated by incorporating new palette of colors MSHMEANcolorspalette: plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:                               
                                 
@@ -958,7 +958,7 @@ plot(disruptedvegetationdvistandarddeviation)
                                 
 #I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                
                                
-MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+MSHSDcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","brown","red","yellow"))(100)
                                 
 #plot(disruptedvegetationdvistandarddeviation) must be reformulated by incorporating new palette of colors MSHSDcolorspalette: plot(disruptedvegetationdvistandarddeviation, col=MSHSDcolorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:                                                               
 
@@ -974,7 +974,7 @@ plot(newlyvegetationdvistandarddeviation)
                                 
 #I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                                                
 
-MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+MSHSDcolorspalette <- colorRampPalette(c(""blue"",""green"",""pink"",""magenta"",""orange"",""brown"",""red"",""yellow""))(100)
                                 
 #plot(newlyvegetationdvistandarddeviation) must be reformulated by incorporating new palette of colors MSHSDcolorspalette: plot(newlyvegetationdvistandarddeviation, col=MSHSDcolorspalette) will display graphically reflectance's values in a blue, green, pink, magenta, orange, brown, red and yellow colour scale:                                                               
                                
@@ -990,6 +990,8 @@ plot(newlyvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dep
                                 
 #In this code, the purpose of the previous par() function is to graphically display where it occurred - with the method of the moving window - around the greater variability in mean values assigned to the pixels that constitute globally disruptedvegetationdvimean and newlyvegetationdvimean with the assignment colors through plot(disruptedvegetationdvimean, col = MSHMEANcolorspalette, main = "σ-dependent variability for DVI of disrupted vegetation in 1987") and plot(newlyvegetationdvimean, col = MSHMEANcolorspalette, main = "σ-dependent variability for DVI of newly vegetation in 1996 ")
 
+#Important: standard deviation (σ) measures the dispersion of a dataset relative to its mean!
+                                
 #Attention! The second iterative cycle of functions, to be referred to the NDVI ((N̲ormalized D͟ifference V͟egetation I͟ndex), starts at the 999th and ends at the bottom of the section
                                 
 #The variance has been defined as a numerical measure of how the data values is dispersed around the mean:                                
@@ -1046,7 +1048,7 @@ plot(disruptedvegetationndvistandarddeviation)
                                 
 #I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                
 
-MSHSDcolorspalette <- colorRampPalette(c('blue','yellow','green','pink','magenta','orange','brown','red','black'))(100)
+MSHSDcolorspalette <- colorRampPalette(c("blue","yellow","green","pink","magenta","orange","brown","red","black"))(100)
                                 
 #plot(disruptedvegetationndvistandarddeviation) must be reformulated by incorporating new palette of colors plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette) will display graphically reflectance's values in a blue, yellow, green, pink, magenta, orange, brown, red, black scale:                                                               
 
@@ -1062,7 +1064,7 @@ plot(newlyvegetationndvistandarddeviation)
                                 
 #I exploit a function (colorRampPalette) to create a new palette of colors each one of them is indexed, numbered pixel as virtual box matches numbered color as bit depth:                                                              
 
-MSHSDcolorspalette <- colorRampPalette(c('blue','yellow','green','pink','magenta','orange','brown','red','black'))(100)
+MSHSDcolorspalette <- colorRampPalette(c("blue","yellow","green","pink","magenta","orange","brown","red","black"))(100)
                                 
 #plot(newlyvegetationndvistandarddeviation must be reformulated by incorporating new palette of colors MSHMEANcolorspalette: plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette) will display graphically reflectance's values in a blue, yellow, green, pink, magenta, orange, brown, red, black colour scale:                                                               
 
