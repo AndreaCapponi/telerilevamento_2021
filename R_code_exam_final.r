@@ -890,6 +890,8 @@ grid.arrange(pDV, pNV, nrow=1)
 
 #
 
+#
+
 disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 
 plot(disruptedvegetationdvimean)
@@ -934,6 +936,8 @@ plot(disruptedvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ
 
 plot(newlyvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="σ-dependent variability for DVI of newly vegetation in 1996")
 
+
+
 disruptedvegetationndvimean <- focal(disruptedvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 
 plot(disruptedvegetationndvimean)
@@ -946,7 +950,7 @@ newlyvegetationndvimean <- focal(newlyvegetationndvi, w=matrix(1/9, nrow=3, ncol
 
 plot(newlyvegetationndvimean)
 
-MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","brown","red","yellow"))(100)
+MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","white","red","yellow"))(100)
 
 plot(newlyvegetationndvimean, col=MSHMEANcolorspalette)
 
@@ -955,6 +959,8 @@ par(mfcol=c(1,2))
 plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for NDVI of disrupted vegetation in 1987")
 
 plot(newlyvegetationndvimean, col=MSHMEANcolorspalette, main="Mean-dependent variability for NDVI of newly vegetation in 1996")
+
+
 
 disruptedvegetationndvistandarddeviation <- focal(disruptedvegetationndvi,w=matrix(1/9, nrow=3, ncol=3), fun=sd)
 
@@ -970,13 +976,15 @@ plot(newlyvegetationndvistandarddeviation)
 
 MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
 
-plot((newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette)
+plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette)
 
 par(mfcol=c(1,2))
 
-plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette, main="σ-dependent variability for NDVI of disrupted vegetation in 1987")
+plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette, main="σ-dependent variability for NDVI of disrupted vegetation in 1987")
 
-plot(newlyvegetationndvimean, col=MSHMEANcolorspalette, main="σ-dependent variability for NDVI of newly vegetation in 1996")
+plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette, main="σ-dependent variability for NDVI of newly vegetation in 1996")
+     
+#
 
 disruptedvegetationpca <- rasterPCA(disruptedvegetation)
 
@@ -1151,7 +1159,7 @@ disruptedvegetationvi <- spectralIndices(disruptedvegetation, green=3, red=2, ni
 
 plot(disruptedvegetationvi)
 
-MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100) <--- Quale per gli indici VI?
+MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
 
 plot(disruptedvegetationvi, col=MSHDVIcolorspalette)
 
@@ -1159,7 +1167,7 @@ newlyvegetationvi <- spectralIndices(newlyvegetation, green=3, red=2, nir=1)
 
 plot(newlyvegetationvi)
 
-MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100) <--- Quale per gli indici VI?
+MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100) 
 
 plot(newlyvegetationvi, col=MSHDVIcolorspalette)
 
@@ -1244,8 +1252,7 @@ multitemporalndvi
 plot(multitemporalndvi, col=MSHNDVIcolorspalette)
 
 plot(multitemporalndvi, col=MSHNDVIcolorspalette, main="NDVI of Mount Saint Helens' vegetation from 1987 to 1996")
-     
-
+    
 ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
 
 ggRGB(newlyvegetation, r=1, g=2, b=3, stretch="lin")
@@ -1384,7 +1391,7 @@ newlyvegetationndvimean <- focal(newlyvegetationndvi, w=matrix(1/9, nrow=3, ncol
 
 plot(newlyvegetationndvimean)
 
-MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","brown","red","yellow"))(100)
+MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","white","red","yellow"))(100)
 
 plot(newlyvegetationndvimean, col=MSHMEANcolorspalette)
 
