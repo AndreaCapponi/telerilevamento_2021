@@ -966,7 +966,7 @@ disruptedvegetationndvistandarddeviation <- focal(disruptedvegetationndvi,w=matr
 
 plot(disruptedvegetationndvistandarddeviation)
 
-MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+MSHSDcolorspalette <- colorRampPalette(c('blue','yellow','green','pink','magenta','orange','brown','red','black'))(100)
 
 plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette)
 
@@ -974,7 +974,7 @@ newlyvegetationndvistandarddeviation <- focal(newlyvegetationndvi,w=matrix(1/9, 
 
 plot(newlyvegetationndvistandarddeviation)
 
-MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+MSHSDcolorspalette <- colorRampPalette(c('blue','yellow','green','pink','magenta','orange','brown','red','black'))(100)
 
 plot(newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette)
 
