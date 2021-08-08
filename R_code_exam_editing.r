@@ -655,8 +655,385 @@ plot(seconddvi, col=cl, main="DVI in 2016")
 difdvi <- firstdvi - seconddvi
 
 
+#Per i grafici in italiano:
 
+install.packages("raster")
+	
+	install.packages("Rcpp")
+	
+	install.packages("RStoolbox")
+	
+	install.packages("rasterVis")
+	
+	install.packages("RColorBrewer")
+	
+	install.packages("viridis")
+	
+	install.packages("ggplot2")
+	
+	install.packages("gridExtra")
+	
+	library(raster)
+	
+	library(RStoolbox)
+	
+	library(rasterVis)
+	
+	library(RColorBrewer)
+	
+	library(viridis)
+	
+	library(ggplot2)
+	
+	library(gridExtra)
+	
+	setwd("C:/lab/mountsainthelens")
+	
+	mountsainthelenssubfolderlist <- list.files(pattern="MSHanalysis_")
+	
+	mountsainthelenssubfolderlist
+	
+	mountsainthelensimportedr <- lapply(mountsainthelenssubfolderlist,raster)
+	
+	mountsainthelensimportedr
+	
+	TCSMSH <- stack(mountsainthelensimportedr)
+	
+first <- brick("MSHanalysis_87.jpg")
 
+second <- brick("MSHanalysis_90.jpg")
+
+third <- brick("MSHanalysis_93.jpg")
+
+fourth <- brick("MSHanalysis_96.jpg")
+
+par(mfrow=c(2,2))
+
+plotRGB(first)
+
+plotRGB(second)
+
+plotRGB(third)
+
+plotRGB(fourth)
+	     
+	levelplot(TCSMSH)     
+	
+	levelplot(TCSMSH$MSHanalysis_87)
+	
+	levelplot(TCSMSH$MSHanalysis_90)
+	
+	levelplot(TCSMSH$MSHanalysis_93)
+	
+	levelplot(TCSMSH$MSHanalysis_96)
+	
+	levelplot(TCSMSH, names.attr=c("1987","1990", "1993","1996"))
+	
+	levelplot(TCSMSH, main=" Variazione della copertura vegetale sulla frana vulcanica del Monte Saint Helens nel tempo", names.attr=c("1987","1990", "1993","1996"))
+	
+	levelplot(TCSMSH, col.regions=gray(0:100/100))
+	
+	levelplot(TCSMSH,col.regions=gray(0:100/100), names.attr=c("1987","1990", "1993","1996"))
+	
+	levelplot(TCSMSH,col.regions=gray(0:100/100), main=" Variazione della copertura vegetale sulla frana vulcanica del Monte Saint Helens nel tempo", names.attr=c("1987","1990", "1993","1996"))
+	
+	display.brewer.all()
+	
+	MSHYlOrBrcolorspalette <- brewer.pal(9, "YlOrBr")
+	
+	pal <- colorRampPalette(MSHYlOrBrcolorspalette)
+	
+	levelplot(TCSMSH,col.regions=pal)
+	
+	levelplot(TCSMSH,col.regions=pal, names.attr=c("1987","1990", "1993","1996"))
+	
+	levelplot(TCSMSH,col.regions=pal, main=" Variazione della copertura vegetale sulla frana vulcanica del Monte Saint Helens nel tempo", names.attr=c("1987","1990", "1993","1996"))
+	
+	dev.off()
+	
+	disruptedvegetation <- brick("MSHanalysis_87.jpg")
+	
+	newlyvegetation <- brick("MSHanalysis_96.jpg")
+	
+	par(mfrow=c(1,2))
+	
+	plotRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
+	
+	plotRGB(disruptedvegetation, r=1, g=2, b=3, stretch="his")
+	
+	par(mfrow=c(1,2))
+	
+	plotRGB(newlyvegetation, r=1, g=2, b=3, stretch="lin")
+	
+	plotRGB(newlyvegetation, r=1, g=2, b=3, stretch="his")
+	
+	disruptedvegetationvi <- spectralIndices(disruptedvegetation, green=3, red=2, nir=1)
+	
+	plot(disruptedvegetationvi)
+	
+	MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
+	
+	plot(disruptedvegetationvi, col=MSHDVIcolorspalette)
+	
+	newlyvegetationvi <- spectralIndices(newlyvegetation, green=3, red=2, nir=1)
+	
+	plot(newlyvegetationvi)
+	
+	MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100) 
+	
+	plot(newlyvegetationvi, col=MSHDVIcolorspalette)
+	
+	disruptedvegetation
+	
+	disruptedvegetation$MSHanalysis_87.1
+	
+	disruptedvegetation$MSHanalysis_87.2
+	
+	plot(disruptedvegetation$MSHanalysis_87.1)
+	
+	plot(disruptedvegetation$MSHanalysis_87.2)
+	
+	dev.off()
+	
+	disruptedvegetationdvi <- disruptedvegetation$MSHanalysis_87.1 - disruptedvegetation$MSHanalysis_87.2
+	
+	plot(disruptedvegetationdvi)
+	
+	MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
+	
+	plot(disruptedvegetationdvi, col=MSHDVIcolorspalette)
+	
+	plot(disruptedvegetationdvi, col=MSHDVIcolorspalette, main="DVI della vegetazione disturbata nel 1987")
+	
+	newlyvegetation
+	
+	newlyvegetation$MSHanalysis_96.1
+	
+	newlyvegetation$MSHanalysis_96.2
+	
+	plot(newlyvegetation$MSHanalysis_96.1)
+	
+	plot(newlyvegetation$MSHanalysis_96.2)
+	
+	newlyvegetationdvi <- newlyvegetation$MSHanalysis_96.1 - newlyvegetation$MSHanalysis_96.2
+	
+	plot(newlyvegetationdvi)
+	
+	MSHDVIcolorspalette <- colorRampPalette(c("darkblue","cyan", "forestgreen","chartreuse2","saddlebrown", "brown","black"))(100)
+	
+	plot(newlyvegetationdvi, col=MSHDVIcolorspalette , main="DVI della nuova vegetazione nel 1996")
+	
+	par(mfcol=c(1,2))
+	
+	plot(disruptedvegetationdvi, col=MSHDVIcolorspalette, main="DVI della vegetazione disturbata nel 1987")
+	
+	plot(newlyvegetationdvi, col=MSHDVIcolorspalette, main="DVI della nuova vegetazione nel 1996")
+	
+	multitemporaldvi <- disruptedvegetationdvi - newlyvegetationdvi
+	
+	multitemporaldvi
+	     
+	plot(multitemporaldvi)
+	     
+	plot(multitemporaldvi, col=MSHDVIcolorspalette) 
+	
+	plot(multitemporaldvi, col=MSHDVIcolorspalette, main="DVI della vegetazione sul Monte Saint Helens dal 1987 to 1996")
+	
+	disruptedvegetationndvi <- (disruptedvegetationdvi) / (disruptedvegetation$MSHanalysis_87.1 + disruptedvegetation$MSHanalysis_87.2)
+	
+	MSHNDVIcolorspalette <- colorRampPalette(c("darkorchid2","whitesmoke","turquoise1","springgreen4","wheat1","gold"))(100) 
+	
+	plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette)
+	
+	newlyvegetationndvi <- (newlyvegetationdvi) / (newlyvegetation$MSHanalysis_96.1 + newlyvegetation$MSHanalysis_96.2)
+	
+	MSHNDVIanothercolorspalette <- colorRampPalette(c("darkorchid2","steelblue1","royalblue1","turquoise1","springgreen4","whitesmoke","wheat1","gold","indianred3","black"))(100)  
+	
+	plot(newlyvegetationndvi, col=MSHNDVIanothercolorspalette)
+	
+	par(mfcol=c(1,2))
+	
+	plot(disruptedvegetationndvi, col=MSHNDVIcolorspalette, main="NDVI della vegetazione disturbata nel 1987")
+	
+	plot(newlyvegetationndvi, col=MSHNDVIanothercolorspalette, main="NDVI della nuova vegetazione nel 1996")
+	
+	multitemporalndvi <- disruptedvegetationndvi - newlyvegetationndvi
+	     
+	multitemporalndvi
+	
+	plot(multitemporalndvi, col=MSHNDVIcolorspalette)
+	
+	plot(multitemporalndvi, col=MSHNDVIcolorspalette, main="NDVI della vegetazione sul Monte Saint Helens dal 1987 to 1996")
+	    
+	ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
+	
+	ggRGB(newlyvegetation, r=1, g=2, b=3, stretch="lin")
+	
+	DVe <- ggRGB(disruptedvegetation, r=1, g=2, b=3, stretch="lin")
+	
+	NVe <- ggRGB(newlyvegetation, r=1, g=2, b=3, stretch="lin")
+	
+	grid.arrange(DVe, NVe, nrow=2)
+	
+	dev.off()
+	
+	set.seed(1)
+	
+	rnorm(1)
+	
+	DVc <- unsuperClass(disruptedvegetation, nClass=3)
+	
+	DVc
+	
+	plot(DVc$map)
+	
+	set.seed(1)
+	
+	rnorm(1)
+	
+	NVc <- unsuperClass(newlyvegetation, nClass=3)
+	
+	NVc
+	     
+	plot(NVc$map)
+	
+	par(mfrow=c(1,2))
+	
+	plot(DVc$map)
+	
+	plot(NVc$map)
+	
+	freq(DVc$map)
+	
+	freq(NVc$map)
+	
+	sDV <- 510198 + 1030579 + 2737705
+	
+	sDV
+	
+	sNV <- 395390 + 872402 + 3010690
+	
+	sNV
+	
+	pDV <- freq(DVc$map)/sDV
+	
+	pDV
+	
+	pNV <-freq(NVc$map)/sNV
+	
+	pNV
+	
+	MSHcopertura <- c("Foresta", "Agricoltura/Vegetazione diradata", "Suolo nudo")
+	
+	coperturapercentualenel1987 <- c(63.98776, 24.08749, 11.92474)
+	
+	coperturapercentualenel1996 <- c(70.368182, 20.390456, 9.241362)
+	
+	aumentopercentuale <- data.frame(MSHcopertura, coperturapercentualenel1987, coperturapercentualenel1996)
+	
+	aumentopercentuale
+	
+	idealgraphicsuccession <- c("Suolo nudo", "Agricoltura/Vegetazione diradata", "Foresta")
+	
+	ggplot(aumentopercentuale, aes(x= MSHcopertura, y= coperturapercentualenel1987, fill=MSHcopertura)) + ggtitle("Percentuale di copertura sulle pendici vulcaniche del Monte Saint Helens nel 1987") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "darkolivegreen4", "burlywood3"))                    
+	                     
+	ggplot(aumentopercentuale, aes(x=MSHcopertura, y= coperturapercentualenel1996, fill=MSHcopertura)) + ggtitle("Percentuale di copertura sulle pendici vulcaniche del Monte Saint Helens nel 1996") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "darkolivegreen4", "burlywood3"))                  
+	                     
+	pDV <- ggplot(aumentopercentuale, aes(x= MSHcopertura, y= coperturapercentualenel1987, fill=MSHcopertura)) + ggtitle("Percentuale di copertura sulle pendici vulcaniche del Monte Saint Helens nel 1987") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "darkolivegreen4", "burlywood3"))                    
+	
+	pNV <- ggplot(aumentopercentuale, aes(x=MSHcopertura, y= coperturapercentualenel1996, fill=MSHcopertura)) + ggtitle("Percentuale di copertura sulle pendici vulcaniche del Monte Saint Helens nel 1996") + theme(plot.title=element_text(face="bold")) + scale_x_discrete(limits = idealgraphicsuccession) + scale_y_continuous(limits = c(min(0),max(71))) + geom_bar(stat="identity") + theme(legend.position="bottom") + scale_fill_manual(values=c("gold", "darkolivegreen4", "burlywood3"))                  
+	
+	grid.arrange(pDV, pNV, nrow=1)                    
+	     
+	disruptedvegetationdvimean <- focal(disruptedvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=mean)
+	
+	plot(disruptedvegetationdvimean)
+	
+	MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+	
+	plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette)
+	
+	newlyvegetationdvimean <- focal(newlyvegetationdvi, w=matrix(1/49, nrow=7, ncol=7), fun=mean)
+	
+	plot(newlyvegetationdvimean)
+	
+	MSHMEANcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+	
+	plot(newlyvegetationdvimean, col=MSHMEANcolorspalette)
+	
+	par(mfcol=c(1,2))
+	
+	plot(disruptedvegetationdvimean, col=MSHMEANcolorspalette, main="Variabilità μ-dipendente per DVI della vegetazione disturbata nel 1987")
+	
+	plot(newlyvegetationdvimean, col=MSHMEANcolorspalette, main="Variabilità μ-dipendente per DVI della nuova vegetazione nel 1996")
+	                                
+	disruptedvegetationdvistandarddeviation <- focal(disruptedvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=sd)
+	
+	plot(disruptedvegetationdvistandarddeviation)
+	
+	MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+	
+	plot(disruptedvegetationdvistandarddeviation, col=MSHSDcolorspalette)
+	
+	newlyvegetationdvistandarddeviation <- focal(newlyvegetationdvi,w=matrix(1/49, nrow=7, ncol=7), fun=sd)
+	
+	plot(newlyvegetationdvistandarddeviation)
+	
+	MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+	
+	plot(newlyvegetationdvistandarddeviation, col=MSHSDcolorspalette)
+	
+	par(mfcol=c(1,2))
+	
+	plot(disruptedvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main="Variabilità σ-dipendente per DVI della vegetazione disturbata nel 1987")
+	
+	plot(newlyvegetationdvistandarddeviation, col=MSHMEANcolorspalette, main=" Variabilità σ-dipendente per DVI della nuova vegetazione nel 1996")
+	                                
+	disruptedvegetationndvimean <- focal(disruptedvegetationndvi,w=matrix(1/169, nrow=13, ncol=13), fun=mean)
+	
+	plot(disruptedvegetationndvimean)
+	
+	MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","white","red","yellow"))(100)
+	
+	plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette)
+	
+	newlyvegetationndvimean <- focal(newlyvegetationndvi, w=matrix(1/169, nrow=13, ncol=13), fun=mean)
+	
+	plot(newlyvegetationndvimean)
+	
+	MSHMEANcolorspalette <- colorRampPalette(c("blue","green","pink","magenta","orange","white","red","yellow"))(100)
+	
+	plot(newlyvegetationndvimean, col=MSHMEANcolorspalette)
+	
+	par(mfcol=c(1,2))
+	
+	plot(disruptedvegetationndvimean, col=MSHMEANcolorspalette, main="Variabilità μ-dipendente per NDVI della vegetazione disturbata nel 1987")
+	
+	plot(newlyvegetationndvimean, col=MSHMEANcolorspalette, main="Variabilità μ-dipendente per NDVI della nuova vegetazione nel 1996")
+	
+	disruptedvegetationndvistandarddeviation <- focal(disruptedvegetationndvi,w=matrix(1/169, nrow=13, ncol=13), fun=sd)
+	
+	plot(disruptedvegetationndvistandarddeviation)
+	
+	MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+	
+	plot(disruptedvegetationndvistandarddeviation, col=MSHSDcolorspalette)
+	
+	newlyvegetationndvistandarddeviation <- focal(newlyvegetationndvi,w=matrix(1/169, nrow=13, ncol=13), fun=sd)
+	
+	plot(newlyvegetationndvistandarddeviation)
+	
+	MSHSDcolorspalette <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100)
+	
+	plot((newlyvegetationndvistandarddeviation, col=MSHSDcolorspalette)
+	
+	par(mfcol=c(1,2))
+	
+	plot(disruptedvegetationndvistandarddeviation, col=MSHMEANcolorspalette, main=" Variabilità σ-dipendente per NDVI della vegetazione disturbata nel 1987")
+	
+	plot(newlyvegetationndvistandarddeviation, col=MSHMEANcolorspalette, main=" Variabilità σ-dipendente per NDVI della nuova vegetazione nel 1996")
+
+pdf(file=onlyforgraphics)
 
 
 
